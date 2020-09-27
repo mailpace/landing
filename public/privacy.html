@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>OhMySMTP - Transactional emails the easy way</title>
+  <meta name="author" content="OhMySMTP">
+
+  <link rel="stylesheet" href="build/tailwind.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+
+  <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+  <style>
+    .gradient {
+      background: linear-gradient(90deg, #38618c 0%, #47a8bd 100%);
+    }
+  </style>
+
+</head>
+
+<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+  <!--Nav-->
+  <nav id="header" class="fixed top-0 z-30 w-full text-white bg-gray-100">
+
+    <div class="container flex flex-wrap items-center justify-between w-full py-2 mx-auto mt-0">
+
+      <div class="flex items-center pl-4">
+        <a class="text-2xl font-bold text-gray-800 no-underline toggleColour hover:no-underline lg:text-4xl" href="/">
+          OhMySMTP
+        </a>
+      </div>
+
+      <div class="block pr-4 lg:hidden">
+        <button id="nav-toggle" class="flex items-center p-1 text-orange-800 hover:text-gray-900">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="z-20 flex-grow hidden w-full p-4 mt-2 text-black bg-white lg:flex lg:items-center lg:w-auto lg:block lg:mt-0 lg:bg-transparent lg:p-0"
+        id="nav-content">
+        <ul class="items-center justify-end flex-1 list-reset lg:flex">
+          <li class="mr-3">
+            <a class="inline-block px-4 py-2 text-black no-underline hover:text-gray-800 hover:text-underline"
+              href="https://docs.ohmysmtp.com">Docs</a>
+          </li>
+          <li class="mr-3">
+            <a class="inline-block px-4 py-2 text-black no-underline hover:text-gray-800 hover:text-underline"
+              href="https://ohmysmtp.com/#pricing">Pricing</a>
+          </li>
+          <li class="mr-3">
+            <a class="inline-block px-4 py-2 font-bold text-black no-underline" href="https://app.ohmysmtp.com">Sign
+              In</a>
+          </li>
+        </ul>
+        <a href="https://app.ohmysmtp.com" id="navAction"
+          class="px-8 py-4 mx-auto mt-4 font-bold text-gray-800 bg-white rounded-full shadow opacity-75 lg:mx-0 hover:underline lg:mt-0">Start
+          Sending</a>
+      </div>
+    </div>
+
+    <hr class="py-0 my-0 border-b border-gray-100 opacity-25" />
+  </nav>
+
+  <div class="pt-24">
+    <div class="container items-center px-3 pb-4 mx-auto md:w-2/3 md:flex-row">
+      <p class="text-4xl">Privacy notice</p>
+
+      <p class="my-4 text-2xl">What data we need</p>
+      <p class="my-2">The personal data we collect from you includes:</p>
+      <ul class="my-2 ml-4 list-disc">
+        <li>Your email address</li>
+        <li>Your Internet Protocol (IP) address, and details of which version of web browser you used</li>
+        <li>Information on how you use the site, using cookies and page tagging techniques</li>
+      </ul>
+
+      <p class="my-2">We also process emails sent through our API. These emails are sent through our SMTP server and
+        stored for you to access them for up to 1 month</p>
+
+      <p class="my-2">The legal basis for processing this data is to provide the services offered by OhMySMTP.com</p>
+
+      <p class="my-4 text-2xl">Why we need it</p>
+      <p class="my-2">We collect your email address to allow us to provide a login service and to send important account
+        notifications</p>
+
+      <p class="my-2">We use Google Analytics software to collect information about how you use OhMySMTP. We do this to
+        help make sure the site is meeting the needs of its users and to help us make improvements, for example
+        improving the outgoing email dashboard.</p>
+
+      <p class="my-2">Google Analytics stores information about:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>The pages you visit on OhMySMTP.com</li>
+        <li>How long you spend on each OhMySMTP.com page</li>
+        <li>How you got to the site</li>
+        <li>What you click on while you’re visiting the site</li>
+      </ul>
+
+      <p class="my-2">We also collect data in order to:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>Improve the site by monitoring how you use it</li>
+        <li>Gather feedback to improve our services</li>
+        <li>Respond to any feedback you send us</li>
+        <li>Contact you with product updates and information regarding our services through our mailing list</li>
+      </ul>
+
+      <p class="my-4 text-2xl">What we do with your data</p>
+      <p class="my-2"></p>The data we collect is only used to run this service.</p>
+
+      <p class="my-2">We will not:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>Sell or rent your data to third parties</li>
+        <li>Share your data with third parties for marketing purposes</li>
+      </ul>
+
+      <p class="my-2">We will share your data if we are required to do so by law – for example, by court order</p>
+
+      <p class="my-4 text-2xl">How long we keep your data</p>
+      <p class="my-2">We will only retain your personal data for as long as:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>It is needed for the purposes set out in this document</li>
+        <li>The law requires us to</li>
+      </ul>
+
+      <p class="my-4 text-2xl">How we protect your data and keep it secure</p>
+      <p class="my-2">We are committed to doing all that we can to keep your data secure. We have set up systems and
+        processes to prevent unauthorised access or disclosure of your data – for example, we protect your data using
+        varying levels of encryption.</p>
+
+      <p class="my-4 text-2xl">Your rights</p>
+      <p class="my-2">You have the right to request:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>Information about how your personal data is processed</li>
+        <li>A copy of that personal data</li>
+        <li>That anything inaccurate in your personal data is corrected immediately</li>
+      </ul>
+
+      <p class="my-2">You can also:</p>
+
+      <ul class="my-2 ml-4 list-disc">
+        <li>Raise an objection about how your personal data is processed</li>
+        <li>Request that your personal data is erased if there is no longer a justification for it</li>
+        <li>Ask that the processing of your personal data is restricted in certain circumstances</li>
+      </ul>
+
+      <p class="my-2">If you have any of these requests, get in contact with our Support team <a
+          href="mailto:support@ohmysmtp.com>">here</a></p>
+
+      <p class="my-4 text-2xl">Changes to this policy</p>
+
+      <p class="my-2">We may change this privacy policy. In that case, the ‘last updated’ date at the bottom of this
+        page will also change. Any changes to this privacy policy will apply to you and your data immediately.</p>
+
+      <p class="my-2">If these changes affect how your personal data is processed, we will take reasonable steps to let
+        you know.</p>
+
+      <p class="my-2">Last Updated: August 25th 2020</p>
+    </div>
+  </div>
+  <script>
+    /*Toggle dropdown list*/
+    /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+    var navMenuDiv = document.getElementById("nav-content");
+    var navMenu = document.getElementById("nav-toggle");
+
+    document.onclick = check;
+
+    function check(e) {
+      var target = (e && e.target) || (event && event.srcElement);
+
+      //Nav Menu
+      if (!checkParent(target, navMenuDiv)) {
+        // click NOT on the menu
+        if (checkParent(target, navMenu)) {
+          // click on the link
+          if (navMenuDiv.classList.contains("hidden")) {
+            navMenuDiv.classList.remove("hidden");
+          } else {
+            navMenuDiv.classList.add("hidden");
+          }
+        } else {
+          // click both outside link and outside menu, hide menu
+          navMenuDiv.classList.add("hidden");
+        }
+      }
+
+    }
+
+    function checkParent(t, elm) {
+      while (t.parentNode) {
+        if (t == elm) {
+          return true;
+        }
+        t = t.parentNode;
+      }
+      return false;
+    }
+  </script>
+
+</body>
+
+</html>
