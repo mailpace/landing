@@ -1,6 +1,5 @@
-# Redirect https://ohmysmtp.com/blog/ to our blog netlify site
+# Redirect https://ohmysmtp.com/blog/ to our blog subdomain
 [[redirects]]
   from = "/blog/*"
-  to = "https://determined-leavitt-2bc472.netlify.app/blog/:splat"
-  status = 200
-  force = true
+  to = "https://blog.ohmysmtp.com/:splat"
+  status = 301
