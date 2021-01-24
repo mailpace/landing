@@ -720,7 +720,6 @@
 		const average = arr => (arr.reduce( ( p, c ) => p + parseFloat(c), 0 ) / arr.length).toFixed(2);
 	
 		function updateScores(scores) {
-			console.log(scores.gmail)
 			document.getElementById("gmail-latest").textContent = parseFloat(scores.gmail[0]).toFixed(2);
 			document.getElementById("gmail-average").textContent = average(scores.gmail)
 			document.getElementById("outlook-latest").textContent = parseFloat(scores.outlook[0]).toFixed(2);
