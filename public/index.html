@@ -481,8 +481,12 @@
 						</ul>
 					</div>
 					<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
-						<div class="w-full pt-6 text-3xl font-bold text-center text-gray-600">$2 <span class="text-base">
-								per month</span></div>
+						
+						<div class="w-full pt-6 text-3xl font-bold text-center text-gray-600">
+							<span class="paddle-gross" data-product="640628">$24</span>
+							<span class="text-base">per year</span>
+						</div>
+
 						<div class="w-full text-center text-gray-600">(billed annually)</div>
 						<div class="flex items-center justify-center">
 							<a href="https://app.ohmysmtp.com/users/sign_up"
@@ -511,8 +515,11 @@
 						</ul>
 					</div>
 					<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
-						<div class="w-full pt-6 text-3xl font-bold text-center text-gray-600">$10 <span class="text-base">
-								per month</span></div>
+						
+						<div class="w-full pt-6 text-3xl font-bold text-center text-gray-600">
+							<span class="paddle-gross" data-product="607243">$10</span>
+							<span class="text-base">per month</span>
+						</div>
 						<div class="flex items-center justify-center">
 							<a href="https://app.ohmysmtp.com/users/sign_up"
 								class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Sign
@@ -541,8 +548,10 @@
 						</ul>
 					</div>
 					<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
-						<div class="w-full pt-6 text-4xl font-bold text-center">$90 <span class="text-base"> per month</span>
-						</div>
+						<div class="w-full pt-6 text-4xl font-bold text-center">
+							<span class="paddle-gross" data-product="607244">$90</span>
+							<span class="text-base">per month</span>
+						</div>	
 						<div class="flex items-center justify-center">
 							<a href="https://app.ohmysmtp.com/users/sign_up"
 								class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Sign
@@ -840,6 +849,10 @@
 			.then(scores => updateScores(scores))
 	</script>
 
+	<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+	<script>
+		Paddle.Setup({ vendor: 118970 });
+	</script>
 </body>
 
 </html>
