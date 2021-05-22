@@ -5,8 +5,8 @@
   "description": "Landing Page for OMS",
   "scripts": {
     "serve": "cross-env NODE_ENV=development concurrently \"npm run watch:css\" \"npm run watch:html\" \"live-server ./public\"",
-    "development": "cross-env NODE_ENV=development npm run build:css & npm run build:html",
-    "production": "cross-env NODE_ENV=production npm run build:css & npm run build:html",
+    "development": "cross-env NODE_ENV=development npm run build:css && npm run build:html",
+    "production": "cross-env NODE_ENV=production npm run build:css && npm run build:html",
     "build:css": "postcss css/tailwind.css -o public/build/tailwind.css",
     "watch:css": "postcss css/tailwind.css -o public/build/tailwind.css --watch",
     "build:html": "posthtml -c posthtml.json",
