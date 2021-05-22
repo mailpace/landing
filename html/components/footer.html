@@ -1,0 +1,225 @@
+
+
+	<!--Footer-->
+	<footer class="bg-white">
+		<div class="container px-8 mx-auto">
+
+			<div class="flex flex-col w-full py-6 md:flex-row">
+
+				<div class="flex-1 mb-6">
+
+					<a class="text-2xl font-bold text-gray-800 no-underline hover:no-underline lg:text-4xl" href="#">
+						OhMySMTP
+					</a>
+					<p class="mt-4 text-gray-800">Proudly made in the United Kingdom <span class="">🇬🇧</span></span></p>
+
+						<ul class="mt-4 text-gray-700">
+							<li>OhMySMTP Ltd</li>
+							<li>Unit G32, The Light Box</li>
+							<li>111 Power Road</li>
+							<li>London</li>
+							<li>W4 5PY</li>
+							<li>United Kingdom</li>
+						</ul>
+						<ul class="mt-4 text-gray-800">
+							<li>Contact us: <a href="mailto:support@ohmysmtp.com" class="hover:underline">support@ohmysmtp.com</a></li>
+						</ul>
+
+				</div>
+
+				<div class="mr-16">
+					<p class="text-gray-500 uppercase md:mb-6">Guides</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com/blog/whats-an-spf-record/"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">What's an SPF Record?</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com/blog/whats-a-dkim-record/"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">What's a DKIM Record?</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="mr-16">
+					<p class="text-gray-500 uppercase md:mb-6">Libraries & Code</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://docs.ohmysmtp.com/reference/overview"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">HTTPS API</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://docs.ohmysmtp.com/integrations/smtp"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">SMTP Server</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp/ohmysmtp-rails "
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Ruby on Rails</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp/ohmysmtp.js"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Node.js</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="mr-6">
+					<p class="text-gray-500 uppercase md:mb-6">Links</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="mailto:support@ohmysmtp.com"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Contact Us</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Blog</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Github</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://ohmysmtp.com/terms"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Terms</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://ohmysmtp.com/privacy"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Privacy</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://status.ohmysmtp.com/"
+								class="text-gray-800 no-underline hover:underline hover:text-orange-500">Status: <span class="text-green-500">Up!</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</footer>
+
+	<!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
+
+	<script>
+		var scrollpos = window.scrollY;
+		var header = document.getElementById("header");
+		var navcontent = document.getElementById("nav-content");
+		var navaction = document.getElementById("navAction");
+		var brandname = document.getElementById("brandname");
+		var toToggle = document.querySelectorAll(".toggleColour");
+		var navMenu = document.getElementById("nav-toggle");
+
+		document.addEventListener('scroll', function () {
+
+			/*Apply classes for slide in bar*/
+			scrollpos = window.scrollY;
+
+			if (scrollpos > 10) {
+				header.classList.add("bg-white");
+				navaction.classList.remove("bg-white");
+				navaction.classList.add("gradient");
+				navaction.classList.remove("text-gray-800");
+				navaction.classList.add("text-white");
+				//Use to switch toggleColour colours
+				for (var i = 0; i < toToggle.length; i++) {
+					toToggle[i].classList.add("text-gray-800");
+					toToggle[i].classList.remove("text-white");
+				}
+				header.classList.add("shadow");
+				navcontent.classList.remove("bg-gray-100");
+				navcontent.classList.add("bg-white");
+				navcontent.classList.remove("text-white");
+				navcontent.classList.add("text-gray-900");
+				navMenu.classList.add("text-gray-900");
+				navMenu.classList.remove("text-white");
+			} else {
+				header.classList.remove("bg-white");
+				navaction.classList.remove("gradient");
+				navaction.classList.add("bg-white");
+				navaction.classList.remove("text-white");
+				navaction.classList.add("text-gray-800");
+				//Use to switch toggleColour colours
+				for (var i = 0; i < toToggle.length; i++) {
+					toToggle[i].classList.add("text-white");
+					toToggle[i].classList.remove("text-gray-800");
+				}
+
+				header.classList.remove("shadow");
+				navcontent.classList.remove("bg-white");
+				navcontent.classList.add("bg-gray-100");
+				navcontent.classList.remove("text-gray-900");
+				navcontent.classList.add("text-white");
+				navMenu.classList.remove("text-gray-900");
+				navMenu.classList.add("text-white");
+			}
+
+		});
+	</script>
+
+	<script>
+		/*Toggle dropdown list*/
+		/*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+		var navMenuDiv = document.getElementById("nav-content");
+		var navMenu = document.getElementById("nav-toggle");
+
+		document.onclick = check;
+
+		function check(e) {
+			var target = (e && e.target) || (event && event.srcElement);
+
+			navMenuDiv.classList.remove("text-white");
+			navMenuDiv.classList.add("text-gray-900");
+
+			//Nav Menu
+			if (!checkParent(target, navMenuDiv)) {
+				// click NOT on the menu
+				if (checkParent(target, navMenu)) {
+					// click on the link
+					if (navMenuDiv.classList.contains("hidden")) {
+						navMenuDiv.classList.remove("hidden");
+					} else {
+						navMenuDiv.classList.add("hidden");
+					}
+				} else {
+					// click both outside link and outside menu, hide menu
+					navMenuDiv.classList.add("hidden");
+				}
+			}
+
+		}
+
+		function checkParent(t, elm) {
+			while (t.parentNode) {
+				if (t == elm) {
+					return true;
+				}
+				t = t.parentNode;
+			}
+			return false;
+		}
+	</script>
+
+	<script>
+		const average = arr => (arr.reduce( ( p, c ) => p + parseFloat(c), 0 ) / arr.length).toFixed(2);
+	
+		function updateScores(scores) {
+			document.getElementById("gmail-latest").textContent = parseFloat(scores.gmail[0]).toFixed(2);
+			document.getElementById("gmail-average").textContent = average(scores.gmail)
+			document.getElementById("outlook-latest").textContent = parseFloat(scores.outlook[0]).toFixed(2);
+			document.getElementById("outlook-average").textContent = average(scores.outlook)
+			document.getElementById("yahoo-latest").textContent = parseFloat(scores.yahoo[0]).toFixed(2);
+			document.getElementById("yahoo-average").textContent = average(scores.yahoo)
+		}
+
+		const timeToInboxScores = fetch("https://app.ohmysmtp.com/api/v1/time_to_inbox")
+			.then(response => response.json())
+			.then(scores => updateScores(scores))
+	</script>
+
+	<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+	<script>
+		Paddle.Setup({ vendor: 118970 });
+	</script>

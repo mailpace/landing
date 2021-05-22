@@ -1,0 +1,11 @@
+{
+  "input": "html/*.html",
+  "output": "public",
+  "plugins": {
+      "posthtml-modules": {
+          "root": "./html",
+          "initial": true
+      }
+  },
+  "htmlnano": {}
+}

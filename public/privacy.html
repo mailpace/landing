@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>OhMySMTP - Transactional Email Provider and API</title>
+	<meta name="description" content="Transactional Email API service">
+	<meta name="keywords" content="transactional email api ethical privacy eco-friendly carbon neutral">
+	<meta name="author" content="OhMySMTP">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>OhMySMTP - Transactional emails the easy way</title>
-  <meta name="author" content="OhMySMTP">
+	<!-- Font Awesome if you need it
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  -->
+	<link rel="stylesheet" href="build/tailwind.css">
 
-  <link rel="stylesheet" href="build/tailwind.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+	<!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+	<style>
+		.gradient {
+			background: linear-gradient(90deg, #f4900c 0%, #f37024 300%);
+		}
+	</style>
+
+	<script async="" defer="" data-domain="ohmysmtp.com" src="https://stats.ohmysmtp.com/js/index.js"></script>
 </head>
 
-<body class="leading-normal tracking-normal text-white bg-gray-800" style="font-family: 'Source Sans Pro', sans-serif;">
-  <!--Nav-->
-  <nav id="header" class="fixed top-0 z-30 w-full text-white bg-gray-100">
+	<body class="gradient">
+		
+	<!--Nav-->
+	<nav id="header" class="fixed top-0 z-30 w-full text-white">
 
-    <div class="container flex flex-wrap items-center justify-between w-full py-2 mx-auto mt-0">
+		<div class="container flex flex-wrap items-center justify-between w-full py-2 mx-auto mt-0">
 
-      <div class="flex items-center pl-4">
-        <a class="text-2xl font-bold text-gray-800 no-underline toggleColour hover:no-underline lg:text-4xl" href="/">
-          OhMySMTP
-        </a>
-      </div>
+			<div class="flex items-center pl-4">
+				<a class="text-2xl font-bold text-white no-underline toggleColour hover:no-underline lg:text-4xl" href="https://ohmysmtp.com">
+					OhMySMTP
+				</a>
+			</div>
 
-      <div class="block pr-4 lg:hidden">
-        <button id="nav-toggle" class="flex items-center p-1 text-orange-800 hover:text-gray-900">
-          <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
-      </div>
+			<div class="block pr-4 lg:hidden">
+				<button id="nav-toggle" class="flex items-center p-1 text-orange-800 hover:text-gray-900">
+					<svg class="w-6 h-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+						<title>Menu</title>
+						<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+					</svg>
+				</button>
+			</div>
 
-      <div
-        class="z-20 flex-grow hidden w-full p-4 mt-2 text-black bg-white lg:flex lg:items-center lg:w-auto lg:block lg:mt-0 lg:bg-transparent lg:p-0"
-        id="nav-content">
-        <ul class="items-center justify-end flex-1 list-reset lg:flex">
-          <li class="mr-3">
-            <a class="inline-block px-4 py-2 text-black no-underline hover:text-gray-800 hover:text-underline"
-              href="https://docs.ohmysmtp.com">Docs</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block px-4 py-2 text-black no-underline hover:text-gray-800 hover:text-underline"
-              href="https://ohmysmtp.com/#pricing">Pricing</a>
-          </li>
-          <li class="mr-3">
-            <a class="inline-block px-4 py-2 font-bold text-black no-underline" href="https://app.ohmysmtp.com">Sign
-              In</a>
-          </li>
-        </ul>
-        <a href="https://app.ohmysmtp.com" id="navAction"
-          class="px-8 py-4 mx-auto mt-4 font-bold text-gray-800 bg-white rounded-full shadow opacity-75 lg:mx-0 hover:underline lg:mt-0">Start
-          Sending</a>
-      </div>
-    </div>
+			<div class="z-20 flex-grow hidden w-full p-4 mt-2 text-white bg-white lg:flex lg:items-center lg:w-auto lg:block lg:mt-0 lg:bg-transparent lg:p-0" id="nav-content">
+				<ul class="items-center justify-end flex-1 list-reset lg:flex">
+					<li class="mr-3">
+						<a class="inline-block px-4 py-2 no-underline hover:text-gray-800" href="https://blog.ohmysmtp.com">Blog</a>
+					</li>
+					<li class="mr-3">
+						<a class="inline-block px-4 py-2 no-underline hover:text-gray-800" href="https://docs.ohmysmtp.com">Docs</a>
+					</li>
+					<li class="mr-3">
+						<a class="inline-block px-4 py-2 no-underline hover:text-gray-800" href="https://ohmysmtp.com/#pricing">Pricing</a>
+					</li>
+					<li class="mr-3">
+						<a class="inline-block px-4 py-2 font-bold no-underline" href="https://app.ohmysmtp.com">Sign
+							In</a>
+					</li>
+					
+				</ul>
+				<a href="https://app.ohmysmtp.com" id="navAction" class="px-4 py-2 mt-2 inline-block font-bold text-black no-underline lg:bg-white lg:shadow lg:opacity-75 lg:px-8 lg:py-4 lg:mt-0 lg:hover:underline">Start
+					Sending</a>
+			</div>
+		</div>
 
-    <hr class="py-0 my-0 border-b border-gray-100 opacity-25" />
-  </nav>
-
-  <div class="pt-24">
+		<hr class="py-0 my-0 border-b border-gray-100 opacity-25">
+	</nav>
+		  <div class="mt-20 py-24 text-black bg-white">
     <div class="container items-center px-3 pb-4 mx-auto md:w-2/3 md:flex-row">
       <h1 class="text-4xl mb-4">Privacy Notice</h1>
 
@@ -90,7 +102,7 @@
       </ul>
 
       <h2 class="my-4 text-2xl">What we do with your data</h2>
-      <p class="my-2"></p>The data we collect is only used to run this service.</p>
+      <p class="my-2"></p>The data we collect is only used to run this service.<p></p>
 
       <p class="my-2">We will not:</p>
 
@@ -129,8 +141,7 @@
         <li>Ask that the processing of your personal data is restricted in certain circumstances</li>
       </ul>
 
-      <p class="my-2">If you have any of these requests, contact our support team <a
-          href="mailto:support@ohmysmtp.com">here</a></p>
+      <p class="my-2">If you have any of these requests, contact our support team <a href="mailto:support@ohmysmtp.com">here</a></p>
 
       <h2 class="my-4 text-2xl">List of Sub-Processors</h2>
 
@@ -159,47 +170,219 @@
       <p class="my-2">Last Updated: May 18th 2021</p>
     </div>
   </div>
-  <script>
-    /*Toggle dropdown list*/
-    /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+  <hr>
+		
 
-    var navMenuDiv = document.getElementById("nav-content");
-    var navMenu = document.getElementById("nav-toggle");
+	<!--Footer-->
+	<footer class="bg-white">
+		<div class="container px-8 mx-auto">
 
-    document.onclick = check;
+			<div class="flex flex-col w-full py-6 md:flex-row">
 
-    function check(e) {
-      var target = (e && e.target) || (event && event.srcElement);
+				<div class="flex-1 mb-6">
 
-      //Nav Menu
-      if (!checkParent(target, navMenuDiv)) {
-        // click NOT on the menu
-        if (checkParent(target, navMenu)) {
-          // click on the link
-          if (navMenuDiv.classList.contains("hidden")) {
-            navMenuDiv.classList.remove("hidden");
-          } else {
-            navMenuDiv.classList.add("hidden");
-          }
-        } else {
-          // click both outside link and outside menu, hide menu
-          navMenuDiv.classList.add("hidden");
-        }
-      }
+					<a class="text-2xl font-bold text-gray-800 no-underline hover:no-underline lg:text-4xl" href="#">
+						OhMySMTP
+					</a>
+					<p class="mt-4 text-gray-800">Proudly made in the United Kingdom <span class="">🇬🇧</span></p>
 
-    }
+						<ul class="mt-4 text-gray-700">
+							<li>OhMySMTP Ltd</li>
+							<li>Unit G32, The Light Box</li>
+							<li>111 Power Road</li>
+							<li>London</li>
+							<li>W4 5PY</li>
+							<li>United Kingdom</li>
+						</ul>
+						<ul class="mt-4 text-gray-800">
+							<li>Contact us: <a href="mailto:support@ohmysmtp.com" class="hover:underline">support@ohmysmtp.com</a></li>
+						</ul>
 
-    function checkParent(t, elm) {
-      while (t.parentNode) {
-        if (t == elm) {
-          return true;
-        }
-        t = t.parentNode;
-      }
-      return false;
-    }
-  </script>
+				</div>
 
+				<div class="mr-16">
+					<p class="text-gray-500 uppercase md:mb-6">Guides</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com/blog/whats-an-spf-record/" class="text-gray-800 no-underline hover:underline hover:text-orange-500">What's an SPF Record?</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com/blog/whats-a-dkim-record/" class="text-gray-800 no-underline hover:underline hover:text-orange-500">What's a DKIM Record?</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="mr-16">
+					<p class="text-gray-500 uppercase md:mb-6">Libraries & Code</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://docs.ohmysmtp.com/reference/overview" class="text-gray-800 no-underline hover:underline hover:text-orange-500">HTTPS API</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://docs.ohmysmtp.com/integrations/smtp" class="text-gray-800 no-underline hover:underline hover:text-orange-500">SMTP Server</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp/ohmysmtp-rails " class="text-gray-800 no-underline hover:underline hover:text-orange-500">Ruby on Rails</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp/ohmysmtp.js" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Node.js</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="mr-6">
+					<p class="text-gray-500 uppercase md:mb-6">Links</p>
+					<ul class="mb-6 list-reset">
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="mailto:support@ohmysmtp.com" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Contact Us</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://blog.ohmysmtp.com" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Blog</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://github.com/ohmysmtp" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Github</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://ohmysmtp.com/terms" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Terms</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://ohmysmtp.com/privacy" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Privacy</a>
+						</li>
+						<li class="inline-block mt-2 mr-2 md:block md:mr-0">
+							<a href="https://status.ohmysmtp.com/" class="text-gray-800 no-underline hover:underline hover:text-orange-500">Status: <span class="text-green-500">Up!</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</footer>
+
+	<!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
+
+	<script>
+		var scrollpos = window.scrollY;
+		var header = document.getElementById("header");
+		var navcontent = document.getElementById("nav-content");
+		var navaction = document.getElementById("navAction");
+		var brandname = document.getElementById("brandname");
+		var toToggle = document.querySelectorAll(".toggleColour");
+		var navMenu = document.getElementById("nav-toggle");
+
+		document.addEventListener('scroll', function () {
+
+			/*Apply classes for slide in bar*/
+			scrollpos = window.scrollY;
+
+			if (scrollpos > 10) {
+				header.classList.add("bg-white");
+				navaction.classList.remove("bg-white");
+				navaction.classList.add("gradient");
+				navaction.classList.remove("text-gray-800");
+				navaction.classList.add("text-white");
+				//Use to switch toggleColour colours
+				for (var i = 0; i < toToggle.length; i++) {
+					toToggle[i].classList.add("text-gray-800");
+					toToggle[i].classList.remove("text-white");
+				}
+				header.classList.add("shadow");
+				navcontent.classList.remove("bg-gray-100");
+				navcontent.classList.add("bg-white");
+				navcontent.classList.remove("text-white");
+				navcontent.classList.add("text-gray-900");
+				navMenu.classList.add("text-gray-900");
+				navMenu.classList.remove("text-white");
+			} else {
+				header.classList.remove("bg-white");
+				navaction.classList.remove("gradient");
+				navaction.classList.add("bg-white");
+				navaction.classList.remove("text-white");
+				navaction.classList.add("text-gray-800");
+				//Use to switch toggleColour colours
+				for (var i = 0; i < toToggle.length; i++) {
+					toToggle[i].classList.add("text-white");
+					toToggle[i].classList.remove("text-gray-800");
+				}
+
+				header.classList.remove("shadow");
+				navcontent.classList.remove("bg-white");
+				navcontent.classList.add("bg-gray-100");
+				navcontent.classList.remove("text-gray-900");
+				navcontent.classList.add("text-white");
+				navMenu.classList.remove("text-gray-900");
+				navMenu.classList.add("text-white");
+			}
+
+		});
+	</script>
+
+	<script>
+		/*Toggle dropdown list*/
+		/*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+		var navMenuDiv = document.getElementById("nav-content");
+		var navMenu = document.getElementById("nav-toggle");
+
+		document.onclick = check;
+
+		function check(e) {
+			var target = (e && e.target) || (event && event.srcElement);
+
+			navMenuDiv.classList.remove("text-white");
+			navMenuDiv.classList.add("text-gray-900");
+
+			//Nav Menu
+			if (!checkParent(target, navMenuDiv)) {
+				// click NOT on the menu
+				if (checkParent(target, navMenu)) {
+					// click on the link
+					if (navMenuDiv.classList.contains("hidden")) {
+						navMenuDiv.classList.remove("hidden");
+					} else {
+						navMenuDiv.classList.add("hidden");
+					}
+				} else {
+					// click both outside link and outside menu, hide menu
+					navMenuDiv.classList.add("hidden");
+				}
+			}
+
+		}
+
+		function checkParent(t, elm) {
+			while (t.parentNode) {
+				if (t == elm) {
+					return true;
+				}
+				t = t.parentNode;
+			}
+			return false;
+		}
+	</script>
+
+	<script>
+		const average = arr => (arr.reduce( ( p, c ) => p + parseFloat(c), 0 ) / arr.length).toFixed(2);
+	
+		function updateScores(scores) {
+			document.getElementById("gmail-latest").textContent = parseFloat(scores.gmail[0]).toFixed(2);
+			document.getElementById("gmail-average").textContent = average(scores.gmail)
+			document.getElementById("outlook-latest").textContent = parseFloat(scores.outlook[0]).toFixed(2);
+			document.getElementById("outlook-average").textContent = average(scores.outlook)
+			document.getElementById("yahoo-latest").textContent = parseFloat(scores.yahoo[0]).toFixed(2);
+			document.getElementById("yahoo-average").textContent = average(scores.yahoo)
+		}
+
+		const timeToInboxScores = fetch("https://app.ohmysmtp.com/api/v1/time_to_inbox")
+			.then(response => response.json())
+			.then(scores => updateScores(scores))
+	</script>
+
+	<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+	<script>
+		Paddle.Setup({ vendor: 118970 });
+	</script>
 </body>
-
 </html>
