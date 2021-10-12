@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   -->
 	<link rel="stylesheet" href="build/tailwind.css">
+	<link rel="stylesheet" href="prism.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 
@@ -22,7 +23,6 @@
 			background: linear-gradient(90deg, #f4900c 0%, #f37024 300%);
 		}
 	</style>
-
 	<script async="" defer="" data-domain="ohmysmtp.com" src="https://stats.ohmysmtp.com/js/index.js"></script>
 </head>
 
@@ -87,7 +87,7 @@
 
 			<div class="mt-16 -mb-24">
 				<div class="mb-4">
-					<a href="https://app.ohmysmtp.com/users/sign_up" class="text-xl px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">⚡️ Start Sending Today</a>
+					<a href="https://app.ohmysmtp.com/users/sign_up" class="text-xl px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">⚡️ Start Sending</a>
 				</div>
 				<a href="#what-makes-us-different" class="text-gray-600 underline leading-loose">Learn More</a>
 			</div>
@@ -286,7 +286,191 @@
 		</div>
 	</section>
 
+	<section class="py-8 bg-white border-b">
+		<div class="container max-w-2xl m-8 mx-auto">
+			<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Show me the code</h1>
+			
+			<div class="w-full mb-4">
+				<div class="w-64 h-1 py-0 mx-auto my-0 rounded-t opacity-25 gradient"></div>
+			</div>
+			<p class="w-full text-center text-gray-800">OhMySMTP supports all your favourite languages and has integrations for popular frameworks</p>
 
+			<div class="">
+				<!-- Tabs -->
+				<!-- Note: To add a new language, we need to update Prism.js / .css with the language included -->
+				<ul id="tabs" class="flex flex-wrap w-full px-1 pt-4">
+					<li class="px-3 py-2 -mb-px font-semibold text-gray-800 border-b-4 border-blue-400 rounded-t opacity-50"><a class="tabHeader" id="default-tab" href="#curl">curl</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#node">Node.js</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#ruby">Ruby</a></li>
+					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#php">PHP</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#golang">Go</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#python">Python</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#rails">Rails</a></li>
+					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#laravel">Laravel</a></li>
+					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#smyfony">Symfony</a></li>
+					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#elixir">Elixir</a></li>
+				</ul>
+
+				<!-- Tab Contents -->
+				<div id="tab-contents" class="text-gray-700">
+					<div id="curl" class="py-2 px-1 max-h-96 overflow-y-auto">
+						<pre>
+<code class="language-shell">curl "https://app.ohmysmtp.com/api/v1/send" \
+  -X POST \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "OhMySMTP-Server-Token: API_TOKEN_GOES_HERE" \
+  -d '{
+    "from": "example@domain.com",
+    "to": "person@somewhere.com",
+    "subject": "Hello from OhMySMTP.com",
+    "textbody": "Hello"
+  }'</code></pre>
+					</div>
+					<div id="node" class="py-2 px-1 max-h-96 overflow-y-auto">
+						<pre>
+<code class="language-javascript">const OhMySMTP = require('@ohmysmtp/ohmysmtp.js');
+const client = new OhMySMTP.DomainClient('API_TOKEN_HERE');
+
+client
+	.sendEmail({
+		from: 'test@test.com',
+		to: 'test@test.com',
+		subject: 'test',
+		htmlbody: '<H1>HTML Email',
+	})
+	.then((r) => {
+		console.log(r);
+	});</H1></code></pre>
+					</div>
+					<div id="ruby" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+						<pre><code class="language-ruby">require 'uri'
+require 'json'
+
+uri = URI.parse('https://app.ohmysmtp.com/api/v1/send')
+request = Net::HTTP::Post.new(uri)
+request.content_type = 'application/json'
+request['Accept'] = 'application/json'
+request['Ohmysmtp-Server-Token'] = 'API_TOKEN_GOES_HERE'
+request.body = JSON.dump(
+	{
+		'from' => 'test@test.com',
+		'to' => 'test@test.com',
+		'subject' => 'Hello from OhMySMTP.com',
+		'textbody' => 'Hello'
+	}
+)
+
+req_options = {
+	use_ssl: uri.scheme == 'https',
+}
+
+response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+	http.request(request)
+end</code></pre>
+					</div>
+					<div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+<code class="language-php"></code>
+					</div>
+					<div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+<pre><code class="language-go">emailClient := gomysmtp.NewClient("OHMYSMTP_TOKEN")
+emailPayload := gomysmtp.Payload{
+		From:     "test@test.com",
+		To:       "test@test.com",
+		Subject:  "Hello from OhMySMTP",
+		Textbody: "Hello",
+}
+
+err := emailClient.Send(emailPayload)
+if err != nil {
+		// handle err
+}</code></pre>
+					</div>
+					<div id="python" class="hidden py-2 px-1 max-h-96 overflow-y-auto"><pre>
+<code class="language-python">import requests
+
+headers = {
+  "Accept": "application/json",
+  "Content-Type": "application/json",
+  "OhMySMTP-Server-Token": "API_TOKEN_GOES_HERE"
+}
+
+data = {
+  "from": "example@domain.com",
+  "to": "person@somewhere.com",
+  "subject": "Hello from OhMySMTP.com",
+  "textbody": "Hello"
+}
+
+response = requests.post('https://app.ohmysmtp.com/api/v1/send', headers=headers, data=data)</code></pre>
+					</div>					
+					<div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+						Install and configure
+<pre><code class="language-shell">$ gem install ohmysmtp-rails
+$ rails secret
+$ rails credentials:edit
+</code></pre>
+Add to your credentials
+<pre><code class="language-shell">ohmysmtp_api_token: "TOKEN_GOES_HERE"</code></pre>
+In your app
+<pre><code class="language-ruby">config.action_mailer.delivery_method = :ohmysmtp
+config.action_mailer.ohmysmtp_settings = { api_token: Rails.application.credentials.ohmysmtp_api_token }</code></pre>
+					</div>
+					<div id="laravel" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+<code class="language-php"></code>
+					</div>
+					<div id="smyfony" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+<code class="language-php"></code>
+					</div>
+					<div id="elixir" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+						<code class="language-elxir"></code>
+					</div>
+				</div>
+			</div>
+
+			<!-- Code Tabs Script -->
+			<script>
+				// Get our tabs
+				let tabHeaders = document.querySelector("#tabs").querySelectorAll("a.tabHeader");
+
+				// Add event listeners to each tab header
+				tabHeaders.forEach(function(header) {
+					header.addEventListener("click", function(e) {
+						e.preventDefault();
+
+						const tabName = this.getAttribute("href");
+						const tabContents = document.querySelector("#tab-contents");
+						const showClasses = ["border-blue-400", "border-b-4", "-mb-px", "opacity-100"]
+
+						// iterate through each tab and hide all of them, except the clicked tab
+						for (let i = 0; i < tabContents.children.length; i++) {
+							if ("#" + tabContents.children[i].id === tabName) {
+								// Show the matching tab
+								tabContents.children[i].classList.remove("hidden");
+							} else {
+								// Hide the other headers & tabs
+								tabHeaders[i].parentElement.classList.remove(...showClasses);
+								tabContents.children[i].classList.add("hidden");
+							}
+						}
+
+						// Finally add the bottom border back to the header 
+						e.target.parentElement.classList.add(...showClasses);
+					});
+				});
+
+				// Ensure the default tab is shown on reload
+				document.getElementById("default-tab").click();
+			</script>
+
+			<div class="mx-auto">
+				<p class="w-full mt-4 text-center text-gray-800">Don't see what you need there? 
+					<a href="mailto:support@ohmysmtp.com" class="hover:underline">Email
+					us</a> and we'll build it for you, for free!</p>
+			</div>
+		</div>
+
+	</section>
 
 	<section class="py-8 bg-white border-b text-gray-800">
 		<div class="container max-w-8xl m-8 mx-auto">
@@ -403,52 +587,6 @@
 				<div class="w-full p-6 mt-6 sm:w-1/2">
 					<img class="w-1/2 mx-auto" src="images/undraw_a_better_world.svg">
 				</div>
-			</div>
-		</div>
-
-	</section>
-
-	<section class="py-8 bg-white border-b">
-		<div class="container max-w-8xl m-8 mx-auto">
-			<h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">Ready-made Integrations & Libraries</h1>
-			<div class="w-full mb-4">
-				<div class="w-64 h-1 py-0 mx-auto my-0 rounded-t opacity-25 gradient"></div>
-			</div>
-
-			<div class="mt-16 mb-12 mx-auto">
-				<div class="sm:flex sm:space-x-4 mb-8 items-center justify-center"> 
-					<a href="https://github.com/ohmysmtp/ohmysmtp.js" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/node.png">
-					</a>
-					<a href="https://github.com/nodemailer/nodemailer" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/nodemailer.png">
-					</a>
-					<a href="https://github.com/ohmysmtp/ohmysmtp-rails" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/rails.png">
-					</a>
-					<a href="https://github.com/ohmysmtp/ohmysmtp-swiftmailer" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/php.jpg">
-					</a>
-				</div>
-				<div class="sm:flex sm:space-x-4 items-center justify-center"> 
-					<a href="https://github.com/ohmysmtp/ohmysmtp-swiftmailer/#sending-with-laravel" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/laravel.png">
-					</a>
-					<a href="https://symfony.com/doc/current/mailer.html#using-a-3rd-party-transport" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-4 sm:my-0" src="images/symfony.svg" alt="Symfony PHP Framework Logo">
-					</a>
-					<a href="https://docs.ohmysmtp.com/reference/overview" class="filter grayscale hover:grayscale-0">
-						<img class="max-h-24 mx-auto my-8 sm:my-0" src="images/http.png">
-					</a>
-					<div class="p-2 text-center justify-center">
-						<a href="https://docs.ohmysmtp.com/integrations/smtp" class="filter grayscale hover:grayscale-0">
-							<span class="max-h-24 mx-auto font-bold text-gray-800 text-5xl my-4 sm:my-0">SMTP</span>
-						</a>
-					</div>
-				</div>
-				<p class="w-full mt-12 text-center text-gray-800">Don't see what you need there? 
-					<a href="mailto:support@ohmysmtp.com" class="hover:underline">Contact
-					us</a> and we'll build it for you, for free!</p>
 			</div>
 		</div>
 
@@ -995,5 +1133,6 @@
 	<script>
 		Paddle.Setup({ vendor: 118970 });
 	</script>
-</body>
+		<script src="prism.js"></script>
+	</body>
 </html>
