@@ -307,8 +307,8 @@
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#python">Python</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#rails">Rails</a></li>
 					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#laravel">Laravel</a></li>
-					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#smyfony">Symfony</a></li>
-					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#elixir">Elixir</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#smyfony">Symfony</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#elixir">Elixir</a></li>
 				</ul>
 
 				<!-- Tab Contents -->
@@ -436,13 +436,30 @@ In your app
 config.action_mailer.ohmysmtp_settings = { api_token: Rails.application.credentials.ohmysmtp_api_token }</code></pre>
 					</div>
 					<div id="laravel" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-<code class="language-php"></code>
+						Install the mailer
+						<pre><code class="language-shell">composer require ohmysmtp/ohmysmtp-swiftmailer</code></pre>
+						Configure the `.env`
+						<pre><code class="language-shell"></code></pre>
+<code class="language-php">...</code>
 					</div>
 					<div id="smyfony" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-<code class="language-php"></code>
+						Install the mailer
+						<pre><code class="language-shell">composer require symfony/oh-my-smtp-mailer</code></pre>
+						Configure the `.env`
+						<pre><code class="language-shell"># .env
+MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 					</div>
 					<div id="elixir" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-						<code class="language-elxir"></code>
+						Add to your `mix.exs` dependencies
+						<pre><code class="language-elixir"></code>{:ohmysmtp_client, "~> 0.1.0"}</pre>
+						Add to Application Config:
+						<pre><code class="language-elixir">config: :ohmysmtp_client, token: "TOKEN_GOES_HERE"</code></pre>
+						<pre><code class="language-elixir">OhmysmtpClient.send_email(%OhmysmtpClient.EmailSendRequest{
+	from: "test@test.com",
+	subject: "Hello from OhMySMTP",
+	textbody: "Hello",
+	to: "test@test.com"
+})</code></pre>
 					</div>
 				</div>
 			</div>
