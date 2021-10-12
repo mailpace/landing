@@ -224,10 +224,10 @@
 				<!-- Tabs -->
 				<!-- Note: To add a new language, we need to update Prism.js / .css with the language included -->
 				<ul id="tabs" class="flex flex-wrap w-full px-1 pt-4">
-					<li class="px-3 py-2 -mb-px font-semibold text-gray-800 border-b-4 border-blue-400 rounded-t opacity-50"><a class="tabHeader" id="default-tab" href="#curl">curl</a></li>
+					<li class="px-3 py-2 -mb-px font-semibold text-gray-800 border-b-4 border-blue-400 rounded-t opacity-50"><a class="tabHeader" id="default-tab" href="#curl">cURL</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#node">Node.js</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#ruby">Ruby</a></li>
-					<li class="hidden px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#php">PHP</a></li>
+					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#php">PHP</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#golang">Go</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#python">Python</a></li>
 					<li class="px-3 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a class="tabHeader" href="#rails">Rails</a></li>
@@ -295,7 +295,26 @@ response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
 end</code></pre>
 					</div>
 					<div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-<code class="language-php"></code>
+<pre><code class="language-php">$url = 'https://app.ohmysmtp.com/api/v1/send';
+$data = array(
+	'from' => 'test@test.com',
+	'to' => 'test@test.com',
+	'subject' => 'Hello from OhMySMTP.com',
+	'textbody' => 'Hello'
+);
+
+$options = array(
+	'http' => array(
+		'header'  => "Content-type: application/json\r\n" .
+									"Accept: application/json\r\n" .
+									"Ohmysmtp-Server-Token: API_TOKEN_GOES_HERE\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($data)
+	)
+);
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+var_dump($result);</code></pre>
 					</div>
 					<div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
 <pre><code class="language-go">emailClient := gomysmtp.NewClient("OHMYSMTP_TOKEN")
@@ -388,8 +407,8 @@ config.action_mailer.ohmysmtp_settings = { api_token: Rails.application.credenti
 				document.getElementById("default-tab").click();
 			</script>
 
-			<div class="mx-auto">
-				<p class="w-full mt-4 text-center text-gray-800">Don't see what you need there? 
+			<div class="mx-auto px-8">
+				<p class="w-full mt-4 text-center text-gray-800">Don't see what you need? 
 					<a href="mailto:support@ohmysmtp.com"
 					class="hover:underline">Email
 					us</a> and we'll build it for you, for free!</p>
