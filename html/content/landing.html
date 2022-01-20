@@ -12,7 +12,7 @@
 
 			<div class="mt-16 -mb-24">
 				<div class="mb-4">
-					<a href="https://app.ohmysmtp.com/users/sign_up" class="text-xl px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">⚡️ Start Sending</a>
+					<a href="https://app.mailpace.com/users/sign_up" class="text-xl px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">⚡️ Start Sending</a>
 				</div>
 				<a href="#what-makes-us-different" class="text-gray-600 underline leading-loose">Learn More</a>
 			</div>
@@ -53,7 +53,7 @@
 	</section>
 
 	<div class="w-full px-12 pb-12 -mt-16">
-		<img class="z-50 w-full rounded-lg" src="images/full-chart-browser.png" alt="Screenshot of transactional email provider dashboard OhMySMTP">
+		<img class="z-50 w-full rounded-lg" src="images/full-chart-browser.png" alt="Screenshot of transactional email provider dashboard MailPace">
 	</div>
 
 	<section class="py-8 bg-white border-b" id="what-makes-us-different">
@@ -73,7 +73,7 @@
                 </span>
               </div>
               <h3 class="mt-8 text-lg font-medium text-gray-900 font-bold">Transactional Only</h3>
-              <p class="mt-5 text-base text-gray-500">OhMySMTP can only be used for Transactional Email - think password resets, notifications and welcome emails.
+              <p class="mt-5 text-base text-gray-500">MailPace can only be used for Transactional Email - think password resets, notifications and welcome emails.
 								We don't mix them up with slow, bulk marketing emails like other providers </p>
             </div>
           </div>
@@ -90,7 +90,7 @@
               <h3 class="mt-8 text-lg font-medium text-gray-900 font-bold">Engineer Lead Support</h3>
               <p class="mt-5 text-base text-gray-500">
 								We don't do helpdesks, NPS scores and clueless support scripts. Email us anytime and an engineer will get back within a few hours: <br /> <br />
-								<a class="underline" href="mailto:support@ohmysmtp.com">support@ohmysmtp.com</a>
+								<a class="underline" href="mailto:support@mailpace.com">support@mailpace.com</a>
               </p>
             </div>
           </div>
@@ -210,7 +210,7 @@
       </div>
 
 			<div class="flex items-center justify-center px-8 text-center">
-				<a href="https://ohmysmtp.com/how-we-keep-delivery-rates-high" class="mt-12 mb-4 px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">Learn more about how we keep delivery rates high</a>
+				<a href="https://mailpace.com/how-we-keep-delivery-rates-high" class="mt-12 mb-4 px-8 py-4 font-bold text-white bg-blue-400 shadow-lg hover:underline">Learn more about how we keep delivery rates high</a>
 			</div>
 		</div>
 	</section>
@@ -222,7 +222,7 @@
 			<div class="w-full mb-4">
 				<div class="w-64 h-1 py-0 mx-auto my-0 rounded-t opacity-25 gradient"></div>
 			</div>
-			<p class="w-full text-center text-gray-800">OhMySMTP supports all your favourite languages and has integrations for popular frameworks</p>
+			<p class="w-full text-center text-gray-800">MailPace supports all your favourite languages and has integrations for popular frameworks</p>
 
 			<div class="">
 				<!-- Tabs -->
@@ -244,22 +244,22 @@
 				<div id="tab-contents" class="text-gray-700">
 					<div id="curl" class="py-2 px-1 max-h-96 overflow-y-auto">
 						<pre>
-<code class="language-shell">curl "https://app.ohmysmtp.com/api/v1/send" \
+<code class="language-shell">curl "https://app.mailpace.com/api/v1/send" \
   -X POST \
   -H "Accept: application/json" \
   -H "Content-Type: application/json" \
-  -H "OhMySMTP-Server-Token: API_TOKEN_GOES_HERE" \
+  -H "MailPace-Server-Token: API_TOKEN_GOES_HERE" \
   -d '{
     "from": "example@domain.com",
     "to": "person@somewhere.com",
-    "subject": "Hello from OhMySMTP.com",
+    "subject": "Hello from MailPace.com",
     "textbody": "Hello"
   }'</code></pre>
 					</div>
 					<div id="node" class="py-2 px-1 max-h-96 overflow-y-auto">
 						<pre>
-<code class="language-javascript">const OhMySMTP = require('@ohmysmtp/ohmysmtp.js');
-const client = new OhMySMTP.DomainClient('API_TOKEN_HERE');
+<code class="language-javascript">const MailPace = require('@mailpace/mailpace.js');
+const client = new MailPace.DomainClient('API_TOKEN_HERE');
 
 client
 	.sendEmail({
@@ -276,16 +276,16 @@ client
 						<pre><code class="language-ruby">require 'uri'
 require 'json'
 
-uri = URI.parse('https://app.ohmysmtp.com/api/v1/send')
+uri = URI.parse('https://app.mailpace.com/api/v1/send')
 request = Net::HTTP::Post.new(uri)
 request.content_type = 'application/json'
 request['Accept'] = 'application/json'
-request['Ohmysmtp-Server-Token'] = 'API_TOKEN_GOES_HERE'
+request['mailpace-Server-Token'] = 'API_TOKEN_GOES_HERE'
 request.body = JSON.dump(
 	{
 		'from' => 'test@test.com',
 		'to' => 'test@test.com',
-		'subject' => 'Hello from OhMySMTP.com',
+		'subject' => 'Hello from MailPace.com',
 		'textbody' => 'Hello'
 	}
 )
@@ -299,11 +299,11 @@ response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
 end</code></pre>
 					</div>
 					<div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-<pre><code class="language-php">$url = 'https://app.ohmysmtp.com/api/v1/send';
+<pre><code class="language-php">$url = 'https://app.mailpace.com/api/v1/send';
 $data = array(
 	'from' => 'test@test.com',
 	'to' => 'test@test.com',
-	'subject' => 'Hello from OhMySMTP.com',
+	'subject' => 'Hello from MailPace.com',
 	'textbody' => 'Hello'
 );
 
@@ -311,7 +311,7 @@ $options = array(
 	'http' => array(
 		'header'  => "Content-type: application/json\r\n" .
 									"Accept: application/json\r\n" .
-									"Ohmysmtp-Server-Token: API_TOKEN_GOES_HERE\r\n",
+									"mailpace-Server-Token: API_TOKEN_GOES_HERE\r\n",
 		'method'  => 'POST',
 		'content' => json_encode($data)
 	)
@@ -321,11 +321,11 @@ $result = file_get_contents($url, false, $context);
 var_dump($result);</code></pre>
 					</div>
 					<div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-<pre><code class="language-go">emailClient := gomysmtp.NewClient("OHMYSMTP_TOKEN")
+<pre><code class="language-go">emailClient := gomysmtp.NewClient("mailpace_TOKEN")
 emailPayload := gomysmtp.Payload{
 		From:     "test@test.com",
 		To:       "test@test.com",
-		Subject:  "Hello from OhMySMTP",
+		Subject:  "Hello from MailPace",
 		Textbody: "Hello",
 }
 
@@ -340,33 +340,33 @@ if err != nil {
 headers = {
   "Accept": "application/json",
   "Content-Type": "application/json",
-  "OhMySMTP-Server-Token": "API_TOKEN_GOES_HERE"
+  "MailPace-Server-Token": "API_TOKEN_GOES_HERE"
 }
 
 data = {
   "from": "example@domain.com",
   "to": "person@somewhere.com",
-  "subject": "Hello from OhMySMTP.com",
+  "subject": "Hello from MailPace.com",
   "textbody": "Hello"
 }
 
-response = requests.post('https://app.ohmysmtp.com/api/v1/send', headers=headers, data=data)</code></pre>
+response = requests.post('https://app.mailpace.com/api/v1/send', headers=headers, data=data)</code></pre>
 					</div>					
 					<div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
 						Install and configure
-<pre><code class="language-shell">$ gem install ohmysmtp-rails
+<pre><code class="language-shell">$ gem install mailpace-rails
 $ rails secret
 $ rails credentials:edit
 </code></pre>
 Add to your credentials
-<pre><code class="language-shell">ohmysmtp_api_token: "TOKEN_GOES_HERE"</code></pre>
+<pre><code class="language-shell">mailpace_api_token: "TOKEN_GOES_HERE"</code></pre>
 In your app
-<pre><code class="language-ruby">config.action_mailer.delivery_method = :ohmysmtp
-config.action_mailer.ohmysmtp_settings = { api_token: Rails.application.credentials.ohmysmtp_api_token }</code></pre>
+<pre><code class="language-ruby">config.action_mailer.delivery_method = :mailpace
+config.action_mailer.mailpace_settings = { api_token: Rails.application.credentials.mailpace_api_token }</code></pre>
 					</div>
 					<div id="laravel" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
 						Install the mailer
-						<pre><code class="language-shell">composer require ohmysmtp/ohmysmtp-swiftmailer</code></pre>
+						<pre><code class="language-shell">composer require mailpace/mailpace-swiftmailer</code></pre>
 						Configure the `.env`
 						<pre><code class="language-shell"></code></pre>
 <code class="language-php">...</code>
@@ -376,16 +376,16 @@ config.action_mailer.ohmysmtp_settings = { api_token: Rails.application.credenti
 						<pre><code class="language-shell">composer require symfony/oh-my-smtp-mailer</code></pre>
 						Configure the `.env`
 						<pre><code class="language-shell"># .env
-MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
+MAILER_DSN=mailpace+api://API_TOKEN@default</code></pre>
 					</div>
 					<div id="elixir" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
 						Add to your `mix.exs` dependencies
-						<pre><code class="language-elixir"></code>{:ohmysmtp_client, "~> 0.1.0"}</code></pre>
+						<pre><code class="language-elixir"></code>{:mailpace_client, "~> 0.1.0"}</code></pre>
 						Add to Application Config:
-						<pre><code class="language-elixir">config: :ohmysmtp_client, token: "TOKEN_GOES_HERE"</code></pre>
-						<pre><code class="language-elixir">OhmysmtpClient.send_email(%OhmysmtpClient.EmailSendRequest{
+						<pre><code class="language-elixir">config: :mailpace_client, token: "TOKEN_GOES_HERE"</code></pre>
+						<pre><code class="language-elixir">mailpaceClient.send_email(%mailpaceClient.EmailSendRequest{
 	from: "test@test.com",
-	subject: "Hello from OhMySMTP",
+	subject: "Hello from MailPace",
 	textbody: "Hello",
 	to: "test@test.com"
 })</code></pre>
@@ -430,7 +430,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 
 			<div class="mx-auto px-8">
 				<p class="w-full mt-4 text-center text-gray-800">Don't see what you need? 
-					<a href="mailto:support@ohmysmtp.com"
+					<a href="mailto:support@mailpace.com"
 					class="hover:underline">Email
 					us</a> and we'll build it for you, for free!</p>
 			</div>
@@ -473,7 +473,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 						</path>
 					</svg>
 					<p class="mx-auto text-1xl leading-relaxed text-gray-800">
-						Shout out to @OhMySMTP for the great email service! Just switched @GoRails over and added them as an SMTP provider for Jumpstart Pro. 🚀
+						Shout out to @MailPace for the great email service! Just switched @GoRails over and added them as an SMTP provider for Jumpstart Pro. 🚀
 					</p>
 					<hr class="mt-2 mb-3" />
 					<a class="inline-flex items-center w-full" href="https://twitter.com/excid3/status/1372215363702812674">
@@ -494,7 +494,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 						</path>
 					</svg>
 					<p class="mx-auto text-1xl leading-relaxed text-gray-800">
-						Shoutout to @OhMySMTP great product & clean API for transactional emails. Really loving it
+						Shoutout to @MailPace great product & clean API for transactional emails. Really loving it
 					</p>
 					<hr class="mt-2 mb-3" />
 					<a class="inline-flex items-center w-full" href="https://twitter.com/MarkMagnuson/status/1364738794142900226">
@@ -666,13 +666,13 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 						<p class="w-full px-6 text-xs text-gray-600 md:text-sm">Documentation</p>
 						<div class="w-full px-6 text-xl font-bold text-gray-800">Review the docs</div>
 						<p class="px-6 mb-5 text-base text-gray-800">
-							Our detailed docs show how easy it is to use OhMySMTP to send emails from your application
+							Our detailed docs show how easy it is to use MailPace to send emails from your application
 						</p>
 					</a>
 				</div>
 				<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
 					<div class="flex items-center justify-center">
-						<a href="https://docs.ohmysmtp.com"
+						<a href="https://docs.mailpace.com"
 							class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Review
 							Docs</a>
 					</div>
@@ -691,7 +691,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 				</div>
 				<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
 					<div class="flex items-center justify-center">
-						<a href="https://docs.ohmysmtp.com/overview/firstEmail"
+						<a href="https://docs.mailpace.com/overview/firstEmail"
 							class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Open
 							Tutorial</a>
 					</div>
@@ -710,7 +710,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 				</div>
 				<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow">
 					<div class="flex items-center justify-center">
-						<a href="mailto:support@ohmysmtp.com"
+						<a href="mailto:support@mailpace.com"
 							class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Contact
 							Us</a>
 					</div>
@@ -766,7 +766,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 
 						<div class="w-full text-center text-gray-600">Billed annually</div>
 						<div class="flex items-center justify-center">
-							<a href="https://app.ohmysmtp.com/users/sign_up"
+							<a href="https://app.mailpace.com/users/sign_up"
 								class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Sign
 								Up</a>
 						</div>
@@ -807,7 +807,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 							</div>
 						</div>
 						<div class="flex items-center justify-center">
-							<a href="https://app.ohmysmtp.com/users/sign_up"
+							<a href="https://app.mailpace.com/users/sign_up"
 								class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Sign
 								Up</a>
 						</div>
@@ -837,7 +837,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 					<div class="flex-none p-6 mt-auto overflow-hidden bg-white rounded-t-none rounded-b ">
 						<div class="w-full font-bold text-center text-gray-600">Contact for details</div>
 						<div class="flex items-center justify-center">
-							<a href="mailto:support@ohmysmtp.com"
+							<a href="mailto:support@mailpace.com"
 								class="px-8 py-4 mx-auto my-6 font-bold text-white shadow-lg lg:mx-0 hover:underline gradient">Contact
 								Us</a>
 						</div>
@@ -888,7 +888,7 @@ MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
 
 		<h3 class="my-4 mb-10 text-3xl leading-tight">Get started today!</h3>
 
-		<a href="https://app.ohmysmtp.com"
+		<a href="https://app.mailpace.com"
 			class="px-8 py-4 mx-auto my-6 font-bold text-gray-800 bg-white shadow-lg btn lg:mx-0 hover:underline">Start
 			Sending</a>
 

@@ -1,4 +1,4 @@
-# Landing Page for OhMySMTP.com
+# Landing Page for MailPace.com
 
 A simple landing page using the CSS framework Tailwind in a proper PostCSS environment.
 

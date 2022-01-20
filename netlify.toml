@@ -1,5 +1,5 @@
-# Redirect https://ohmysmtp.com/blog/ to our blog subdomain
+# Redirect https://mailpace.com/blog/ to our blog subdomain
 [[redirects]]
   from = "/blog/*"
-  to = "https://blog.ohmysmtp.com/:splat"
+  to = "https://blog.mailpace.com/:splat"
   status = 301

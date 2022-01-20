@@ -2,7 +2,7 @@
   "name": "landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Landing Page for OMS",
+  "description": "Landing Page for MailPace",
   "scripts": {
     "serve": "cross-env NODE_ENV=development concurrently \"npm run watch:css\" \"npm run watch:html\" \"live-server ./public\"",
     "development": "cross-env NODE_ENV=development npm run build:css && npm run build:html",

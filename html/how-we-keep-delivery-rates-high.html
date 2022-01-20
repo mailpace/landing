@@ -15,17 +15,17 @@
       <p class="mt-4">Here's an explanation of some of the methods we use to keep our reputation high and ensure our customer's emails get delivered.</p>
 
       <h2 class="text-xl mb-4 mt-10 font-bold">Our Strict No Spam Policy</h2>
-      <p>When an email comes from an OhMySMTP server that is flagged as spam, the reputation of everyone sending with OhMySMTP is impacted. Luckily we have several elements in place to help stop spam on our platform.</p>
+      <p>When an email comes from an MailPace server that is flagged as spam, the reputation of everyone sending with MailPace is impacted. Luckily we have several elements in place to help stop spam on our platform.</p>
       
       <ol class="list-decimal">
         <li class="text-lg my-4">No free plan</li>
-        <p>Many providers let spammers sign up and send thousands of emails, for free! With OhMySMTP, everyone sending is a paying user, and that dramatically reduces the volume of spammers.</p>
+        <p>Many providers let spammers sign up and send thousands of emails, for free! With MailPace, everyone sending is a paying user, and that dramatically reduces the volume of spammers.</p>
         <li class="text-lg my-4">Proof of domain ownership is always required</li>
         <p>Some providers don't check that the signing up account actually has authority to send emails on behalf of the domain. We enforce this by validating ownership over DNS during the account setup.</p>
         <li class="text-lg my-4">Spam filter on all outgoing emails</li>
-        <p>We use <a href="https://rspamd.com/" class="underline">Rspamd</a> to filter every email sent through ohmysmtp. Our filters are aggressive and we use the built in Neural network module to learn from spam we see in the wild.</p>
+        <p>We use <a href="https://rspamd.com/" class="underline">Rspamd</a> to filter every email sent through mailpace. Our filters are aggressive and we use the built in Neural network module to learn from spam we see in the wild.</p>
         <li class="text-lg my-4">Whitelisted file extension attachments</li>
-        <p>We support attachments, but we only support a subset of file extensions (<a href="https://docs.ohmysmtp.com/reference/send/#attachments" class="underline">details in our docs</a>), and virus scan them before sending. This significantly reduces the risk of dangerous files being sent through our service.</p>
+        <p>We support attachments, but we only support a subset of file extensions (<a href="https://docs.mailpace.com/reference/send/#attachments" class="underline">details in our docs</a>), and virus scan them before sending. This significantly reduces the risk of dangerous files being sent through our service.</p>
         <li class="text-lg my-4">No header spoofing</li>
         <p>Some providers let you put different headers into the email that can mask where it has come from. We don't allow custom headers and rebuild the full email when sent through our service, so it always completely and fully originates from our servers.</p>
         <li class="text-lg my-4">Automated & Manual reviews</li>
@@ -53,7 +53,7 @@
         <p>We support TLS 1.2+ to ensure your emails are sent between SMTP servers with transport level security.</p>
 
         <li class="text-lg my-4">Feedback Loops (FBLs)</li>
-        <p>Feedback Loops are a mechanism to give email providers and large senders a notification <a href="https://blog.ohmysmtp.com/blog/what-happens-when-you-send-an-email-to-spam/" class="underline">when a message is marked as spam</a> by end users. We're registered for them, and handle any reports or complaints that come through the FBL.</p>
+        <p>Feedback Loops are a mechanism to give email providers and large senders a notification <a href="https://blog.mailpace.com/blog/what-happens-when-you-send-an-email-to-spam/" class="underline">when a message is marked as spam</a> by end users. We're registered for them, and handle any reports or complaints that come through the FBL.</p>
 
         <li class="text-lg my-4">No dedicated IPs</li>
         <p>Unless you're sending 250k+ emails/month, from one domain, in a consistent pattern, having a dedicated IP address will hurt your deliverability. This is because your volume will be too low to build a good reputation. Most email providers will offer dedicated IPs at a very high price - it's rarely worth it, so we don't offer it at all.</p>
@@ -71,14 +71,14 @@
         <li>High spam detection rates or increasing Rspamd scores</li>
         <li>High 4xx and 5xx SMTP responses</li>
         <li>Blocklist SMTP responses</li>
-        <li>Long "time to inbox" times for 3x main providers (published on our <a href="https://ohmysmtp.com" class="underline">landing page</a></li>
+        <li>Long "time to inbox" times for 3x main providers (published on our <a href="https://mailpace.com" class="underline">landing page</a></li>
       </ul>
       <p>
       Additionally we manually review accounts regularly and monitor external blocklists and deliverability ratings for our IPs and domains. There are even some whitelists that our IPs are on.
       </p>
       
       <p class="my-10">
-        As you can see there's quite a lot here, and this is by no means an exhaustive list! If you'd like us to handle all of this and more for you, sign up for an account at <a href="https://ohmysmtp.com" class="underline">OhMySMTP.com</a>
+        As you can see there's quite a lot here, and this is by no means an exhaustive list! If you'd like us to handle all of this and more for you, sign up for an account at <a href="https://mailpace.com" class="underline">MailPace.com</a>
       </p>
 
     </div>
