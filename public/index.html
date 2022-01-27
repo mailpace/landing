@@ -29,7 +29,8 @@
 	<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
 			<!--Nav-->
 	<nav id="header" class="fixed top-0 z-30 w-full text-white">
-
+		
+		<a href="https://blog.mailpace.com/blog/ohmysmtp-is-now-mailpace/" class="p-4 bg-blue-800 block text-center">OhMySMTP is now known as MailPace - click to learn more</a>
 		<div class="container flex flex-wrap items-center justify-between w-full py-2 mx-auto mt-0">
 
 			<div class="flex items-center pl-4">
@@ -74,7 +75,7 @@
 		
 	
 	<!--Hero-->
-	<div class="pt-24 pb-6">
+	<div class="pt-36 pb-6">
 
 		<div class="container px-4 pb-4 mx-auto w-4/5 md:flex-row text-center">
 			<div class="w-full md:w-4/5 mx-auto">
@@ -450,14 +451,14 @@ config.action_mailer.mailpace_settings = { api_token: Rails.application.credenti
 						<pre><code class="language-shell">composer require symfony/oh-my-smtp-mailer</code></pre>
 						Configure the `.env`
 						<pre><code class="language-shell"># .env
-MAILER_DSN=ohmysmtp+api://API_TOKEN@default</code></pre>
+MAILER_DSN=mailpace+api://API_TOKEN@default</code></pre>
 					</div>
 					<div id="elixir" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
 						Add to your `mix.exs` dependencies
-						<pre><code class="language-elixir"></code>{:ohmysmtp_client, "~> 0.1.0"}</pre>
+						<pre><code class="language-elixir"></code>{:mailpace_client, "~> 0.1.0"}</pre>
 						Add to Application Config:
-						<pre><code class="language-elixir">config: :ohmysmtp_client, token: "TOKEN_GOES_HERE"</code></pre>
-						<pre><code class="language-elixir">ohmysmtpClient.send_email(%mailpaceClient.EmailSendRequest{
+						<pre><code class="language-elixir">config: :mailpace_client, token: "TOKEN_GOES_HERE"</code></pre>
+						<pre><code class="language-elixir">mailpaceClient.send_email(%mailpaceClient.EmailSendRequest{
 	from: "test@test.com",
 	subject: "Hello from MailPace",
 	textbody: "Hello",

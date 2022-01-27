@@ -1,0 +1,6 @@
+http://ohmysmtp.com https://mailpace.com 301!
+https://ohmysmtp.com https://mailpace.com 301!
+http://ohmysmtp.com/ https://mailpace.com/ 301!
+https://ohmysmtp.com/ https://mailpace.com/ 301!
+http://ohmysmtp.com/* https://mailpace.com/:splat 301!
+https://ohmysmtp.com/* https://mailpace.com/:splat 301!
