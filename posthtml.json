@@ -1,6 +1,7 @@
 {
-  "input": "html/*.html",
+  "input": ["*.html", "migration-guides/*.html"],
   "output": "public",
+  "root": "./html",
   "plugins": {
       "posthtml-modules": {
           "root": "./html",

@@ -9,7 +9,7 @@
     "production": "cross-env NODE_ENV=production npm run build:css && npm run build:html",
     "build:css": "postcss css/tailwind.css -o public/build/tailwind.css",
     "watch:css": "postcss css/tailwind.css -o public/build/tailwind.css --watch",
-    "build:html": "posthtml -c posthtml.json",
+    "build:html": "posthtml -c posthtml.json --allInOutput",
     "watch:html": "npm run build:html & onchange \"html/**/*.html\" -- npm run build:html"
   },
   "dependencies": {
