@@ -350,6 +350,8 @@ data = {
   "textbody": "Hello"
 }
 
+data = json.dumps(data)
+
 response = requests.post('https://app.mailpace.com/api/v1/send', headers=headers, data=data)</code></pre>
 					</div>					
 					<div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
