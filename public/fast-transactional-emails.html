@@ -22,8 +22,26 @@
 		.gradient {
 			background: linear-gradient(90deg, #f4900c 0%, #f37024 300%);
 		}
+
+		@keyframes softBounce {
+			0%, 20%, 50%, 80%, 100% {
+				transform: translateY(0);
+			}
+			40% {
+				transform: translateY(-30px);
+			}
+			60% {
+				transform: translateY(-5px);
+			}
+		}
+
+		.bouncing-div {
+			animation: softBounce 1s ease-in;
+		}
+
 	</style>
 	<script async="" defer="" data-domain="mailpace.com" src="https://plausible.io/js/plausible.js"></script>
+	<script async="" defer="" src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 </head>
 
 	<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
@@ -438,6 +456,18 @@
 	<script>
 		Paddle.Setup({ vendor: 118970 });
 	</script>
+
+<script>
+	// Text to simulate typing
+	const textToType = "$ curl <span class=\"text-white\">https://app.mailpace.com/api/v1/send</span>\n -H MailPace-Server-Token: a3c4-efg6 \n -d {\n    from: awesome@developer.com,\n    to: important@users.com,\n    subject: Woah, MailPace Rocks!\n} \n\n`<span class=\"text-gray-500\">Sending...</span>`\n^250<span class=\"text-green-200\">✓ Email Sent!</span>";
+
+	var typed = new Typed('#terminal-line', {
+		strings: [textToType],
+		typeSpeed: 20,
+		loop: false,
+		cursorChar: '_',
+	});
+</script>
 		<script src="/prism.js"></script>
 	</body>
 </html>
