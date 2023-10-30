@@ -6,6 +6,10 @@
       "posthtml-modules": {
           "root": "./html",
           "initial": true
+      },
+      "posthtml-webp": {
+          "replaceExtension": false,
+          "extensionIgnore": ["svg"]
       }
   },
   "htmlnano": {}
