@@ -1,0 +1,115 @@
+<script locals>
+  module.exports = {
+    testimonials: [
+      {
+        image: "dhh_profile.jpg",
+        image_alt: "DHH Profile Picture",
+        url: "https://twitter.com/dhh/status/1359428489443766274",
+        name: "DHH",
+        bio: "Creator of Ruby on Rails, Founder & CTO of Basecamp and Hey.com",
+        quote:
+          "A transactional email sender that not only doesn't default spy pixels, but won't allow them",
+      },
+      {
+        image: "chris_oliver.jpeg",
+        image_alt: "Chris Oliver Profile Picture",
+        url: "https://twitter.com/excid3/status/1372215363702812674",
+        name: "Chris Oliver",
+        bio: "Creator of GoRails, Jumpstart Pro and HatchBox.io",
+        quote:
+          "Shout out to @MailPace for the great email service! Just switched @GoRails over and added them as an SMTP provider for Jumpstart Pro.",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+      {
+        image: "mark_m.jpg",
+        image_alt: "Mark Magnuson Profile Picture",
+        url: "https://twitter.com/MarkMagnuson/status/136473879414290022",
+        name: "Mark Magnuson",
+        bio: "Creator of Bildr.com",
+        quote:
+          "Shoutout to @MailPace great product & clean API for transactional emails. Really loving it",
+      },
+    ],
+  };
+</script>
+
+<div
+  class="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12"
+>
+  <each loop="testimonial, index in testimonials">
+    <div class="w-full text-left rounded bg-gray-50 p-4">
+      <svg width="45" height="36" class="mb-4 fill-current text-gray-500">
+        <path d="M13.415.001C6.07 5.185.887 13.681.887 23.041c0 7.632 4.608 12.096 9.936 12.096 5.04 0 8.784-4.032 8.784-8.784 0-4.752-3.312-8.208-7.632-8.208-.864 0-2.016.144-2.304.288.72-4.896 5.328-10.656 9.936-13.536L13.415.001zm24.768 0c-7.2 5.184-12.384 13.68-12.384 23.04 0 7.632 4.608 12.096 9.936 12.096 4.896 0 8.784-4.032 8.784-8.784 0-4.752-3.456-8.208-7.776-8.208-.864 0-1.872.144-2.16.288.72-4.896 5.184-10.656 9.792-13.536L38.183.001z">
+        </path>
+      </svg>
+      <p class="mx-auto text-1xl leading-relaxed text-gray-800">
+        {{ testimonial.quote }}
+      </p>
+      <hr class="mt-2 mb-3" />
+      <a class="inline-flex items-center w-full" href="{{ url }}">
+        <img alt="{{ testimonial.image_alt }}" src="images/{{ testimonial.image }}" class="max-h-14 rounded-full">
+        <span class="flex flex-col flex-grow pl-3">
+          <h3 class="text-xs tracking-widest text-black uppercase">
+            {{ testimonial.name }} <br />
+            <span class="font-semibold">
+              {{ testimonial.bio }}
+            </span>
+          </h3>
+        </span>
+      </a>
+    </div>
+  </each>
+</div>
