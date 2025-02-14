@@ -1,8 +1,0 @@
-@responsive {
-  .bg-gradient-hero {
-    background: linear-gradient(90deg, theme('colors.yellow.50') 15%, theme('colors.yellow.50') 100%);
-  }
-  .bg-gradient-navbar {
-    background: linear-gradient(90deg, theme('colors.yellow.50') 15%, theme('colors.yellow.50') 100%);
-  }
-}

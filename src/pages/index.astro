@@ -1,0 +1,306 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import HeroCode2 from '~/components/widgets/HeroCode2.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import TestimonialList from '~/components/common/TestimonialList.astro';
+import CodeTabs from '~/components/widgets/CodeTabs.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'MailPace - Fast Transactional Email',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroCode2
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+      { text: 'Learn more', href: '#testimonials' },
+    ]}
+  >
+    <Fragment slot="title"> Fast Transactional Email </Fragment>
+
+    <Fragment slot="subtitle"> Independent, privacy-focused, and hosted in the EU </Fragment>
+  </HeroCode2>
+
+  <Note />
+
+  <TestimonialList id="testimonials" />
+
+  <CodeTabs />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    title="We have everything you need to send and recieve transactional emails"
+    subtitle="Features"
+    items={[
+      {
+        title: 'HTTP API',
+        description: 'Integrate anywhere with our rapid HTTP API for efficient and reliable email delivery.',
+        icon: 'tabler:api',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/reference/overview',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'SMTP Endpoint',
+        description: 'Utilize our SMTP endpoint to send directly from any SMTP supported application or service',
+        icon: 'tabler:mail',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/integrations/smtp',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'Inbound Email',
+        description: 'Receive and turn inbound emails into JSON webhooks effortlessly with our inbound email service.',
+        icon: 'tabler:inbox',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/guide/inbound',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'Webhooks',
+        description: 'Stay updated with real-time notifications using our powerful webhooks.',
+        icon: 'tabler:webhook',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/guide/webhooks',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'DKIM, SPF & DMARC',
+        description: 'Send with confidence with support for custom Return-Path and full DMARC support.',
+        icon: 'tabler:key',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/guide/verification',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'Automatic Email Optimization',
+        description: 'Emails sent through MailPace are compressed and rebuilt for deliverability and speed.',
+        icon: 'tabler:webhook',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'Spam Protection with Automated Blocklist Management',
+        description:
+          'Protect your domain reputation and maximise deliverability with our outbound spam protection and automated bounce management.',
+        icon: 'tabler:shield-check',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/guide/lifecycle',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+      {
+        title: 'Idempotent API',
+        description: 'Ensure safe and repeatable sending with our idempotent request handling.',
+        icon: 'tabler:repeat',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://docs.mailpace.com/guide/idempotency',
+          target: '_blank',
+          class: 'text-muted text-sm',
+        },
+      },
+    ]}
+  />
+
+  <Features2
+    title="What makes MailPace different"
+    subtitle="Why we are what you need"
+    items={[
+      {
+        title: 'Transactional only',
+        description:
+          "MailPace can only be used for Transactional Email - think password resets, notifications and welcome emails. We don't mix them up with slow, bulk marketing emails like other providers.",
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'A real email provider',
+        description:
+          "We're not just an API layer to another email service. We run our own SMTP servers, the way email was designed",
+        icon: 'tabler:server',
+      },
+      {
+        title: 'Engineer lead support',
+        description:
+          "We don't do helpdesks, NPS scores and clueless support scripts. Email us anytime and an engineer will get back within a few hours: support@mailpace.com",
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Fully Independent',
+        description:
+          "We're not owned by a billionaire, we're an independent company helping to get Transactional Emails to inboxes for our customers ",
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Developer First',
+        description:
+          'Our API and interface is super simple & easy to use, and we have code libraries and integrations for most frameworks ready to go ',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'No Read Tracking',
+        description:
+          "We refuse to invade a person's privacy. Unlike other transactional email providers, we don’t support spy pixels or click tracking",
+        icon: 'tabler:eye-off',
+      },
+      {
+        title: 'We HATE spam',
+        description:
+          'We have a five-layer approach to ensuring that our service is never used for spam. Keeping your reputation high and getting your emails to inboxes',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Fast!',
+        description:
+          ' Our Transactional Emails arrive in seconds, and we continuously monitor and optimize our time to inbox scores to get emails to inboxes fast!',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Eco-Friendly',
+        description:
+          'We use 100% carbon-neutral, renewable energy powered servers. Our servers are provided by local bare-metal & VPS providers, not massive cloud companies',
+        icon: 'tabler:leaf',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    items={[
+      {
+        title: 'Carbon Neutral Infrastructure',
+        description: 'Our email infrastructure runs on 100% carbon-neutral, renewable energy powered servers ',
+      },
+      {
+        title: 'Local, European Providers',
+        description: 'We use small, local providers for hosting, with all data hosted in the EU.',
+      },
+      {
+        title: 'We put privacy first',
+        description:
+          "No read tracking - we only check if the receiving server accepted the email, we never invade a person's inbox privacy.",
+      },
+      {
+        title: 'Anti-Spam',
+        description:
+          'No spam - we enforce DKIM validation, actively remove spammers and automatically check all outbound emails for spam.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/undraw_privacy_protection.svg',
+      class: 'rounded-lg bg-white dark:bg-slate-800 p-20 hidden md:block',
+      alt: 'Privacy Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Eco-Friendly, European-Focused, Privacy First.
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Frequently Asked Questions"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Can I include open/read tracking?',
+        description:
+          'We do not support this, however if you want to include one and track users yourself, you can manually. Note that in order to be GDPR compliant you must get the user to opt-in to tracking first.',
+      },
+      {
+        title: 'Can I send Marketing Emails with MailPace?',
+        description: `No. Only Transactional Emails are supported. For a complete definition of what a Transactional Email is, see <a class="text-blue-500" href="${getPermalink('/what-are-transactional-emails')}">what are transactional emails</a>.`,
+      },
+      {
+        title: 'Do you support my code library or framework?',
+        description: `Probably! If you can't find what you need in our Docs, reach out to us at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a>.`,
+      },
+      {
+        title: 'I need to send more than 1.5 million emails/month',
+        description:
+          'Contact us at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a> for a bespoke quote.',
+      },
+      {
+        title: 'Can I pay with Crypto?',
+        description: 'No, only payments supported by our payment provider Paddle.com are supported.',
+      },
+      {
+        title: 'Can you add my new feature idea?',
+        description: `Sure! Drop us an email at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a> and we'll see what we can do.`,
+      },
+    ]}
+  />
+
+  <Stats
+    stats={[
+      { title: 'Founded', amount: '2021' },
+      { title: 'Emails Sent', amount: '200m+' },
+      { title: 'Senders', amount: '2k+' },
+    ]}
+  />
+
+  <CallToAction
+    title="Ready to send?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+</Layout>

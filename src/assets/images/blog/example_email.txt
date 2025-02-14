@@ -1,0 +1,70 @@
+Delivered-to: recipient@example.com
+Return-Path: <bounces+40c3434d-6864-4182-aa17-86c9b2082aa0@mailer.ohmysmtp.com>
+Received: from mailer.ohmysmtp.com ([193.33.178.182] mailer.ohmysmtp.com)
+ by mx.ethereal.email with ESMTPS id sr7hymdnr74ej5hu.2
+ for <recipient@example.com>; Mon, 05 Feb 2024 11:57:26 +0000
+Received-SPF: pass (mx.ethereal.email: domain of bounces+40c3434d-6864-4182-aa17-86c9b2082aa0@mailer.ohmysmtp.com designates 193.33.178.182 as permitted
+ sender) client-ip=193.33.178.182;
+Authentication-Results: mx.ethereal.email;
+ dkim=pass;
+ spf=pass;
+ smtp.mailfrom=bounces+40c3434d-6864-4182-aa17-86c9b2082aa0@mailer.ohmysmtp.com smtp.helo=mailer.ohmysmtp.com;
+ dmarc=none header.from=ohmysmtp.com;
+ bimi=skipped (DMARC not enabled)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ohmysmtp.com;
+ q=dns/txt; s=ohmysmtp; bh=i0NtWNsgdZXE4S/Jk+7QladTByQCo/ZkzyDMzZMHRhU=;
+ h=from:subject:date:message-id:to:mime-version:content-type:content-transfer-encoding;
+ b=cAqB3XSUUUX8fSMATBjKiMhwayzGNAZFqFY/9tVrdwxgkt2YQVoatQB7EJ3+TE1JkjUF6C8l3
+ +4nHcKiR8zs427K+uF05KPYv9Egmk9TrwpSZBvj83iJf47LJPtHtuMsrBt9bz38nNpjIv0nsBvd
+ WaFWo0sm1r467FL7XRe/FbE=
+Received: from localhost.localdomain [91.208.207.102]
+ by mailer.ohmysmtp.com (ZoneMTA) with ESMTP id 18d79214d280000652.001
+ for <recipient@example.com>;
+ Mon, 05 Feb 2024 11:57:22 +0000
+Date: Mon, 05 Feb 2024 11:57:22 +0000
+From: "Test Name.com" <test@ohmysmtp.com>
+To: recipient@example.com
+Message-ID: <40c3434d-6864-4182-aa17-86c9b2082aa0@mailer.ohmysmtp.com>
+Subject: Test Subject
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_65c0cd21dd978_1206c010771";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65c0cd21dd978_1206c010771
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65c0cd21dd687_1206c01076e9";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65c0cd21dd687_1206c01076e9
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Header
+A sentence
+
+----==_mimepart_65c0cd21dd687_1206c01076e9
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><h1>Header</h1><p>A sentence</p></html>
+
+----==_mimepart_65c0cd21dd687_1206c01076e9--
+
+----==_mimepart_65c0cd21dd978_1206c010771
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=strip.png
+Content-ID: <65c0cd22f613_1206c010781c@04b539bb-516f-469b-9dcd-f7f12cee6c03.mail>
+
+iVBORw0KGgoAAAANSUhEUgAAAnAAAAD2CAIAAADZBy0YAAAABGdBTUEAALGP
+...
+
+----==_mimepart_65c0cd21dd978_1206c010771--

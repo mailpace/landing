@@ -1,0 +1,108 @@
+---
+import Button from '~/components/ui/Button.astro';
+
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:my-48 lg:gap-8">
+      <div class="basis-1/2 text-center lg:text-left pb-10 md:pb-16 mx-auto">
+        {
+          tagline && (
+            <p
+              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+              set:html={tagline}
+            />
+          )
+        }
+        {
+          title && (
+            <h1
+              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+              set:html={title}
+            />
+          )
+        }
+        <div class="max-w-3xl mx-auto lg:max-w-none">
+          {
+            subtitle && (
+              <p
+                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+                set:html={subtitle}
+              />
+            )
+          }
+
+          {
+            actions && (
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 lg:justify-start lg:m-0 lg:max-w-7xl intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:w-auto">
+                      <Button {...(action || {})} class="w-full sm:mb-0" />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+        </div>
+        {content && <Fragment set:html={content} />}
+      </div>
+      <div class="basis-1/2">
+        <div
+          class="relative m-auto mr-5 sm:mr-8 max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-bouncing intersect-quarter"
+        >
+          <div class="mx-2 w-full xl:w-4/5 p-6 text-base rounded-md shadow-2xl bg-gray-800 max-h-80 min-h-80">
+            <div class="relative mb-2">
+              <div class="absolute -top-5 -right-5 flex items-center h-8 space-x-1.5 px-3">
+                <div class="w-2.5 h-2.5 bg-slate-600 rounded-full"></div>
+                <div class="w-2.5 h-2.5 bg-slate-600 rounded-full"></div>
+                <div class="w-2.5 h-2.5 bg-slate-600 rounded-full"></div>
+              </div>
+            </div>
+            <div class="overflow-auto max-w-full">
+              <span class="text-gray-300 whitespace-pre font-mono font-semibold" id="terminal-line"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Typed from 'typed.js';
+  const textToType =
+    '$ curl <span class="text-white">https://app.mailpace.com/api/v1/send</span>\n -H MailPace-Server-Token: a3c4-efg6 \n -d {\n    from: awesome@developer.com,\n    to: important@users.com,\n    subject: Woah, MailPace Rocks!\n} \n\n`<span class="text-gray-500">Sending...</span>`\n^250<span class="text-green-200">✓ Email Sent!</span>';
+
+  if (document.getElementById('terminal-line')) {
+    new Typed('#terminal-line', {
+      strings: [textToType],
+      typeSpeed: 20,
+      loop: false,
+      cursorChar: '_',
+    });
+  }
+</script>
