@@ -1,0 +1,208 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import PriceSlider from '~/components/widgets/PriceSlider.astro';
+import Features from '~/components/widgets/Features.astro';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'Pricing',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Pricing"
+    title="Simple pricing that scales with you"
+    subtitle="Cancel anytime, with no obligations "
+  />
+
+  <PriceSlider />
+
+  <!-- Most important benefits -->
+  <div class="p-6 md:rounded-lg bg-white dark:bg-gray-800">
+    <Features
+      columns={2}
+      title="We exist to help you send and receive emails"
+      subtitle="What makes us special"
+      items={[
+        {
+          title: 'Pay only for emails you send or receive',
+          description: "When you send more, we charge more, when you send less, we charge less. It's only fair.",
+          icon: 'tabler:stairs',
+        },
+        {
+          title: 'No limits, no add-ons. Everything we have is included, for everyone',
+          description: "Add domains, add users, change retention period - it's all included.",
+          icon: 'tabler:heart-filled',
+        },
+        {
+          title: 'Fast delivery',
+          description: 'We optimize time to inbox, to ensure your users get emails in seconds.',
+          icon: 'tabler:bolt-filled',
+        },
+        {
+          title: 'Top-notch support, by default',
+          description: `Our support team is on standby, ready to help any time day or night.`,
+          icon: 'tabler:headset',
+        },
+      ]}
+      classes={{ container: 'mx-auto' }}
+      isAfterContent
+    />
+  </div>
+
+  <Features3
+    title="Everything you need"
+    subtitle="All features, for everyone"
+    columns={3}
+    items={[
+      {
+        title: 'HTTP Email Sending API',
+        description: 'Send emails over our superfast HTTPS API.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Inbound Email',
+        description: 'Recieve emails over SMTP and convert them into HTTP webhooks.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Sending SMTP Server',
+        description: 'Our SMTP server lets you integrate with any application that leverages SMTP today in seconds.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Client Libraries',
+        description:
+          'We have libraries for all the latest frameworks and languages (including Rails, Laravel, Node.js, Python, Go, and more).',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Email Delivery Acceptance Tracking',
+        description: 'Track email delivery acceptance rates.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Unlimited Domains',
+        description: 'All plans come with unlimited domains and subdomains.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Unlimited From Addresses',
+        description: 'Any from address can be set, on an individual email level.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Unlimited Team Members',
+        description: 'Add an unlimited number of team members to your organization.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Unlimited Webhooks',
+        description: 'Set up an unlimited number of webhooks for real-time notifications.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Automated Bounce Management',
+        description: 'We automatically handle and track bounces for you.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Automated Blocklist Management',
+        description: 'We maintain a list of bounced addresses and automatically handle block/allow lists against them.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Active Anti-Spam',
+        description: 'Protect your domain reputation with our multi-level anti-spam measures.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Email Tagging',
+        description: 'Tag your emails for better organization and tracking.',
+        icon: 'tabler:check',
+      },
+      {
+        title: '30 day email retention',
+        description:
+          'Retain your emails for 30 days for easy access and review - contact us for a customizable retention period',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Detailed Documentation',
+        description: 'Our docs are top notch, with quick start guides and everything you need to get going.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Two Factor authentication (2FA)',
+        description: 'Secure your account with two-factor authentication via Webauthn / Passkeys',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Amazing Support',
+        description: 'Get support from dedicated engineers over email for any issues or questions.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Idempotent Requests',
+        description: 'We are the only transactional email provider that lets you send requests with an idempotent ID.',
+        icon: 'tabler:check',
+      },
+    ]}
+    classes={{ container: 'max-w-5xl' }}
+  />
+
+  <div class="flex w-full sm:w-auto px-10">
+    <Button
+      variant="secondary"
+      text="Explore our features in our docs"
+      href="https://docs.mailpace.com"
+      target="_blank"
+      class="w-full md:w-1/3 mx-auto"
+    />
+  </div>
+
+  <FAQs
+    title="Pricing FAQs"
+    subtitle=`Not seeing your question? <a class="text-blue-500" href="mailto:support@mailpace.com">Contact us</a> via email with your question`
+    columns={1}
+    items={[
+      {
+        title: 'What happens when I go over 10,000 emails?',
+        description:
+          "We calculate the amount of emails you've sent/recieved every billing period and add them onto your bill automatically.",
+      },
+      {
+        title: 'Is there a free trial?',
+        description: `Yes! We have a secret free plan. <a class="text-blue-500" href="mailto:support@mailpace.com">Contact us</a> via email if you'd like to try us out (up to 100 emails/month).`,
+      },
+      {
+        title: 'What happens if I want to cancel?',
+        description:
+          'You can cancel your account and plan at any time, right from our UI in two clicks. Your account will be cancelled right away with no further payment due.',
+      },
+      {
+        title: 'Which payment methods do you accept?',
+        description:
+          "We accept all major credit cards, PayPal and Apple/Google Pay. We don't accept cryptocurrency at the moment.",
+      },
+    ]}
+  />
+
+  <CallToAction
+    title="Ready to send?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+</Layout>

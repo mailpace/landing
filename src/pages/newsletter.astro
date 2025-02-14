@@ -1,0 +1,35 @@
+---
+import Form from '~/components/ui/Form.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'MailPace - Newsletter',
+};
+
+const formProps = {
+  action: 'https://buttondown.email/api/emails/embed-subscribe/mailpace',
+  method: 'post',
+  target: 'popupwindow',
+  inputs: [
+    {
+      type: 'email',
+      name: 'email',
+      placeholder: 'email@example.com',
+    },
+  ],
+  button: 'Subscribe',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Newsletter"
+    title="Awesome Email by MailPace"
+    subtitle="Developer-focused content on all the latest email tech and happenings. Delivered straight to your inbox every month."
+  />
+
+  <div class="container mx-auto max-w-md px-10 mb-20 mt-8">
+    <Form {...formProps} />
+  </div>
+</Layout>

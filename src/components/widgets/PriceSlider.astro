@@ -1,0 +1,552 @@
+---
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+---
+
+<div x-data="emailPricing()" x-init="initSlider">
+  <Headline subtitle="How many emails do you send and receive each month?" classes={{ container: 'px-8 mb-10' }} />
+
+  <div class="flex flex-col items-center justify-center p-4 mb-10 mt-10 w-full md:w-3/4 mx-auto">
+    <input
+      id="price-slider"
+      type="range"
+      min="0"
+      max="1000"
+      x-model="sliderValue"
+      @input="updatePricing"
+      class="w-4/5 h-4 min-h-6 sm:min-h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+    />
+    <div
+      class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4 min-h-10 sm:min-h-4"
+      x-show="showTooltip"
+      x-bind:style="{ left: tooltipPosition.left + 'px', top: tooltipPosition.top + 'px' }"
+      id="tooltip"
+    >
+      <span x-text="emailsFormatted"></span> emails
+    </div>
+    <div class="w-4/5 flex justify-between text-xs ml-4 mt-2">
+      <span>100</span>
+      <span class="ml-3">10,000</span>
+      <span>100,000</span>
+      <span>300,000</span>
+      <span>600,000</span>
+      <span>1,000,000</span>
+    </div>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-0 lg:mx-40">
+    <!-- Price Box -->
+    <div class="w-full sm:w-2/3 mx-auto">
+      <div class="border rounded-lg shadow dark:bg-gray-800 mx-10 mb-10 px-3 pt-3">
+        <div class="text-right mb-4">
+          <select x-model="custom_region" @change="initSlider" class="rounded p-2 text-sm bg-white dark:bg-gray-700">
+            <option value="">Currency</option>
+            <option value="US">🇺🇸 USD</option>
+            <option value="GB">🇬🇧 GBP</option>
+            <option value="FR">🇫🇷 EUR</option>
+            <option value="JP">🇯🇵 JPY</option>
+            <option value="CN">🇨🇳 CNY</option>
+            <option value="IN">🇮🇳 INR</option>
+            <option value="CA">🇨🇦 CAD</option>
+            <option value="AU">🇦🇺 AUD</option>
+            <option value="CH">🇨🇭 CHF</option>
+          </select>
+        </div>
+        <span x-text="totalPriceFormatted" class="font-semibold text-3xl text-center block mb-2"></span>
+        <div class="text-gray-500 dark:text-gray-400 text-center">per Month</div>
+        <div class="text-gray-500 dark:text-gray-400 text-sm mt-6" x-show="increments !== 0">
+          <table class="px-10 mx-auto w-full sm:w-2/3 md:w-1/2">
+            <tbody>
+              <tr>
+                <td class="text-left">The first 10,000 emails</td>
+                <td class="text-right"><span x-text="basePriceFormatted"></span></td>
+              </tr>
+              <tr>
+                <td class="text-left">The next <span x-text="additionalEmails"></span> emails</td>
+                <td class="text-right"><span x-text="pricePerThousandFormatted"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex w-full sm:w-auto">
+          <Button
+            variant="primary"
+            text="Start Sending"
+            href="https://app.mailpace.com"
+            target="_blank"
+            icon="tabler:bolt"
+            class="w-full m-8 md:w-2/3 xl:w-1/2 mx-auto"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('emailPricing', emailPricing);
+  });
+
+  function emailPricing() {
+    return {
+      sliderValue: 200,
+      emailsSent: 10000,
+
+      region: 'US', // Paddle response always update this
+      custom_region: null, // Users can set this if they want to override the region
+      basePrice: 12,
+      increments: 0,
+      pricePerThousand: 1.0,
+
+      showTooltip: true,
+      tooltipPosition: { left: 0, top: 0 },
+
+      get emailsFormatted() {
+        return new Intl.NumberFormat(this.region, {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(this.emailsSent);
+      },
+
+      get totalPrice() {
+        return this.emailsSent > 10000
+          ? this.basePrice + (this.pricePerThousand * (this.emailsSent - 10000)) / 1000
+          : this.basePrice;
+      },
+
+      get totalPriceFormatted() {
+        return this.formatCurrency(this.totalPrice, this.region);
+      },
+
+      get basePriceFormatted() {
+        return this.formatCurrency(this.basePrice, this.region);
+      },
+
+      get pricePerThousandFormatted() {
+        const additionalPrice =
+          this.emailsSent > 10000 ? (this.pricePerThousand * (this.emailsSent - 10000)) / 1000 : 0;
+        return this.formatCurrency(additionalPrice, this.region);
+      },
+
+      get additionalEmails() {
+        const additional = this.emailsSent > 10000 ? this.emailsSent - 10000 : 0;
+        this.increments = Math.ceil(additional / 1000);
+
+        return new Intl.NumberFormat(this.region).format(additional);
+      },
+
+      updatePricing() {
+        this.emailsSent = this.calculateEmailsFromScale(this.sliderValue);
+        this.positionTooltip();
+      },
+
+      calculateEmailsFromScale(value) {
+        if (value === 0) return 100;
+        if (value <= 200) return 100 + ((10000 - 100) / 200) * value;
+        if (value <= 400) return 10000 + ((100000 - 10000) / 200) * (value - 200);
+        if (value <= 600) return 100000 + ((300000 - 100000) / 200) * (value - 400);
+        if (value <= 800) return 300000 + ((600000 - 300000) / 200) * (value - 600);
+        if (value <= 999) return 600000 + ((1000000 - 600000) / 200) * (value - 800);
+        return 1000000;
+      },
+
+      positionTooltip() {
+        const slider = document.getElementById('price-slider') as HTMLInputElement;
+        const tooltip = document.getElementById('tooltip');
+        if (!slider || !tooltip) return;
+        const sliderRect = slider.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const sliderThumbWidth = 20; // approximate width of the slider thumb
+        const maxSliderValue = parseInt(slider.max);
+
+        const left =
+          sliderRect.left +
+          (sliderRect.width - sliderThumbWidth) * (this.sliderValue / maxSliderValue) +
+          sliderThumbWidth / 2;
+        this.tooltipPosition.left = left;
+        this.tooltipPosition.top = sliderRect.top + window.scrollY - tooltipRect.height - 10;
+      },
+
+      formatCurrency(amount, region) {
+        try {
+          const formatter = new Intl.NumberFormat(region, {
+            style: 'currency',
+            currency: countryToCurrency[region] || 'USD',
+          });
+          return formatter.format(amount);
+        } catch (error) {
+          console.error(`Error formatting currency for region ${region}:`, error);
+          return amount.toString();
+        }
+      },
+
+      async initSlider() {
+        this.positionTooltip();
+
+        const basePricePlan = 687241;
+        const incrementalPricePlan = 687246;
+
+        const country = this.custom_region;
+        const productIds = `${basePricePlan}, ${incrementalPricePlan}`;
+        let url = `https://checkout.paddle.com/api/2.0/prices?product_ids=${encodeURIComponent(productIds)}`;
+
+        if (country) {
+          url += `&customer_country=${country}`;
+        }
+
+        try {
+          const response = await fetchJsonp(url);
+          const json = await (response as Response).json();
+          this.basePrice = json.response.products[0].price.net;
+          this.pricePerThousand = json.response.products[1].price.net;
+          this.region = json.response.customer_country;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    };
+  }
+
+  // JSONP Support is taken from https://github.com/camsong/fetch-jsonp/blob/master/src/fetch-jsonp.js
+  // would import as a module but that doesn't work in astro along with alpine, for which
+  // we need an inline script to ensure that emailPricing is defined before alpine inits
+  const jsonpDefaultOptions = {
+    timeout: 5000,
+    jsonpCallback: 'callback',
+    jsonpCallbackFunction: null,
+  };
+
+  function generateCallbackFunction() {
+    return `jsonp_${Date.now()}_${Math.ceil(Math.random() * 100000)}`;
+  }
+
+  function clearFunction(functionName) {
+    // IE8 throws an exception when you try to delete a property on window
+    // http://stackoverflow.com/a/1824228/751089
+    try {
+      delete window[functionName];
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function removeScript(scriptId) {
+    const script = document.getElementById(scriptId);
+    if (script) {
+      document.getElementsByTagName('head')[0].removeChild(script);
+    }
+  }
+
+  function fetchJsonp(_url, options = jsonpDefaultOptions) {
+    // to avoid param reassign
+    let url = _url;
+    const timeout = options.timeout || jsonpDefaultOptions.timeout;
+    const jsonpCallback = options.jsonpCallback || jsonpDefaultOptions.jsonpCallback;
+
+    let timeoutId;
+
+    return new Promise((resolve, reject) => {
+      const callbackFunction = options.jsonpCallbackFunction || generateCallbackFunction();
+      const scriptId = `${jsonpCallback}_${callbackFunction}`;
+
+      window[callbackFunction] = (response) => {
+        resolve({
+          ok: true,
+          // keep consistent with fetch API
+          json: () => Promise.resolve(response),
+        });
+
+        if (timeoutId) clearTimeout(timeoutId);
+
+        removeScript(scriptId);
+
+        clearFunction(callbackFunction);
+      };
+
+      // Check if the user set their own params, and if not add a ? to start a list of params
+      url += url.indexOf('?') === -1 ? '?' : '&';
+
+      const jsonpScript = document.createElement('script');
+      jsonpScript.setAttribute('src', `${url}${jsonpCallback}=${callbackFunction}`);
+      jsonpScript.id = scriptId;
+      document.getElementsByTagName('head')[0].appendChild(jsonpScript);
+
+      timeoutId = setTimeout(() => {
+        reject(new Error(`JSONP request to ${_url} timed out`));
+
+        clearFunction(callbackFunction);
+        removeScript(scriptId);
+        window[callbackFunction] = () => {
+          clearFunction(callbackFunction);
+        };
+      }, timeout);
+
+      // Caught if got 404/500
+      jsonpScript.onerror = () => {
+        reject(new Error(`JSONP request to ${_url} failed`));
+
+        clearFunction(callbackFunction);
+        removeScript(scriptId);
+        if (timeoutId) clearTimeout(timeoutId);
+      };
+    });
+  }
+
+  // Currency mapping from https://raw.githubusercontent.com/thiagodp/country-to-currency/refs/heads/master/index.ts
+  const countryToCurrency = {
+    AD: 'EUR',
+    AE: 'AED',
+    AF: 'AFN',
+    AG: 'XCD',
+    AI: 'XCD',
+    AL: 'ALL',
+    AM: 'AMD',
+    AN: 'ANG',
+    AO: 'AOA',
+    AQ: 'USD',
+    AR: 'ARS',
+    AS: 'USD',
+    AT: 'EUR',
+    AU: 'AUD',
+    AW: 'AWG',
+    AX: 'EUR',
+    AZ: 'AZN',
+    BA: 'BAM',
+    BB: 'BBD',
+    BD: 'BDT',
+    BE: 'EUR',
+    BF: 'XOF',
+    BG: 'BGN',
+    BH: 'BHD',
+    BI: 'BIF',
+    BJ: 'XOF',
+    BL: 'EUR',
+    BM: 'BMD',
+    BN: 'BND',
+    BO: 'BOB',
+    BQ: 'USD',
+    BR: 'BRL',
+    BS: 'BSD',
+    BT: 'BTN',
+    BV: 'NOK',
+    BW: 'BWP',
+    BY: 'BYN',
+    BZ: 'BZD',
+    CA: 'CAD',
+    CC: 'AUD',
+    CD: 'CDF',
+    CF: 'XAF',
+    CG: 'XAF',
+    CH: 'CHF',
+    CI: 'XOF',
+    CK: 'NZD',
+    CL: 'CLP',
+    CM: 'XAF',
+    CN: 'CNY',
+    CO: 'COP',
+    CR: 'CRC',
+    CU: 'CUP',
+    CV: 'CVE',
+    CW: 'ANG',
+    CX: 'AUD',
+    CY: 'EUR',
+    CZ: 'CZK',
+    DE: 'EUR',
+    DJ: 'DJF',
+    DK: 'DKK',
+    DM: 'XCD',
+    DO: 'DOP',
+    DZ: 'DZD',
+    EC: 'USD',
+    EE: 'EUR',
+    EG: 'EGP',
+    EH: 'MAD',
+    ER: 'ERN',
+    ES: 'EUR',
+    ET: 'ETB',
+    FI: 'EUR',
+    FJ: 'FJD',
+    FK: 'FKP',
+    FM: 'USD',
+    FO: 'DKK',
+    FR: 'EUR',
+    GA: 'XAF',
+    GB: 'GBP',
+    GD: 'XCD',
+    GE: 'GEL',
+    GF: 'EUR',
+    GG: 'GBP',
+    GH: 'GHS',
+    GI: 'GIP',
+    GL: 'DKK',
+    GM: 'GMD',
+    GN: 'GNF',
+    GP: 'EUR',
+    GQ: 'XAF',
+    GR: 'EUR',
+    GS: 'FKP',
+    GT: 'GTQ',
+    GU: 'USD',
+    GW: 'XOF',
+    GY: 'GYD',
+    HK: 'HKD',
+    HM: 'AUD',
+    HN: 'HNL',
+    HR: 'EUR',
+    HT: 'HTG',
+    HU: 'HUF',
+    ID: 'IDR',
+    IE: 'EUR',
+    IL: 'ILS',
+    IM: 'GBP',
+    IN: 'INR',
+    IO: 'USD',
+    IQ: 'IQD',
+    IR: 'IRR',
+    IS: 'ISK',
+    IT: 'EUR',
+    JE: 'GBP',
+    JM: 'JMD',
+    JO: 'JOD',
+    JP: 'JPY',
+    KE: 'KES',
+    KG: 'KGS',
+    KH: 'KHR',
+    KI: 'AUD',
+    KM: 'KMF',
+    KN: 'XCD',
+    KP: 'KPW',
+    KR: 'KRW',
+    KW: 'KWD',
+    KY: 'KYD',
+    KZ: 'KZT',
+    LA: 'LAK',
+    LB: 'LBP',
+    LC: 'XCD',
+    LI: 'CHF',
+    LK: 'LKR',
+    LR: 'LRD',
+    LS: 'LSL',
+    LT: 'EUR',
+    LU: 'EUR',
+    LV: 'EUR',
+    LY: 'LYD',
+    MA: 'MAD',
+    MC: 'EUR',
+    MD: 'MDL',
+    ME: 'EUR',
+    MF: 'EUR',
+    MG: 'MGA',
+    MH: 'USD',
+    MK: 'MKD',
+    ML: 'XOF',
+    MM: 'MMK',
+    MN: 'MNT',
+    MO: 'MOP',
+    MP: 'USD',
+    MQ: 'EUR',
+    MR: 'MRU',
+    MS: 'XCD',
+    MT: 'EUR',
+    MU: 'MUR',
+    MV: 'MVR',
+    MW: 'MWK',
+    MX: 'MXN',
+    MY: 'MYR',
+    MZ: 'MZN',
+    NA: 'NAD',
+    NC: 'XPF',
+    NE: 'XOF',
+    NF: 'AUD',
+    NG: 'NGN',
+    NI: 'NIO',
+    NL: 'EUR',
+    NO: 'NOK',
+    NP: 'NPR',
+    NR: 'AUD',
+    NU: 'NZD',
+    NZ: 'NZD',
+    OM: 'OMR',
+    PA: 'PAB',
+    PE: 'PEN',
+    PF: 'XPF',
+    PG: 'PGK',
+    PH: 'PHP',
+    PK: 'PKR',
+    PL: 'PLN',
+    PM: 'EUR',
+    PN: 'NZD',
+    PR: 'USD',
+    PS: 'ILS',
+    PT: 'EUR',
+    PW: 'USD',
+    PY: 'PYG',
+    QA: 'QAR',
+    RE: 'EUR',
+    RO: 'RON',
+    RS: 'RSD',
+    RU: 'RUB',
+    RW: 'RWF',
+    SA: 'SAR',
+    SB: 'SBD',
+    SC: 'SCR',
+    SD: 'SDG',
+    SE: 'SEK',
+    SG: 'SGD',
+    SH: 'SHP',
+    SI: 'EUR',
+    SJ: 'NOK',
+    SK: 'EUR',
+    SL: 'SLE',
+    SM: 'EUR',
+    SN: 'XOF',
+    SO: 'SOS',
+    SR: 'SRD',
+    SS: 'SSP',
+    ST: 'STN',
+    SV: 'USD',
+    SX: 'ANG',
+    SY: 'SYP',
+    SZ: 'SZL',
+    TC: 'USD',
+    TD: 'XAF',
+    TF: 'EUR',
+    TG: 'XOF',
+    TH: 'THB',
+    TJ: 'TJS',
+    TK: 'NZD',
+    TL: 'USD',
+    TM: 'TMT',
+    TN: 'TND',
+    TO: 'TOP',
+    TR: 'TRY',
+    TT: 'TTD',
+    TV: 'AUD',
+    TW: 'TWD',
+    TZ: 'TZS',
+    UA: 'UAH',
+    UG: 'UGX',
+    UM: 'USD',
+    US: 'USD',
+    UY: 'UYU',
+    UZ: 'UZS',
+    VA: 'EUR',
+    VC: 'XCD',
+    VE: 'VED',
+    VG: 'USD',
+    VI: 'USD',
+    VN: 'VND',
+    VU: 'VUV',
+    WF: 'XPF',
+    WS: 'WST',
+    XK: 'EUR',
+    YE: 'YER',
+    YT: 'EUR',
+    ZA: 'ZAR',
+    ZM: 'ZMW',
+    ZW: 'ZWG',
+  };
+</script>

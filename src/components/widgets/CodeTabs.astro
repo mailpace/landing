@@ -1,0 +1,133 @@
+---
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+
+import { Code } from 'astro-expressive-code/components';
+
+import curlCode from '~/utils/codeSnippets/curl.sh?raw';
+import nodeCode from '~/utils/codeSnippets/node.js?raw';
+import rubyCode from '~/utils/codeSnippets/ruby.rb?raw';
+import phpCode from '~/utils/codeSnippets/php.php?raw';
+import golangCode from '~/utils/codeSnippets/go.go?raw';
+import pythonCode from '~/utils/codeSnippets/python.py?raw';
+import railsCode from '~/utils/codeSnippets/rails.rb?raw';
+import symfonyCode from '~/utils/codeSnippets/symfony.php?raw';
+import elixirCode from '~/utils/codeSnippets/elixir.ex?raw';
+---
+
+<div class="max-w-3xl mb-8 md:mb-12 md:mx-auto">
+  <Headline
+    title="Integrate in minutes"
+    subtitle="MailPace supports all your favourite languages and has integrations for popular frameworks "
+  />
+
+  <ul id="tabs" class="flex flex-wrap w-full px-1 justify-center">
+    <li
+      class="px-3 py-2 -mb-px font-semibold text-gray-800 dark:text-gray-200 border-b-4 border-blue-400 rounded-t opacity-50 flex-1 text-center"
+    >
+      <a class="tabHeader block w-full h-full" id="default-tab" href="#curl">cURL</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#node">Node.js</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#ruby">Ruby</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#php">PHP</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#golang">Go</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#python">Python</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#rails">Rails</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#symfony">Symfony</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#elixir">Elixir</a>
+    </li>
+  </ul>
+
+  <!-- Tab Contents -->
+  <div id="tab-contents" class="text-gray-700">
+    <div id="curl" class="py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="shell" code={curlCode} />
+    </div>
+
+    <div id="node" class="py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="javascript" code={nodeCode} />
+    </div>
+
+    <div id="ruby" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="ruby" code={rubyCode} />
+    </div>
+
+    <div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="php" code={phpCode} />
+    </div>
+
+    <div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="go" code={golangCode} />
+    </div>
+
+    <div id="python" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="python" code={pythonCode} />
+    </div>
+
+    <div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="ruby" code={railsCode} />
+    </div>
+
+    <div id="symfony" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="php" code={symfonyCode} />
+    </div>
+
+    <div id="elixir" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="elixir" code={elixirCode} />
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <Button variant="tertiary" href="https://docs.mailpace.com/" class="mt-4">More integrations</Button>
+  </div>
+</div>
+
+<script>
+  // Get our tabs
+  const tabHeaders = document.querySelector('#tabs')?.querySelectorAll('a.tabHeader');
+
+  // Add event listeners to each tab header
+  tabHeaders?.forEach(function (header) {
+    header.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const tabName = this.getAttribute('href');
+      const tabContents = document.querySelector('#tab-contents');
+      const showClasses = ['border-blue-400', 'border-b-4', '-mb-px', 'opacity-100'];
+
+      if (tabContents) {
+        // iterate through each tab and hide all of them, except the clicked tab
+        for (let i = 0; i < tabContents.children.length; i++) {
+          if ('#' + tabContents.children[i].id === tabName) {
+            // Show the matching tab
+            tabContents.children[i].classList.remove('hidden');
+          } else {
+            // Hide the other headers & tabs
+            tabHeaders[i]?.parentElement?.classList.remove(...showClasses);
+            tabContents.children[i].classList.add('hidden');
+          }
+        }
+      }
+
+      // Finally add the bottom border back to the header
+      (e.target as HTMLElement)?.parentElement?.classList.add(...showClasses);
+    });
+  });
+  // Ensure the default tab is shown on reload
+  document.getElementById('default-tab')?.click();
+</script>
