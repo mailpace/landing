@@ -137,7 +137,7 @@ export const footerData = {
         { text: 'Newsletter', href: getPermalink('/newsletter') },
       ],
     },
-  { title: 'Guides' , links: await getGuidePosts() },
+    { title: 'Guides', links: await getGuidePosts() },
   ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },

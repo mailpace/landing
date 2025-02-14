@@ -288,6 +288,6 @@ export const getGuidePosts = async (): Promise<Array<{ text: string; href: strin
     .slice(0, 6)
     .map((post) => ({
       text: post.title,
-      href: "/" + post.permalink,
+      href: '/' + post.permalink,
     }));
 };

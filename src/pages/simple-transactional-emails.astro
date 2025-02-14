@@ -2,9 +2,8 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Image from 'astro/components/Image.astro';
 
-import TransactionalEmailScreenshot from "../assets/images/transactional-email-dashboard-recent-emails.png";
-import FullChartBrowser from "../assets/images/full-chart-browser.png";
-
+import TransactionalEmailScreenshot from '../assets/images/transactional-email-dashboard-recent-emails.png';
+import FullChartBrowser from '../assets/images/full-chart-browser.png';
 
 const metadata = {
   title: 'MailPace - Simple Transaction Email.',
@@ -92,7 +91,11 @@ const metadata = {
       </div>
 
       <div class="container items-center px-3 pb-4 mx-auto my-4 lg:w-3/5">
-        <Image class="z-50 w-full rounded-lg" src={TransactionalEmailScreenshot} alt="Screenshot of transactional email provider dashboard MailPace" />
+        <Image
+          class="z-50 w-full rounded-lg"
+          src={TransactionalEmailScreenshot}
+          alt="Screenshot of transactional email provider dashboard MailPace"
+        />
       </div>
       <div class="container items-center px-3 pb-4 mx-auto lg:w-2/5 leading-7">
         <h2 class="text-4xl mt-16 mb-4">Tagging emails</h2>
