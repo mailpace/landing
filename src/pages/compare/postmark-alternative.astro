@@ -1,0 +1,72 @@
+---
+import Layout from '~/layouts/MailPaceVersus.astro';
+import Features from '~/components/widgets/compare/Features.astro';
+import Headline from '~/components/widgets/compare/Headline.astro';
+import TestimonialList from '~/components/common/TestimonialList.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Pricing from '~/components/widgets/compare/Pricing.astro';
+
+const metadata = {
+  title: 'MailPace - Fast Transactional Email',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <Headline
+    provider="Postmark"
+    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered." />
+    
+  <!-- Feature table comparison -->
+   <Features competitorName="Postmark" competitorFeatures={[
+     { name: 'HTTPS API', supported: true },
+     { name: 'SMTP Endpoint', supported: true },
+     { name: 'Inbound Email', supported: true },
+     { name: 'Unlimited Webhooks', supported: false, comment: "2 webhooks" },
+     { name: 'Bounce List Management', supported: true },
+     { name: '30 days of history', supported: false, comment: "3 days, 7 days on Pro Plan"},
+     { name: 'Unlimited Team Members', supported: false, comment: "1 user" },
+     { name: 'Unlimited Domains', supported: true },
+     { name: 'DKIM', supported: true },
+     { name: 'SPF', supported: true },
+     { name: 'DMARC', supported: true },
+     { name: '2FA', supported: true },
+     { name: 'Time to Inbox Monitoring', supported: false },
+     { name: 'Status Page', supported: true },
+     { name: 'Integrations', supported: true },
+     { name: 'Idempotent Email API', supported: false },
+     { name: 'Transactional Only', supported: false },
+     { name: 'Own Email Infrastructure', supported: true },
+     { name: 'Independent', supported: false },
+     { name: 'European Sending', supported: true },
+  ]} />
+
+  <Pricing 
+    competitorName="Postmark"
+    tenPrice={19.95}
+    hundredPrice={89.95}
+    millionPrice={799.00}
+    justification="Postmark appears to be cheaper after 20,000 emails, however, you'll need to upgrade to their pricey Pro plan (starting at 39.95 USD) to get features like multiple webhooks, multiple users, bounce/block list management and more. All of these come out of the box with MailPace on all accounts."
+  />
+
+  <!-- Time to Inbox/Performance/Deliverability widget -->
+
+  <!-- Support widget -->
+
+  <TestimonialList />
+
+  <CallToAction
+    title="Ready to send?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com/users/sign_up',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+
+</Layout>
+

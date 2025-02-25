@@ -113,18 +113,16 @@ export const footerData = {
     //     { text: 'Enterprise', href: getPermalink('/for/enterprise') },
     //   ],
     // },
-    // {
-    //   title: 'MailPace vs.',
-    //   links: [
-    //     { text: 'Postmark', href: getPermalink('/compare/postmark-alternative') },
-    //     { text: 'Resend', href: getPermalink('/compare/resend-alternative') },
-    //     { text: 'Mailgun', href: getPermalink('/compare/mailgun-alternative') },
-    //     { text: 'SendGrid', href: getPermalink('/compare/sendgrid-alternative') },
-    //     { text: 'SparkPost', href: getPermalink('/compare/sparkpost-alternative') },
-    //     { text: 'Amazon SES', href: getPermalink('/compare/aws-ses-alternative') },
-    //     { text: 'Mandrill', href: getPermalink('/compare/mandrill-alternative') },
-    //   ],
-    // },
+    {
+      title: 'MailPace vs.',
+      links: [
+        { text: 'Postmark', href: getPermalink('/compare/postmark-alternative') },
+        { text: 'Resend', href: getPermalink('/compare/resend-alternative') },
+        { text: 'Mailgun', href: getPermalink('/compare/mailgun-alternative') },
+        { text: 'SendGrid', href: getPermalink('/compare/sendgrid-alternative') },
+        { text: 'Amazon SES', href: getPermalink('/compare/aws-ses-alternative') },
+      ],
+    },
     {
       title: 'Resources & Support',
       links: [
