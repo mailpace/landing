@@ -15,18 +15,18 @@ const metadata = {
 
   <Headline
     provider="Resend"
-    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered." />
+    subtitle="Resend are a VC-backed company, that send using AWS SES." />
 
   <!-- Feature table comparison -->
    <Features competitorName="Resend" competitorFeatures={[
      { name: 'HTTPS API', supported: true },
      { name: 'SMTP Endpoint', supported: true },
-     { name: 'Inbound Email', supported: true },
-     { name: 'Unlimited Webhooks', supported: false, comment: "2 webhooks" },
+     { name: 'Inbound Email', supported: false },
+     { name: 'Unlimited Webhooks', supported: false, comment: "10 endpoints" },
      { name: 'Bounce List Management', supported: true },
-     { name: '30 days of history', supported: false, comment: "3 days, 7 days on Pro Plan"},
-     { name: 'Unlimited Team Members', supported: false, comment: "1 user" },
-     { name: 'Unlimited Domains', supported: true },
+     { name: '30 days of history', supported: false, comment: "3 days"},
+     { name: 'Unlimited Team Members', supported: false, comment: "5 users" },
+     { name: 'Unlimited Domains', supported: false, comment: "10 domains" },
      { name: 'DKIM', supported: true },
      { name: 'SPF', supported: true },
      { name: 'DMARC', supported: true },
@@ -36,17 +36,18 @@ const metadata = {
      { name: 'Integrations', supported: true },
      { name: 'Idempotent Email API', supported: false },
      { name: 'Transactional Only', supported: false },
-     { name: 'Own Email Infrastructure', supported: true },
+     { name: 'Own Email Infrastructure', supported: false },
+     { name: 'Human Support', supported: true },
      { name: 'Independent', supported: false },
      { name: 'European Sending', supported: true },
   ]} />
 
   <Pricing 
     competitorName="Resend"
-    tenPrice={19.95}
-    hundredPrice={89.95}
-    millionPrice={799.00}
-    justification="Resend appears to be cheaper after 20,000 emails, however, you'll need to upgrade to their pricey Pro plan (starting at 39.95 USD) to get features like multiple webhooks, multiple users, bounce/block list management and more. All of these come out of the box with MailPace on all accounts."
+    tenPrice={20.00}
+    hundredPrice={90.00}
+    millionPrice={650.00}
+    justification="Resend are charging a large markup to send emails over AWS SES. As a VC funded startup, we wouldn't expect their pricing to remain competitive in the long term."
   />
 
   <!-- Time to Inbox/Performance/Deliverability widget -->

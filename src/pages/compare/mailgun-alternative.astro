@@ -15,20 +15,19 @@ const metadata = {
 
   <Headline
     provider="MailGun"
-    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered." />
+    subtitle="MailGun has tiered pricing with basic features only accessible in more expensive plans" />
     
-  <hr />
-
   <!-- Feature table comparison -->
    <Features competitorName="MailGun" competitorFeatures={[
      { name: 'HTTPS API', supported: true },
      { name: 'SMTP Endpoint', supported: true },
-     { name: 'Inbound Email', supported: true },
+     { name: 'Inbound Email', supported: true, comment: "Only 5 inbound routes" },
      { name: 'Unlimited Webhooks', supported: false, comment: "2 webhooks" },
+     { name: 'Unlimited API Keys', supported: false, comment: "2 API Keys" },
      { name: 'Bounce List Management', supported: true },
-     { name: '30 days of history', supported: false, comment: "3 days, 7 days on Pro Plan"},
-     { name: 'Unlimited Team Members', supported: false, comment: "1 user" },
-     { name: 'Unlimited Domains', supported: true },
+     { name: '30 days of history', supported: false, comment: "1 day"},
+     { name: 'Unlimited Team Members', supported: true },
+     { name: 'Unlimited Domains', supported: false, comment: "1 domain" },
      { name: 'DKIM', supported: true },
      { name: 'SPF', supported: true },
      { name: 'DMARC', supported: true },
@@ -45,10 +44,10 @@ const metadata = {
 
   <Pricing 
     competitorName="MailGun"
-    tenPrice={19.95}
-    hundredPrice={89.95}
-    millionPrice={799.00}
-    justification="MailGun appears to be cheaper after 20,000 emails, however, you'll need to upgrade to their pricey Pro plan (starting at 39.95 USD) to get features like multiple webhooks, multiple users, bounce/block list management and more. All of these come out of the box with MailPace on all accounts."
+    tenPrice={35.00}
+    hundredPrice={75.00}
+    millionPrice={700.00}
+    justification="MailGun has a cheap Basic plan, however it comes with huge limitations, and you'll almost certainly need to upscale to their pricier Foundations plan."
   />
 
   <!-- Time to Inbox/Performance/Deliverability widget -->
