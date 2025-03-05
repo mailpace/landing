@@ -12,41 +12,44 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-
   <Headline
     provider="AWS SES"
-    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered." />
-    
-  <!-- Feature table comparison -->
-  <Features competitorName="AWS SES" competitorFeatures={[
-    { name: 'HTTPS API', supported: true },
-    { name: 'SMTP Endpoint', supported: true },
-    { name: 'Inbound Email', supported: true },
-    { name: 'Unlimited Webhooks', supported: false, comment: "Requires custom setup" },
-    { name: 'Bounce List Management', supported: true },
-    { name: '30 days of history', supported: false, comment: "Retention depends on S3 setup" },
-    { name: 'Unlimited Team Members', supported: true },
-    { name: 'Unlimited Domains', supported: true },
-    { name: 'DKIM', supported: true },
-    { name: 'SPF', supported: true },
-    { name: 'DMARC', supported: true },
-    { name: '2FA', supported: true },
-    { name: 'Time to Inbox Monitoring', supported: false },
-    { name: 'Status Page', supported: true },
-    { name: 'Integrations', supported: true },
-    { name: 'Idempotent Email API', supported: false },
-    { name: 'Transactional Only', supported: false },
-    { name: 'Own Email Infrastructure', supported: true },
-    { name: 'Independent', supported: false },
-    { name: 'European Sending', supported: true },
-  ]} />
+    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered."
+  />
 
-  <Pricing 
+  <!-- Feature table comparison -->
+  <Features
     competitorName="AWS SES"
-    tenPrice={1.00}
-    hundredPrice={10.00}
-    millionPrice={100.00}
-    justification="AWS SES is extremely cost-effective but requires a more complex setup for features like webhooks, email monitoring, and bounce management. It is ideal for developers comfortable with AWS services." 
+    competitorFeatures={[
+      { name: 'HTTPS API', supported: true },
+      { name: 'SMTP Endpoint', supported: true },
+      { name: 'Inbound Email', supported: true },
+      { name: 'Unlimited Webhooks', supported: false, comment: 'Requires custom setup' },
+      { name: 'Bounce List Management', supported: true },
+      { name: '30 days of history', supported: false, comment: 'Retention depends on S3 setup' },
+      { name: 'Unlimited Team Members', supported: true },
+      { name: 'Unlimited Domains', supported: true },
+      { name: 'DKIM', supported: true },
+      { name: 'SPF', supported: true },
+      { name: 'DMARC', supported: true },
+      { name: '2FA', supported: true },
+      { name: 'Time to Inbox Monitoring', supported: false },
+      { name: 'Status Page', supported: true },
+      { name: 'Integrations', supported: true },
+      { name: 'Idempotent Email API', supported: false },
+      { name: 'Transactional Only', supported: false },
+      { name: 'Own Email Infrastructure', supported: true },
+      { name: 'Independent', supported: false },
+      { name: 'European Sending', supported: true },
+    ]}
+  />
+
+  <Pricing
+    competitorName="AWS SES"
+    tenPrice={1.0}
+    hundredPrice={10.0}
+    millionPrice={100.0}
+    justification="AWS SES is extremely cost-effective but requires a more complex setup for features like webhooks, email monitoring, and bounce management. It is ideal for developers comfortable with AWS services."
   />
 
   <!-- Time to Inbox/Performance/Deliverability widget -->
@@ -67,6 +70,4 @@ const metadata = {
       },
     ]}
   />
-
 </Layout>
-

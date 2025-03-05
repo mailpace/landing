@@ -1,11 +1,7 @@
 ---
-import HeroText from "../HeroText.astro";
+import HeroText from '../HeroText.astro';
 
 const { provider, subtitle } = Astro.props;
 ---
 
-<HeroText
-  tagline="Compared"
-  title=`MailPace vs ${provider}`
-  subtitle=`${subtitle}`
-/>
+<HeroText tagline="Compared" title=`MailPace vs ${provider}` subtitle=`${subtitle}` />

@@ -12,41 +12,41 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-
-  <Headline
-    provider="Resend"
-    subtitle="Resend are a VC-backed company, that send using AWS SES." />
+  <Headline provider="Resend" subtitle="Resend are a VC-backed company, that send using AWS SES." />
 
   <!-- Feature table comparison -->
-   <Features competitorName="Resend" competitorFeatures={[
-     { name: 'HTTPS API', supported: true },
-     { name: 'SMTP Endpoint', supported: true },
-     { name: 'Inbound Email', supported: false },
-     { name: 'Unlimited Webhooks', supported: false, comment: "10 endpoints" },
-     { name: 'Bounce List Management', supported: true },
-     { name: '30 days of history', supported: false, comment: "3 days"},
-     { name: 'Unlimited Team Members', supported: false, comment: "5 users" },
-     { name: 'Unlimited Domains', supported: false, comment: "10 domains" },
-     { name: 'DKIM', supported: true },
-     { name: 'SPF', supported: true },
-     { name: 'DMARC', supported: true },
-     { name: '2FA', supported: true },
-     { name: 'Time to Inbox Monitoring', supported: false },
-     { name: 'Status Page', supported: true },
-     { name: 'Integrations', supported: true },
-     { name: 'Idempotent Email API', supported: false },
-     { name: 'Transactional Only', supported: false },
-     { name: 'Own Email Infrastructure', supported: false },
-     { name: 'Human Support', supported: true },
-     { name: 'Independent', supported: false },
-     { name: 'European Sending', supported: true },
-  ]} />
-
-  <Pricing 
+  <Features
     competitorName="Resend"
-    tenPrice={20.00}
-    hundredPrice={90.00}
-    millionPrice={650.00}
+    competitorFeatures={[
+      { name: 'HTTPS API', supported: true },
+      { name: 'SMTP Endpoint', supported: true },
+      { name: 'Inbound Email', supported: false },
+      { name: 'Unlimited Webhooks', supported: false, comment: '10 endpoints' },
+      { name: 'Bounce List Management', supported: true },
+      { name: '30 days of history', supported: false, comment: '3 days' },
+      { name: 'Unlimited Team Members', supported: false, comment: '5 users' },
+      { name: 'Unlimited Domains', supported: false, comment: '10 domains' },
+      { name: 'DKIM', supported: true },
+      { name: 'SPF', supported: true },
+      { name: 'DMARC', supported: true },
+      { name: '2FA', supported: true },
+      { name: 'Time to Inbox Monitoring', supported: false },
+      { name: 'Status Page', supported: true },
+      { name: 'Integrations', supported: true },
+      { name: 'Idempotent Email API', supported: false },
+      { name: 'Transactional Only', supported: false },
+      { name: 'Own Email Infrastructure', supported: false },
+      { name: 'Human Support', supported: true },
+      { name: 'Independent', supported: false },
+      { name: 'European Sending', supported: true },
+    ]}
+  />
+
+  <Pricing
+    competitorName="Resend"
+    tenPrice={20.0}
+    hundredPrice={90.0}
+    millionPrice={650.0}
     justification="Resend are charging a large markup to send emails over AWS SES. As a VC funded startup, we wouldn't expect their pricing to remain competitive in the long term."
   />
 
@@ -68,6 +68,4 @@ const metadata = {
       },
     ]}
   />
-
 </Layout>
-

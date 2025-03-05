@@ -13,15 +13,16 @@ interface Props {
 }
 
 const { competitorName, competitorFeatures } = Astro.props;
-
 ---
+
 <div class="text-center sm:w-1/2 md:w-1/2 mx-auto px-4">
   <h2 class="text-2xl font-bold mt-8 mb-4">MailPace and {competitorName} Features Compared</h2>
-  <p>MailPace is the best {competitorName} alternative, we have everything you need to send and receive transactional emails.</p>
+  <p>
+    MailPace is the best {competitorName} alternative, we have everything you need to send and receive transactional emails.
+  </p>
 </div>
 
 <div class="flex justify-center m-8">
-
   <table class="w-full max-w-2xl lg:max-w-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
     <thead>
       <tr>
@@ -31,24 +32,26 @@ const { competitorName, competitorFeatures } = Astro.props;
       </tr>
     </thead>
     <tbody>
-      {competitorFeatures.map((feature) => (
-        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-          <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">{feature.name}</td>
-          <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">
-            <Icon name="tabler:check" class="text-green-500" />
-          </td>
-          <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">
-            <div class="flex items-center">
-              {feature.supported ? (
-                <Icon name="tabler:check" class="text-green-500" />
-              ) : (
-                <Icon name="tabler:x" class="text-red-500" />
-              )}
-              {feature.comment && <p class="text-sm text-gray-500 ml-2">{feature.comment}</p>}
-            </div>
-          </td>
-        </tr>
-      ))}
+      {
+        competitorFeatures.map((feature) => (
+          <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">{feature.name}</td>
+            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">
+              <Icon name="tabler:check" class="text-green-500" />
+            </td>
+            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center">
+                {feature.supported ? (
+                  <Icon name="tabler:check" class="text-green-500" />
+                ) : (
+                  <Icon name="tabler:x" class="text-red-500" />
+                )}
+                {feature.comment && <p class="text-sm text-gray-500 ml-2">{feature.comment}</p>}
+              </div>
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 </div>

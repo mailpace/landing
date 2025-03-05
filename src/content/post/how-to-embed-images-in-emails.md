@@ -19,7 +19,10 @@ To use it to embed an image, you convert the image to base64, then put the strin
 It’s ugly, and you need to repeat the full encoding for each time you show the image, potentially inflating your emails size, but it works, here's an example with a tiny image:
 
 ```html
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Embedded Image" />
+<img
+  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+  alt="Embedded Image"
+/>
 ```
 
 2. Inline Attachments
@@ -64,7 +67,7 @@ This method is useful because the email is fully self-contained, and images are 
 
 3. Via URL (ideally with a CDN)
 
-Although the methods above can work on the web in general, the way almost all scalable image hosting is done is through a Content Delivery Network (CDN). By hosting your images externally and referencing them via URL, you can ensure that your images are cacheable, scalable, and keep your email sizes down. This method allows users to load images optionally into the email and is usually the fastest to load in their inbox. 
+Although the methods above can work on the web in general, the way almost all scalable image hosting is done is through a Content Delivery Network (CDN). By hosting your images externally and referencing them via URL, you can ensure that your images are cacheable, scalable, and keep your email sizes down. This method allows users to load images optionally into the email and is usually the fastest to load in their inbox.
 
 However, you'll need to host the images somewhere, and there can be privacy concerns with this, such as tracking user behavior through image loads.
 

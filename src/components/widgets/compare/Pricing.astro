@@ -8,15 +8,14 @@ interface Props {
 }
 
 const { competitorName, tenPrice, hundredPrice, millionPrice, justification } = Astro.props;
-
 ---
+
 <div class="text-center sm:w-1/2 md:w-1/2 mx-auto px-4">
   <h2 class="text-2xl font-bold mt-20 mb-4">How does MailPace compare on Price?</h2>
   <p>{justification}</p>
 </div>
 
 <div class="flex justify-center m-8">
-
   <table class="w-full max-w-2xl lg:max-w-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
     <thead>
       <tr>

@@ -12,41 +12,44 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-
   <Headline
     provider="MailGun"
-    subtitle="MailGun has tiered pricing with basic features only accessible in more expensive plans" />
-    
-  <!-- Feature table comparison -->
-   <Features competitorName="MailGun" competitorFeatures={[
-     { name: 'HTTPS API', supported: true },
-     { name: 'SMTP Endpoint', supported: true },
-     { name: 'Inbound Email', supported: true, comment: "Only 5 inbound routes" },
-     { name: 'Unlimited Webhooks', supported: false, comment: "2 webhooks" },
-     { name: 'Unlimited API Keys', supported: false, comment: "2 API Keys" },
-     { name: 'Bounce List Management', supported: true },
-     { name: '30 days of history', supported: false, comment: "1 day"},
-     { name: 'Unlimited Team Members', supported: true },
-     { name: 'Unlimited Domains', supported: false, comment: "1 domain" },
-     { name: 'DKIM', supported: true },
-     { name: 'SPF', supported: true },
-     { name: 'DMARC', supported: true },
-     { name: '2FA', supported: true },
-     { name: 'Time to Inbox Monitoring', supported: false },
-     { name: 'Status Page', supported: true },
-     { name: 'Integrations', supported: true },
-     { name: 'Idempotent Email API', supported: false },
-     { name: 'Transactional Only', supported: false },
-     { name: 'Own Email Infrastructure', supported: true },
-     { name: 'Independent', supported: false },
-     { name: 'European Sending', supported: true },
-  ]} />
+    subtitle="MailGun has tiered pricing with basic features only accessible in more expensive plans"
+  />
 
-  <Pricing 
+  <!-- Feature table comparison -->
+  <Features
     competitorName="MailGun"
-    tenPrice={35.00}
-    hundredPrice={75.00}
-    millionPrice={700.00}
+    competitorFeatures={[
+      { name: 'HTTPS API', supported: true },
+      { name: 'SMTP Endpoint', supported: true },
+      { name: 'Inbound Email', supported: true, comment: 'Only 5 inbound routes' },
+      { name: 'Unlimited Webhooks', supported: false, comment: '2 webhooks' },
+      { name: 'Unlimited API Keys', supported: false, comment: '2 API Keys' },
+      { name: 'Bounce List Management', supported: true },
+      { name: '30 days of history', supported: false, comment: '1 day' },
+      { name: 'Unlimited Team Members', supported: true },
+      { name: 'Unlimited Domains', supported: false, comment: '1 domain' },
+      { name: 'DKIM', supported: true },
+      { name: 'SPF', supported: true },
+      { name: 'DMARC', supported: true },
+      { name: '2FA', supported: true },
+      { name: 'Time to Inbox Monitoring', supported: false },
+      { name: 'Status Page', supported: true },
+      { name: 'Integrations', supported: true },
+      { name: 'Idempotent Email API', supported: false },
+      { name: 'Transactional Only', supported: false },
+      { name: 'Own Email Infrastructure', supported: true },
+      { name: 'Independent', supported: false },
+      { name: 'European Sending', supported: true },
+    ]}
+  />
+
+  <Pricing
+    competitorName="MailGun"
+    tenPrice={35.0}
+    hundredPrice={75.0}
+    millionPrice={700.0}
     justification="MailGun has a cheap Basic plan, however it comes with huge limitations, and you'll almost certainly need to upscale to their pricier Foundations plan."
   />
 
@@ -68,6 +71,4 @@ const metadata = {
       },
     ]}
   />
-
 </Layout>
-
