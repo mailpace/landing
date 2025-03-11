@@ -1,0 +1,81 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+  <p class="my-4 text-gray-800">
+    At <a href="https://mailpace.com" class="text-gray-800 underline">MailPace.com</a>
+    we measure, track and optimize for time to inbox. We publish live results for all to see to hold ourselves accountable
+    to our fast transactional email delivery times.
+  </p>
+
+  <div class="mx-auto text-gray-800">
+    <h3 class="text-xl text-center font-bold text-gray-800 uppercase leading-10">Time to Inbox Timings</h3>
+    <div class="grid gap-4 mt-4 mb-6 text-gray-800 md:grid-cols-2 sm:grid-cols-1 md:mx-8">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold">Gmail</h3>
+        <p>
+          <span id="gmail-latest" class="text-4xl text-green-500">...</span>s
+        </p>
+        <p>Avg: <span id="gmail-average">-</span>s</p>
+      </div>
+      <!-- <div class="text-center">
+        <h3 class="text-2xl font-bold">Outlook</h3>
+        <p>
+          <span id="outlook-latest" class="text-4xl text-green-500">...</span>s
+        </p>
+        <p>Avg: <span id="outlook-average">-</span>s</p>
+      </div> -->
+      <div class="text-center">
+        <h3 class="text-2xl font-bold">Yahoo</h3>
+        <p>
+          <span id="yahoo-latest" class="text-4xl text-green-500">...</span>s
+        </p>
+        <p>Avg: <span id="yahoo-average">-</span>s</p>
+      </div>
+    </div>
+    <p class="mt-16 mb-12">
+      The figures above are calculated by sending an email to each of those providers, waiting for it to land in
+      the inbox, retrieving the email and measuring how long the entire process took from start to finish. Each
+      figure is updated every ten minutes, and the average covers the last twenty-four hours.
+    </p>
+    <hr />
+    <h3 class="mt-12 text-xl">
+      As you can see, MailPace is <strong>a fast transactional email provider</strong>. Our service is fast,
+      simple and straightforward, sign up and get sending today.
+    </h3>
+  </div>
+</WidgetWrapper>
+
+<script>
+  const average = (arr) => (arr.reduce((p, c) => p + parseFloat(c), 0) / arr.length).toFixed(2);
+
+  function updateScores(scores: { gmail: string[]; outlook: string[]; yahoo: string[] }) {
+    const gmailLatest = document.getElementById('gmail-latest');
+    const gmailAverage = document.getElementById('gmail-average');
+    const outlookLatest = document.getElementById('outlook-latest');
+    const outlookAverage = document.getElementById('outlook-average');
+    const yahooLatest = document.getElementById('yahoo-latest');
+    const yahooAverage = document.getElementById('yahoo-average');
+
+    if (gmailLatest) gmailLatest.textContent = parseFloat(scores.gmail[0]).toFixed(2);
+    if (gmailAverage) gmailAverage.textContent = average(scores.gmail);
+    if (outlookLatest) outlookLatest.textContent = parseFloat(scores.outlook[0]).toFixed(2);
+    if (outlookAverage) outlookAverage.textContent = average(scores.outlook);
+    if (yahooLatest) yahooLatest.textContent = parseFloat(scores.yahoo[0]).toFixed(2);
+    if (yahooAverage) yahooAverage.textContent = average(scores.yahoo);
+  }
+
+  if (document.getElementById('time-to-inbox')) {
+    fetch('https://app.mailpace.com/api/v1/time_to_inbox')
+      .then((response) => response.json())
+      .then((scores) => updateScores(scores));
+  }
+</script>
