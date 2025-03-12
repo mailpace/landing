@@ -120,7 +120,7 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
         data: createChartData(
           Array.from(
             { length: 24 },
-            (_, i) => average(scores.gmail.slice(i * 6, (i + 1) * 6)) // hourly averages for last 24 hrs
+            (_, i) => average(scores.yahoo.slice(i * 6, (i + 1) * 6)) // hourly averages for last 24 hrs
           ).reverse()
         ),
         options: chartOptions,
