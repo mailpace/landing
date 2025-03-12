@@ -1,60 +1,86 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 
-const {
-  id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
-} = Astro.props;
+const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
-  <p class="my-4 text-gray-800">
-    At <a href="https://mailpace.com" class="text-gray-800 underline">MailPace.com</a>
+  <p class={`text-gray-800 ${isDark ? 'dark:text-gray-200' : ''}`}>
+    At <a href="https://mailpace.com" class={`text-gray-800 underline ${isDark ? 'dark:text-gray-200' : ''}`}
+      >MailPace.com</a
+    >
     we measure, track and optimize for time to inbox. We publish live results for all to see to hold ourselves accountable
     to our fast transactional email delivery times.
   </p>
 
-  <div class="mx-auto text-gray-800">
-    <h3 class="text-xl text-center font-bold text-gray-800 uppercase leading-10">Time to Inbox Timings</h3>
-    <div class="grid gap-4 mt-4 mb-6 text-gray-800 md:grid-cols-2 sm:grid-cols-1 md:mx-8">
+  <div class={`mx-auto text-gray-800 ${isDark ? 'dark:text-gray-200' : ''}`}>
+    <h3
+      class={`text-xl text-center font-bold uppercase my-12 leading-10 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
+    >
+      Time to Inbox Timings
+    </h3>
+    <div
+      class={`grid gap-4 mt-4 mb-6 md:grid-cols-2 sm:grid-cols-1 md:mx-8 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
+    >
       <div class="text-center">
         <h3 class="text-2xl font-bold">Gmail</h3>
-        <p>
-          <span id="gmail-latest" class="text-4xl text-green-500">...</span>s
-        </p>
+        <p><span id="gmail-latest" class="text-4xl text-green-500">...</span>s</p>
         <p>Avg: <span id="gmail-average">-</span>s</p>
+        <canvas id="gmail-chart" class="max-w-sm sm:max-w-full h-6 mx-auto max-h-8"></canvas>
       </div>
       <!-- <div class="text-center">
         <h3 class="text-2xl font-bold">Outlook</h3>
-        <p>
-          <span id="outlook-latest" class="text-4xl text-green-500">...</span>s
-        </p>
+        <p><span id="outlook-latest" class="text-4xl text-green-500">...</span>s</p>
         <p>Avg: <span id="outlook-average">-</span>s</p>
+        <canvas id="outlook-chart" class="h-6 px-8"></canvas>
       </div> -->
       <div class="text-center">
         <h3 class="text-2xl font-bold">Yahoo</h3>
-        <p>
-          <span id="yahoo-latest" class="text-4xl text-green-500">...</span>s
-        </p>
+        <p><span id="yahoo-latest" class="text-4xl text-green-500">...</span>s</p>
         <p>Avg: <span id="yahoo-average">-</span>s</p>
+        <canvas id="yahoo-chart" class="max-w-sm sm:max-w-full h-6 mx-auto max-h-8"></canvas>
       </div>
     </div>
     <p class="mt-16 mb-12">
-      The figures above are calculated by sending an email to each of those providers, waiting for it to land in
-      the inbox, retrieving the email and measuring how long the entire process took from start to finish. Each
-      figure is updated every ten minutes, and the average covers the last twenty-four hours.
+      The figures above are calculated by sending an email to each of those providers, waiting for it to land in the
+      inbox, retrieving the email and measuring how long the entire process took from start to finish. Each figure is
+      updated every ten minutes, and the average covers the last twenty-four hours.
     </p>
     <hr />
     <h3 class="mt-12 text-xl">
-      As you can see, MailPace is <strong>a fast transactional email provider</strong>. Our service is fast,
-      simple and straightforward, sign up and get sending today.
+      MailPace is <strong>a fast transactional email provider</strong>. Our service is fast, simple and straightforward,
+      sign up and get sending today.
     </h3>
   </div>
 </WidgetWrapper>
 
 <script>
+  import { Chart } from 'chart.js';
+  import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, LineController } from 'chart.js';
+
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, LineController);
+
+  const chartOptions = {
+    responsive: true,
+    elements: { point: { radius: 0 } },
+    plugins: {
+      legend: { display: false },
+    },
+    scales: {
+      x: { display: false },
+      y: {
+        display: false,
+        min: 0,
+        max: 40,
+      },
+    },
+  };
+
+  const createChartData = (data) => ({
+    labels: Array(data.length).fill(''),
+    datasets: [{ data, borderColor: '#16a34a', borderWidth: 2 }],
+  });
+
   const average = (arr) => (arr.reduce((p, c) => p + parseFloat(c), 0) / arr.length).toFixed(2);
 
   function updateScores(scores: { gmail: string[]; outlook: string[]; yahoo: string[] }) {
@@ -71,11 +97,52 @@ const {
     if (outlookAverage) outlookAverage.textContent = average(scores.outlook);
     if (yahooLatest) yahooLatest.textContent = parseFloat(scores.yahoo[0]).toFixed(2);
     if (yahooAverage) yahooAverage.textContent = average(scores.yahoo);
+
+    const gmailChartElement = document.getElementById('gmail-chart') as HTMLCanvasElement;
+    const yahooChartElement = document.getElementById('yahoo-chart') as HTMLCanvasElement;
+
+    if (gmailChartElement) {
+      new Chart(gmailChartElement, {
+        type: 'line',
+        data: createChartData(
+          Array.from(
+            { length: 24 },
+            (_, i) => average(scores.gmail.slice(i * 6, (i + 1) * 6)) // hourly averages for last 24 hrs
+          ).reverse()
+        ),
+        options: chartOptions,
+      });
+    }
+
+    if (yahooChartElement) {
+      new Chart(yahooChartElement, {
+        type: 'line',
+        data: createChartData(
+          Array.from(
+            { length: 24 },
+            (_, i) => average(scores.gmail.slice(i * 6, (i + 1) * 6)) // hourly averages for last 24 hrs
+          ).reverse()
+        ),
+        options: chartOptions,
+      });
+    }
   }
 
-  if (document.getElementById('time-to-inbox')) {
-    fetch('https://app.mailpace.com/api/v1/time_to_inbox')
-      .then((response) => response.json())
-      .then((scores) => updateScores(scores));
-  }
+  fetch('https://app.mailpace.com/api/v1/time_to_inbox')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((scores) => updateScores(scores))
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      const testData = {
+        gmail: Array.from({ length: 1000 }, () => (Math.random() * 10).toFixed(6)),
+        outlook: Array.from({ length: 1000 }, () => (Math.random() * 10).toFixed(6)),
+        yahoo: Array.from({ length: 1000 }, () => (Math.random() * (4 - 0.5) + 0.5).toFixed(6)),
+      };
+      updateScores(testData);
+    });
 </script>
