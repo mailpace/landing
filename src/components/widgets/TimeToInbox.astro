@@ -20,7 +20,7 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
       Time to Inbox Timings
     </h3>
     <div
-      class={`grid gap-4 mt-4 mb-6 md:grid-cols-2 sm:grid-cols-1 md:mx-8 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
+      class={`grid gap-4 mt-4 mb-6 md:grid-cols-3 sm:grid-cols-1 md:mx-8 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
     >
       <div class="text-center">
         <h3 class="text-2xl font-bold">Gmail</h3>
@@ -28,12 +28,12 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
         <p>Avg: <span id="gmail-average">-</span>s</p>
         <canvas id="gmail-chart" class="max-w-sm sm:max-w-full h-6 mx-auto max-h-8"></canvas>
       </div>
-      <!-- <div class="text-center">
-        <h3 class="text-2xl font-bold">Outlook</h3>
-        <p><span id="outlook-latest" class="text-4xl text-green-500">...</span>s</p>
-        <p>Avg: <span id="outlook-average">-</span>s</p>
-        <canvas id="outlook-chart" class="h-6 px-8"></canvas>
-      </div> -->
+      <div class="text-center">
+        <h3 class="text-2xl font-bold">iCloud</h3>
+        <p><span id="icloud-latest" class="text-4xl text-green-500">...</span>s</p>
+        <p>Avg: <span id="icloud-average">-</span>s</p>
+        <canvas id="icloud-chart" class="max-w-sm sm:max-w-full h-6 mx-auto max-h-8"></canvas>
+      </div>
       <div class="text-center">
         <h3 class="text-2xl font-bold">Yahoo</h3>
         <p><span id="yahoo-latest" class="text-4xl text-green-500">...</span>s</p>
@@ -44,7 +44,7 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
     <p class="mt-16 mb-12">
       The figures above are calculated by sending an email to each of those providers, waiting for it to land in the
       inbox, retrieving the email and measuring how long the entire process took from start to finish. Each figure is
-      updated every ten minutes, and the average covers the last twenty-four hours.
+      updated every ten minutes, and the average and chart covers the last twenty-four hours.
     </p>
     <hr />
     <h3 class="mt-12 text-xl">
@@ -83,23 +83,24 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
 
   const average = (arr) => (arr.reduce((p, c) => p + parseFloat(c), 0) / arr.length).toFixed(2);
 
-  function updateScores(scores: { gmail: string[]; outlook: string[]; yahoo: string[] }) {
+  function updateScores(scores: { gmail: string[]; icloud: string[]; yahoo: string[] }) {
     const gmailLatest = document.getElementById('gmail-latest');
     const gmailAverage = document.getElementById('gmail-average');
-    const outlookLatest = document.getElementById('outlook-latest');
-    const outlookAverage = document.getElementById('outlook-average');
+    const icloudLatest = document.getElementById('icloud-latest');
+    const icloudAverage = document.getElementById('icloud-average');
     const yahooLatest = document.getElementById('yahoo-latest');
     const yahooAverage = document.getElementById('yahoo-average');
 
     if (gmailLatest) gmailLatest.textContent = parseFloat(scores.gmail[0]).toFixed(2);
     if (gmailAverage) gmailAverage.textContent = average(scores.gmail);
-    if (outlookLatest) outlookLatest.textContent = parseFloat(scores.outlook[0]).toFixed(2);
-    if (outlookAverage) outlookAverage.textContent = average(scores.outlook);
+    if (icloudLatest) icloudLatest.textContent = parseFloat(scores.icloud[0]).toFixed(2);
+    if (icloudAverage) icloudAverage.textContent = average(scores.icloud);
     if (yahooLatest) yahooLatest.textContent = parseFloat(scores.yahoo[0]).toFixed(2);
     if (yahooAverage) yahooAverage.textContent = average(scores.yahoo);
 
     const gmailChartElement = document.getElementById('gmail-chart') as HTMLCanvasElement;
     const yahooChartElement = document.getElementById('yahoo-chart') as HTMLCanvasElement;
+    const icloudChartElement = document.getElementById('icloud-chart') as HTMLCanvasElement;
 
     if (gmailChartElement) {
       new Chart(gmailChartElement, {
@@ -126,6 +127,18 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
         options: chartOptions,
       });
     }
+    if (icloudChartElement) {
+      new Chart(icloudChartElement, {
+        type: 'line',
+        data: createChartData(
+          Array.from(
+            { length: 24 },
+            (_, i) => average(scores.icloud.slice(i * 6, (i + 1) * 6)) // hourly averages for last 24 hrs
+          ).reverse()
+        ),
+        options: chartOptions,
+      });
+    }
   }
 
   fetch('https://app.mailpace.com/api/v1/time_to_inbox')
@@ -140,7 +153,7 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
       console.error('Fetch error:', error);
       const testData = {
         gmail: Array.from({ length: 1000 }, () => (Math.random() * 10).toFixed(6)),
-        outlook: Array.from({ length: 1000 }, () => (Math.random() * 10).toFixed(6)),
+        icloud: Array.from({ length: 1000 }, () => (Math.random() * 10).toFixed(6)),
         yahoo: Array.from({ length: 1000 }, () => (Math.random() * (4 - 0.5) + 0.5).toFixed(6)),
       };
       updateScores(testData);
