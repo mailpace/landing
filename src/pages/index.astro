@@ -12,6 +12,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialList from '~/components/common/TestimonialList.astro';
 import CodeTabs from '~/components/widgets/CodeTabs.astro';
 import { getPermalink } from '~/utils/permalinks';
+import TimeToInbox from '~/components/widgets/TimeToInbox.astro';
 
 const metadata = {
   title: 'MailPace - Fast Transactional Email',
@@ -40,6 +41,13 @@ const metadata = {
   <Note />
 
   <TestimonialList id="testimonials" />
+
+  <TimeToInbox
+    callToAction={{
+      text: 'Learn More about Time to Inbox',
+      href: getPermalink('/fast-transactional-emails'),
+    }}
+  />
 
   <CodeTabs />
 

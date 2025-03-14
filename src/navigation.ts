@@ -87,7 +87,7 @@ export const footerData = {
       title: 'Product',
       links: [
         { text: 'Pricing', href: getPermalink('/pricing') },
-        { text: 'Speed', href: getPermalink('/fast-transactional-emails') },
+        { text: 'Time to Inbox', href: getPermalink('/fast-transactional-emails') },
         { text: 'Reviews', href: getPermalink('/testimonials') },
         { text: 'What are Transactional Emails?', href: getPermalink('/what-are-transactional-emails') },
         { text: 'High Delivery Rates', href: getPermalink('/how-we-keep-delivery-rates-high') },

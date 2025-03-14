@@ -1,27 +1,22 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Button from '../ui/Button.astro';
+import Headline from '../ui/Headline.astro';
 
-const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
+const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg'), callToAction } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
-  <p class={`text-gray-800 ${isDark ? 'dark:text-gray-200' : ''}`}>
-    At <a href="https://mailpace.com" class={`text-gray-800 underline ${isDark ? 'dark:text-gray-200' : ''}`}
-      >MailPace.com</a
-    >
-    we measure, track and optimize for time to inbox. We publish live results for all to see to hold ourselves accountable
-    to our fast transactional email delivery times.
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl mb-8 ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title="We are speedy fast 🚅" subtitle="And we share our performance metrics to prove it" />
+
+  <p class="">
+    We measure, track and optimize for time to inbox. We publish live results for all to see to hold ourselves
+    accountable to our fast transactional email delivery times.
   </p>
 
-  <div class={`mx-auto text-gray-800 ${isDark ? 'dark:text-gray-200' : ''}`}>
-    <h3
-      class={`text-xl text-center font-bold uppercase my-12 leading-10 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
-    >
-      Time to Inbox Timings
-    </h3>
-    <div
-      class={`grid gap-4 mt-4 mb-6 md:grid-cols-3 sm:grid-cols-1 md:mx-8 ${isDark ? 'dark:text-gray-200' : 'text-gray-800'}`}
-    >
+  <div class="mx-auto">
+    <h3 class={`text-xl text-center font-bold uppercase my-12 leading-10`}>Latest Time to Inbox Timings</h3>
+    <div class={`grid gap-4 mt-4 mb-6 md:grid-cols-3 sm:grid-cols-1 md:mx-8`}>
       <div class="text-center">
         <h3 class="text-2xl font-bold">Gmail</h3>
         <p><span id="gmail-latest" class="text-4xl text-green-500">...</span>s</p>
@@ -41,17 +36,14 @@ const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } 
         <canvas id="yahoo-chart" class="max-w-sm sm:max-w-full h-6 mx-auto max-h-8"></canvas>
       </div>
     </div>
-    <p class="mt-16 mb-12">
-      The figures above are calculated by sending an email to each of those providers, waiting for it to land in the
-      inbox, retrieving the email and measuring how long the entire process took from start to finish. Each figure is
-      updated every ten minutes, and the average and chart covers the last twenty-four hours.
-    </p>
-    <hr />
-    <h3 class="mt-12 text-xl">
-      MailPace is <strong>a fast transactional email provider</strong>. Our service is fast, simple and straightforward,
-      sign up and get sending today.
-    </h3>
   </div>
+  {
+    callToAction && (
+      <div class="flex justify-center mx-auto w-fit mt-8 md:mt-12 font-medium">
+        <Button {...callToAction} />
+      </div>
+    )
+  }
 </WidgetWrapper>
 
 <script>
