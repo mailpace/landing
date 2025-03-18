@@ -5,6 +5,7 @@ import Headline from '~/components/widgets/compare/Headline.astro';
 import TestimonialList from '~/components/common/TestimonialList.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/compare/Pricing.astro';
+import TimeToInbox from '~/components/widgets/TimeToInbox.astro';
 
 const metadata = {
   title: 'MailPace - Fast Transactional Email',
@@ -14,7 +15,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <Headline
     provider="AWS SES"
-    subtitle="With MailPace you get everything as standard, we're not upselling you on features like history, team members, webhooks. We just want to get your emails delivered."
+    subtitle="SES is owned by one of the richest men in the world, they're cheap, but at what cost?"
   />
 
   <!-- Feature table comparison -->
@@ -37,10 +38,10 @@ const metadata = {
       { name: 'Status Page', supported: true },
       { name: 'Integrations', supported: true },
       { name: 'Idempotent Email API', supported: false },
-      { name: 'Transactional Only', supported: false },
+      { name: 'Transactional Only', supported: true },
       { name: 'Own Email Infrastructure', supported: true },
       { name: 'Independent', supported: false },
-      { name: 'European Sending', supported: true },
+      { name: 'European Sending', supported: false, comment: 'AWS has European endpoints but they are a US company' },
     ]}
   />
 
@@ -49,14 +50,14 @@ const metadata = {
     tenPrice={1.0}
     hundredPrice={10.0}
     millionPrice={100.0}
-    justification="AWS SES is extremely cost-effective but requires a more complex setup for features like webhooks, email monitoring, and bounce management. It is ideal for developers comfortable with AWS services."
+    justification="AWS SES is cheap, but attracts spammers due to the low cost, deliverability is poor, and customer support is non-existent."
   />
-
-  <!-- Time to Inbox/Performance/Deliverability widget -->
 
   <!-- Support widget -->
 
   <TestimonialList />
+
+  <TimeToInbox />
 
   <CallToAction
     title="Ready to send?"
