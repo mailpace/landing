@@ -1,0 +1,55 @@
+---
+import Layout from '~/layouts/MailPaceVersus.astro';
+import Headline from '~/components/widgets/features/Headline.astro';
+import TestimonialList from '~/components/common/TestimonialList.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import TimeToInbox from '~/components/widgets/TimeToInbox.astro';
+import CodeTabs from '~/components/widgets/CodeTabs.astro';
+import Documentation from '~/components/widgets/features/Documentation.astro';
+
+const metadata = {
+  title: 'MailPace - Fast Transactional Email',
+};
+---
+
+<Layout metadata={metadata}>
+  <Headline
+    feature="Transactional Email API"
+    subtitle="MailPace provides the easiest to use, fastest transactional email API on the market"
+  />
+
+  <div class="lg:py-4 max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl text-muted dark:text-slate-400 text-center">
+    <p class="mb-2">
+      At the heart of MailPace sits our HTTPS API, designed to be the fastest and most reliable way to send
+      transactional emails. We've optimized our API to ensure that your emails get to the inbox as quickly as possible,
+      with the least amount of effort on your part.
+    </p>
+
+    <p class="my-8">
+      We have SDKs for all major programming languages, and our API is <a href="https://docs.mailpace.com" class="text-blue-500 underline"
+        >fully documented with examples</a
+      > to get you started quickly.
+    </p>
+  </div>
+
+  <CodeTabs />
+
+  <Documentation />
+
+  <TimeToInbox />
+
+  <TestimonialList />
+
+  <CallToAction
+    title="Ready to send?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com/users/sign_up',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+</Layout>

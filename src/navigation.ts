@@ -6,40 +6,40 @@ export const headerData = {
     {
       text: '✨ Features',
       href: '/#features',
-      // links: [
-      //   {
-      //     text: '📧 Email API',
-      //     href: getPermalink('/email-api'),
-      //   },
-      //   {
-      //     text: '📬 SMTP Service',
-      //     href: getPermalink('/smtp-api'),
-      //   },
-      //   {
-      //     text: '📥 Inbound Email',
-      //     href: getPermalink('/inbound-email'),
-      //   },
-      //   {
-      //     text: '📨 Transactional Email',
-      //     href: getPermalink('/transactional-email'),
-      //   },
-      //   {
-      //     text: '🇪🇺 EU Hosted Email',
-      //     href: getPermalink('/eu-hosted-email'),
-      //   },
-      //   {
-      //     text: '🛡️ Spam Protection',
-      //     href: getPermalink('/spam-protection'),
-      //   },
-      //   {
-      //     text: '🔔 Webhooks',
-      //     href: getPermalink('/webhooks'),
-      //   },
-      //   {
-      //     text: '🔄 Idempotency',
-      //     href: getPermalink('/idempotent-emails'),
-      //   },
-      // ],
+      links: [
+        {
+          text: '📧 Email API',
+          href: getPermalink('/features/transactional-email-api'),
+        },
+        //   {
+        //     text: '📬 SMTP Service',
+        //     href: getPermalink('/smtp-api'),
+        //   },
+        //   {
+        //     text: '📥 Inbound Email',
+        //     href: getPermalink('/inbound-email'),
+        //   },
+        //   {
+        //     text: '📨 Transactional Email',
+        //     href: getPermalink('/transactional-email'),
+        //   },
+        //   {
+        //     text: '🇪🇺 EU Hosted Email',
+        //     href: getPermalink('/eu-hosted-email'),
+        //   },
+        //   {
+        //     text: '🛡️ Spam Protection',
+        //     href: getPermalink('/spam-protection'),
+        //   },
+        //   {
+        //     text: '🔔 Webhooks',
+        //     href: getPermalink('/webhooks'),
+        //   },
+        //   {
+        //     text: '🔄 Idempotency',
+        //     href: getPermalink('/idempotent-emails'),
+        //   },
+      ],
     },
     {
       text: 'Pricing',
@@ -98,10 +98,11 @@ export const footerData = {
         },
       ],
     },
-    // {
-    //   title: 'Features',
-    //   links: [...(headerData.links[0].links || [])],
-    // },
+    {
+      title: 'Features',
+      href: '/#features',
+      links: [...(headerData.links[0].links || [])],
+    },
     // {
     //   title: 'MailPace For',
     //   links: [
