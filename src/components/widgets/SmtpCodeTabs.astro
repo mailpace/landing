@@ -1,0 +1,112 @@
+---
+import Button from '~/components/ui/Button.astro';
+
+import { Code } from 'astro-expressive-code/components';
+
+import rails from '~/utils/codeSnippets/smtp/rails.rb?raw';
+import express from '~/utils/codeSnippets/smtp/express.js?raw';
+import laravel from '~/utils/codeSnippets/smtp/laravel.php?raw';
+import django from '~/utils/codeSnippets/smtp/django.py?raw';
+import spring from '~/utils/codeSnippets/smtp/spring.java?raw';
+import wordpress from '~/utils/codeSnippets/smtp/wordpress.php?raw';
+import magento from '~/utils/codeSnippets/smtp/magento.php?raw';
+---
+
+<div class="max-w-3xl mb-8 md:mb-12 md:mx-auto">
+
+  <ul id="tabs" class="flex flex-wrap w-full px-1 justify-center">
+    <li
+      class="px-3 py-2 -mb-px font-semibold text-gray-800 dark:text-gray-200 border-b-4 border-blue-400 rounded-t opacity-50 flex-1 text-center"
+    >
+      <a class="tabHeader block w-full h-full" id="default-tab" href="#curl">Rails</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#node">Node.js</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#ruby">Laravel</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#php">Django</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#golang">Java</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#python">Wordpress</a>
+    </li>
+    <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
+      <a class="tabHeader block w-full h-full" href="#rails">Magento</a>
+    </li>
+  </ul>
+
+  <!-- Tab Contents -->
+  <div id="tab-contents" class="text-gray-700">
+    <div id="curl" class="py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="shell" code={rails} />
+    </div>
+
+    <div id="node" class="py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="javascript" code={express} />
+    </div>
+
+    <div id="ruby" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="ruby" code={laravel} />
+    </div>
+
+    <div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="php" code={django} />
+    </div>
+
+    <div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="go" code={spring} />
+    </div>
+
+    <div id="python" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="python" code={wordpress} />
+    </div>
+
+    <div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
+      <Code lang="ruby" code={magento} />
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <Button variant="tertiary" href="https://docs.mailpace.com/integrations/smtp" class="mt-4">Read more about our SMTP Integration</Button>
+  </div>
+</div>
+
+<script>
+  // Get our tabs
+  const tabHeaders = document.querySelector('#tabs')?.querySelectorAll('a.tabHeader');
+
+  // Add event listeners to each tab header
+  tabHeaders?.forEach(function (header) {
+    header.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const tabName = this.getAttribute('href');
+      const tabContents = document.querySelector('#tab-contents');
+      const showClasses = ['border-blue-400', 'border-b-4', '-mb-px', 'opacity-100'];
+
+      if (tabContents) {
+        // iterate through each tab and hide all of them, except the clicked tab
+        for (let i = 0; i < tabContents.children.length; i++) {
+          if ('#' + tabContents.children[i].id === tabName) {
+            // Show the matching tab
+            tabContents.children[i].classList.remove('hidden');
+          } else {
+            // Hide the other headers & tabs
+            tabHeaders[i]?.parentElement?.classList.remove(...showClasses);
+            tabContents.children[i].classList.add('hidden');
+          }
+        }
+      }
+
+      // Finally add the bottom border back to the header
+      (e.target as HTMLElement)?.parentElement?.classList.add(...showClasses);
+    });
+  });
+  // Ensure the default tab is shown on reload
+  document.getElementById('default-tab')?.click();
+</script>

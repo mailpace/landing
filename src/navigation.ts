@@ -11,10 +11,10 @@ export const headerData = {
           text: '📧 Email API',
           href: getPermalink('/features/transactional-email-api'),
         },
-        //   {
-        //     text: '📬 SMTP Service',
-        //     href: getPermalink('/smtp-api'),
-        //   },
+        {
+          text: '📬 SMTP Service',
+          href: getPermalink('/features/transactional-smtp-service'),
+        },
         //   {
         //     text: '📥 Inbound Email',
         //     href: getPermalink('/inbound-email'),
