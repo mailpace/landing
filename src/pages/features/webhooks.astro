@@ -15,29 +15,24 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Headline
-    feature="Inbound Email"
-    subtitle="Receive and turn inbound emails into JSON webhooks effortlessly with our inbound email service."
+    feature="Webhooks"
+    subtitle="Integrate with other applications, track sending and performance with our unlimited webhooks as standard."
   />
 
   <div class="lg:py-4 max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl text-muted dark:text-slate-400 text-center">
     <p class="mb-2">
-      MailPace comes with <span class="font-bold">unlimited, catch all</span> inbound domains on every account. Once setup,
-      all emails sent to your domain will be forwarded on to a webhook endpoint of your choice as a JSON object.
+      MailPace comes with <span class="font-bold">unlimited webhooks</span> on every account. Once enabled, when an email
+      is queued, delivered, bounced, or marked as spam, we will send a POST request to your webhook endpoint.
     </p>
 
-    <p class="my-8">
-      You can receive email to <span class="font-bold">any username</span> at your domain, e.g. example@inbound.yourdomain.com,
-      user123@inbound.yourdomain.com etc. without having to define them upfront, and even create unlimited subdomains.
-    </p>
-
-    <p class="my-8">
-      Setup is simple. Simply create your domain inside MailPace, provide a webhook endpoint to forward emails on to,
-      and create a single DNS record. That's it!
+    <p class="mt-8 mb-12">
+      Setup is simple. Simply create your domain inside MailPace, choose the webbooks you'd like to enable, and set the
+      endpoint(s) to forward the data to.
     </p>
 
     <div class="flex justify-center">
-      <Button variant="primary" href="https://docs.mailpace.com/guide/inbound" target="_blank" class="mt-4"
-        >Learn more about our inbound email service
+      <Button variant="primary" href="https://docs.mailpace.com/guide/webhooks" target="_blank" class="mt-4"
+        >Learn more about our webhooks
       </Button>
     </div>
   </div>

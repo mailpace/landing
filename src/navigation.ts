@@ -31,10 +31,10 @@ export const headerData = {
         //     text: '🛡️ Spam Protection',
         //     href: getPermalink('/spam-protection'),
         //   },
-        //   {
-        //     text: '🔔 Webhooks',
-        //     href: getPermalink('/webhooks'),
-        //   },
+        {
+          text: '🔔 Webhooks',
+          href: getPermalink('/features/webhooks'),
+        },
         //   {
         //     text: '🔄 Idempotency',
         //     href: getPermalink('/idempotent-emails'),
