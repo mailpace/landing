@@ -15,10 +15,10 @@ export const headerData = {
           text: '📬 SMTP Service',
           href: getPermalink('/features/transactional-smtp-service'),
         },
-        //   {
-        //     text: '📥 Inbound Email',
-        //     href: getPermalink('/inbound-email'),
-        //   },
+        {
+          text: '📥 Inbound Email',
+          href: getPermalink('/features/inbound-email'),
+        },
         //   {
         //     text: '📨 Transactional Email',
         //     href: getPermalink('/transactional-email'),

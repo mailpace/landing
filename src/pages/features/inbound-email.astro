@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/MailPaceVersus.astro';
+import Headline from '~/components/widgets/features/Headline.astro';
+import TestimonialList from '~/components/common/TestimonialList.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import TimeToInbox from '~/components/widgets/TimeToInbox.astro';
+import CodeTabs from '~/components/widgets/CodeTabs.astro';
+import Documentation from '~/components/widgets/features/Documentation.astro';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'MailPace - Receive and process emails with ease',
+};
+---
+
+<Layout metadata={metadata}>
+  <Headline
+    feature="Inbound Email"
+    subtitle="Receive and turn inbound emails into JSON webhooks effortlessly with our inbound email service."
+  />
+
+  <div class="lg:py-4 max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl text-muted dark:text-slate-400 text-center">
+    <p class="mb-2">
+      MailPace comes with <span class="font-bold">unlimited, catch all</span> inbound domains on every account. Once setup,
+      all emails sent to your domain will be forwarded on to a webhook endpoint of your choice as a JSON object.
+    </p>
+
+    <p class="my-8">
+      You can receive email to <span class="font-bold">any username</span> at your domain, e.g. example@inbound.yourdomain.com,
+      user123@inbound.yourdomain.com etc. without having to define them upfront, and even create unlimited subdomains.
+    </p>
+
+    <p class="my-8">
+      Setup is simple. Simply create your domain inside MailPace, provide a webhook endpoint to forward emails on to,
+      and create a single DNS record. That's it!
+    </p>
+
+    <div class="flex justify-center">
+      <Button variant="primary" href="https://docs.mailpace.com/" class="mt-4"
+        >Learn more about our inbound email service
+      </Button>
+    </div>
+  </div>
+
+  <CodeTabs />
+
+  <Documentation />
+
+  <TimeToInbox />
+
+  <TestimonialList />
+
+  <CallToAction
+    title="Ready to send?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com/users/sign_up',
+        target: '_blank',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+</Layout>
