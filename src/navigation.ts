@@ -35,10 +35,10 @@ export const headerData = {
           text: '🔔 Webhooks',
           href: getPermalink('/features/webhooks'),
         },
-        //   {
-        //     text: '🔄 Idempotency',
-        //     href: getPermalink('/idempotent-emails'),
-        //   },
+        {
+          text: '🔄 Idempotency',
+          href: getPermalink('/features/idempotent-email-api'),
+        },
       ],
     },
     {
