@@ -1,3 +1,9 @@
+// Install Nodemailer if you haven't already:
+
+`npm install nodemailer`
+
+// Use the following configuration in your Express app:
+
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({

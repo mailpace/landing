@@ -21,7 +21,7 @@ import magento from '~/utils/codeSnippets/smtp/magento.php?raw';
       <a class="tabHeader block w-full h-full" id="default-tab" href="#curl">Rails</a>
     </li>
     <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
-      <a class="tabHeader block w-full h-full" href="#node">Node.js</a>
+      <a class="tabHeader block w-full h-full" href="#node">Node</a>
     </li>
     <li class="px-3 py-2 font-semibold text-gray-800 dark:text-gray-200 rounded-t opacity-50 flex-1 text-center">
       <a class="tabHeader block w-full h-full" href="#ruby">Laravel</a>
@@ -43,7 +43,7 @@ import magento from '~/utils/codeSnippets/smtp/magento.php?raw';
   <!-- Tab Contents -->
   <div id="tab-contents" class="text-gray-700">
     <div id="curl" class="py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="shell" code={rails} />
+      <Code lang="ruby" code={rails} />
     </div>
 
     <div id="node" class="py-2 px-1 max-h-96 overflow-y-auto">
@@ -51,28 +51,28 @@ import magento from '~/utils/codeSnippets/smtp/magento.php?raw';
     </div>
 
     <div id="ruby" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="ruby" code={laravel} />
+      <Code lang="php" code={laravel} />
     </div>
 
     <div id="php" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="php" code={django} />
+      <Code lang="python" code={django} />
     </div>
 
     <div id="golang" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="go" code={spring} />
+      <Code lang="java" code={spring} />
     </div>
 
     <div id="python" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="python" code={wordpress} />
+      <Code lang="php" code={wordpress} />
     </div>
 
     <div id="rails" class="hidden py-2 px-1 max-h-96 overflow-y-auto">
-      <Code lang="ruby" code={magento} />
+      <Code lang="php" code={magento} />
     </div>
   </div>
 
-  <div class="flex justify-center">
-    <Button variant="tertiary" href="https://docs.mailpace.com/integrations/smtp" class="mt-4">Read more about our SMTP Integration</Button>
+  <div class="flex justify-center mt-8 mb-20">
+    <Button variant="primary" href="https://docs.mailpace.com/integrations/smtp" class="mt-4">Learn more about our SMTP Integration</Button>
   </div>
 </div>
 

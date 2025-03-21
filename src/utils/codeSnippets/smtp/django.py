@@ -1,3 +1,5 @@
+# Add this to your settings.py:
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.mailpace.com"
 EMAIL_PORT = 587

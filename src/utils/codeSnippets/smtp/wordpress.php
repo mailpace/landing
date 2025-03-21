@@ -1,4 +1,5 @@
-// If configuring via wp-config.php:
+<?php
+# If configuring via wp-config.php:
 
 define('SMTP_HOST', 'smtp.mailpace.com');
 define('SMTP_PORT', 587);

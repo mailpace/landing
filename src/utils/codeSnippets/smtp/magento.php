@@ -1,4 +1,5 @@
-
+<?php
+# Modify app/etc/env.php:
 
 'system' => [
     'default' => [
