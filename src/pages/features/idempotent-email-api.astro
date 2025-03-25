@@ -10,40 +10,11 @@ import Button from '~/components/ui/Button.astro';
 
 const metadata = {
   title: 'MailPace - Transactional Email with support for Idempotency',
-  description:
-    "Send emails reliably with MailPace's idempotent email API. Ensure your emails are sent exactly once, even if your application retries.",
-  canonical: 'https://mailpace.com/features/idempotent-email-api',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'MailPace - Transactional Email with support for Idempotency',
-    description:
-      "Send emails with confidence using MailPace's idempotent email API. Ensure your emails are sent only once, even with multiple retries.",
-    mainEntity: {
-      '@type': 'SoftwareApplication',
-      name: 'MailPace',
-      applicationCategory: 'EmailService',
-      offers: {
-        '@type': 'Offer',
-        category: 'Transactional Email Service',
-      },
-      featureList: 'Idempotent Email API',
-      description:
-        'MailPace is a transactional email provider that supports idempotency out of the box, ensuring emails are sent only once.',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'MailPace',
-      url: 'https://mailpace.com',
-    },
-  },
 };
 ---
 
 <Layout metadata={metadata}>
   <Headline feature="Idempotency" subtitle="Ensure your emails are sent only once with our idempotent email API" />
-
-  <!-- Rest of the page content remains unchanged -->
 
   <div class="lg:py-4 max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl text-muted dark:text-slate-400 text-center">
     <p class="mb-2">
