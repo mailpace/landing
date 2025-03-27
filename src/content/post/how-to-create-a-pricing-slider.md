@@ -1,8 +1,9 @@
 ---
-title: How to create a beautiful Pricing Slider with Tailwind CSS and Alpine.js
+title: How to create a beautiful, functional Pricing Slider with Tailwind CSS and Alpine.js
 publishDate: 2025-03-27T16:10:03.284Z
 excerpt: A detailed guide on building a pricing slider using Tailwind CSS and Alpine.js, with support for non-linear scaling, multiple currencies and custom price logic
 category: Guides
+image: ~/assets/images/blog/title_cards/pricing-slider-with-non-linear-scale-currency-conversion.png
 ---
 
 We recently revamped our marketing site, and added a new [pricing page](https://mailpace.com/pricing) to make it easy to understand how our usage based pricing works.
