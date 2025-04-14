@@ -200,13 +200,24 @@ import Button from '~/components/ui/Button.astro';
         try {
           const response = await fetchJsonp(url);
           const json = await (response as Response).json();
-          this.basePrice = json.response.products[0].price.net;
-          this.pricePerThousand = json.response.products[1].price.net;
-          this.region = json.response.customer_country;
+
+          // Compare initial currency set to avoid small fluctuations in price due to varying levels of tax across regions
+          // This is not perfect but reduces the likelihood of a user seeing a price change when they select a different region
+          if (this.initialCurrency === json.response.products[0].currency) {
+            return;
+          }
+          this.initialCurrency = json.response.products[0].currency;
+          this.updatePrices(json);
         } catch (error) {
           console.error(error);
         }
       },
+
+      updatePrices(json) {
+        this.basePrice = json.response.products[0].price.net;
+        this.pricePerThousand = json.response.products[1].price.net;
+        this.region = json.response.customer_country;
+      }
     };
   }
 
