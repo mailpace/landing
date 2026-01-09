@@ -7,7 +7,7 @@ category: Musings
 
 Recently I’ve observed a couple of rare edge-case bugs with our SMTP gateway. But it’s 2025 so instead of attaching a debugger and fixing the root cause, **let’s just vibe code an entirely new SMTP server**. Better yet, let’s use Rust (a language I barely know), and do it in the background while I do other things.
 
-Here’s what I landed with after ~30 prompts, using VSCode and Claude Sonnet 4 https://github.com/mailpace/vibe-smtp  - if you’re curious the prompts are in the git commit history as the git messages, so you can follow along at home too.
+Here’s what I landed with after ~30 prompts, using VSCode and Claude Sonnet 4 https://github.com/mailpace/vibe-smtp - if you’re curious the prompts are in the git commit history as the git messages, so you can follow along at home too.
 
 I’m neither an AI evangelist, or an AI doomer, I think AI has it's place in the modern development cycle, and anyone who touches code should learn how to be effective with it. Hopefully this helps you!
 
@@ -16,7 +16,7 @@ I’m neither an AI evangelist, or an AI doomer, I think AI has it's place in th
 - I paid $100 for a year of Github Copilot Pro
 - `mkdir tmp/vibe-smtp && cd vibe-smtp && code .`
 - Set the copilot chat to Sonnet 4.0, Agent Mode
-- Created a .md file with details of the 
+- Created a .md file with details of the
 - Typed what I wanted into the chat - this is called "Prompt Engineering"
 - Watched what the AI did
 - Interrupted it when it went wrong - this is called "Human in the Loop"
@@ -27,9 +27,9 @@ I’m neither an AI evangelist, or an AI doomer, I think AI has it's place in th
 
 At no point did I write any code myself.
 
-## Observations 
+## Observations
 
-It does a lot, like it writes a lot of code, markdown files, extra test scripts as well. A bit too eager if you ask me. 
+It does a lot, like it writes a lot of code, markdown files, extra test scripts as well. A bit too eager if you ask me.
 
 We need to figure out how to improve the workflow and tooling. I feel like I'm making it up as I go along, and it's super easy to get distracted and have to reset your own context when you come back to the computer.
 
@@ -50,13 +50,13 @@ And because it’s quite verbose, and doesn’t understand the meaning you hold 
 
 How to quickly ready code. In fact, I spent more time reading code than anything else on this. The AI will write useless code, decide to mark some things as TODO, use tricks to get the compiler to comply etc. etc.
 
-Testing. e.g. Code coverage, integration, unit tests, performance tests etc. **This is a must have for any vibe coded project**. Put some determinism back in your code. The first thing you should do after the initial scaffolding or feature is add a set of unit tests, integration tests etc. And get into a habit of running them on any change. AI is really good at writing tests, and it's the only way to know that your code is behaving as you expect it to. Ensure that the AI always writes a test for any change, and **read the test details to check that it's testing what you want it to**. 
+Testing. e.g. Code coverage, integration, unit tests, performance tests etc. **This is a must have for any vibe coded project**. Put some determinism back in your code. The first thing you should do after the initial scaffolding or feature is add a set of unit tests, integration tests etc. And get into a habit of running them on any change. AI is really good at writing tests, and it's the only way to know that your code is behaving as you expect it to. Ensure that the AI always writes a test for any change, and **read the test details to check that it's testing what you want it to**.
 
 What good looks like. Check out this refactor https://github.com/mailpace/vibe-smtp/commit/41404e0a96214888bbd900cbafef687b7b4fabbd. You would not know to do this, if you didn't know that one big `main.rs` file is not a great idea. The AI won't tell you, it'll just keep plugging along.
 
 How to debug issues. You can repeatedly prompt the AI when there are problems, but there are always situations where it gets stuck in a never ending loop. Stop the AI when it gets confused, think about it, and then tell it what to do. `git reset --hard` is your friend.
 
-Your toolkit - you need to use git a lot, understand how docker works, be comfortable grepping log files, know what CI is (and use it), understand build steps, transpilation etc. 
+Your toolkit - you need to use git a lot, understand how docker works, be comfortable grepping log files, know what CI is (and use it), understand build steps, transpilation etc.
 
 Good hygiene - keep your changes small, atomic, and version controlled.
 
