@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: MailPace
+    default: 'MailPace - Fast Transactional Email API for Developers | Privacy-First, EU-Hosted'
     template: '%s — MailPace'
-  description: 'Transactional Email Service you can rely on.'
+  description: 'Fast transactional email API for developers. Send password resets, notifications & OTP codes in seconds. Privacy-first, EU-hosted, carbon neutral. Better delivery than SendGrid, Postmark & Mailgun. Free tier available.'
   robots:
     index: true
     follow: true

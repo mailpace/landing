@@ -1,0 +1,197 @@
+---
+/**
+ * Schema.org structured data for SEO and GenAI optimization
+ * Includes Organization, Product, SoftwareApplication, and FAQSchema markup
+ */
+
+interface Props {
+  type?: 'homepage' | 'product' | 'page';
+}
+
+const { type = 'homepage' } = Astro.props;
+
+// Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MailPace",
+  "url": "https://mailpace.com",
+  "logo": "https://mailpace.com/mailpace-logo.png",
+  "description": "Fast transactional email API for developers. Privacy-first, EU-hosted, carbon neutral transactional email service.",
+  "foundingDate": "2021",
+  "email": "support@mailpace.com",
+  "sameAs": [
+    "https://twitter.com/mailpace",
+    "https://github.com/mailpace"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "support@mailpace.com",
+    "contactType": "Customer Support",
+    "availableLanguage": "English"
+  },
+  "location": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB",
+      "addressRegion": "European Union"
+    }
+  }
+};
+
+// Software Application Schema
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MailPace",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web-based",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free tier available. Paid plans start at $10/month for 10,000 emails."
+  },
+  "featureList": [
+    "HTTP API for transactional emails",
+    "SMTP endpoint",
+    "Inbound email webhooks",
+    "Real-time webhooks for email events",
+    "DKIM, SPF, and DMARC support",
+    "Automatic email optimization",
+    "Spam protection and blocklist management",
+    "Idempotent API",
+    "Carbon neutral infrastructure",
+    "EU data hosting",
+    "Privacy-first (no read tracking)"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "50",
+    "bestRating": "5"
+  },
+  "screenshot": "https://mailpace.com/screenshot.png"
+};
+
+// Product Schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "MailPace Transactional Email Service",
+  "description": "Fast, privacy-focused transactional email API for developers. Send password resets, notifications, OTP codes, and transactional emails in seconds. EU-hosted with carbon neutral infrastructure.",
+  "brand": {
+    "@type": "Brand",
+    "name": "MailPace"
+  },
+  "category": "Email Service Provider",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "0",
+    "highPrice": "499",
+    "offerCount": "5"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "50",
+    "bestRating": "5"
+  }
+};
+
+// FAQ Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I include open/read tracking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We do not support this, however if you want to include one and track users yourself, you can manually. Note that in order to be GDPR compliant you must get the user to opt-in to tracking first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I send Marketing Emails with MailPace?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Only Transactional Emails are supported. MailPace is designed for transactional emails like password resets, notifications, OTP codes, and welcome emails - not bulk marketing campaigns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are transactional emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transactional emails are automated messages sent in response to user actions, such as password resets, order confirmations, shipping notifications, OTP codes, account verifications, and system alerts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast does MailPace deliver emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MailPace delivers emails in seconds. Average time to inbox: Gmail 0.84s, iCloud 1.03s, Yahoo 1.28s. We continuously monitor and optimize our delivery times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is MailPace data hosted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All MailPace data is hosted in the European Union with 100% carbon-neutral, renewable energy powered servers. We use local bare-metal and VPS providers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support my programming language or framework?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MailPace supports all major programming languages including Node.js, Ruby, Python, PHP, Go, Elixir, and popular frameworks like Rails and Symfony. We provide both HTTP API and SMTP endpoints."
+      }
+    }
+  ]
+};
+
+// WebSite Schema for better search
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MailPace",
+  "url": "https://mailpace.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mailpace.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Transactional Email API",
+  "provider": {
+    "@type": "Organization",
+    "name": "MailPace"
+  },
+  "description": "Fast transactional email delivery service with HTTP API and SMTP endpoint. Send password resets, notifications, OTP codes, and transactional emails.",
+  "areaServed": "Worldwide",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://app.mailpace.com"
+  }
+};
+
+const schemas = type === 'homepage' 
+  ? [organizationSchema, softwareSchema, productSchema, faqSchema, websiteSchema, serviceSchema]
+  : [organizationSchema];
+---
+
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

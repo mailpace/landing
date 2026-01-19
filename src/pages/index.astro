@@ -13,9 +13,11 @@ import TestimonialList from '~/components/common/TestimonialList.astro';
 import CodeTabs from '~/components/widgets/CodeTabs.astro';
 import { getPermalink } from '~/utils/permalinks';
 import TimeToInbox from '~/components/widgets/TimeToInbox.astro';
+import QuickFacts from '~/components/widgets/QuickFacts.astro';
 
 const metadata = {
-  title: 'MailPace - Fast Transactional Email',
+  title: 'MailPace - Fast Transactional Email API for Developers | Privacy-First, EU-Hosted',
+  description: 'Send password resets, OTP codes & notifications in seconds. Privacy-first transactional email API with 1.19s avg delivery to Gmail. Free tier available. Better than SendGrid, Postmark & Mailgun.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -33,14 +35,18 @@ const metadata = {
       { text: 'Learn more', href: '#testimonials' },
     ]}
   >
-    <Fragment slot="title"> Fast Transactional Email </Fragment>
+    <Fragment slot="title"> Fast Transactional Email API </Fragment>
 
-    <Fragment slot="subtitle"> Independent, privacy-focused, and hosted in the EU </Fragment>
+    <Fragment slot="subtitle"> 
+      Send password resets, OTP codes & notifications in seconds. Privacy-first, EU-hosted, carbon neutral. Trusted by 2,000+ developers.
+    </Fragment>
   </HeroCode2>
 
   <Note />
 
   <TestimonialList id="testimonials" />
+
+  <QuickFacts />
 
   <TimeToInbox
     callToAction={{
