@@ -157,12 +157,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </div>
         <button
           type="button"
-          class="hidden lg:inline-flex items-center border border-gray-200 dark:border-gray-700 rounded-md px-2.5 py-1 text-xs text-muted hover:text-default dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600 ml-3"
+          class="hidden lg:inline-flex items-center rounded px-1.5 py-1 text-[11px] text-muted/70 hover:text-muted dark:hover:text-gray-300 transition-colors ml-3"
           data-aw-command-palette-open
           aria-label="Open command palette"
         >
-          <span class="mr-1.5">⌘K</span>
-          <span class="text-[11px]">Commands</span>
+          <span class="mr-1">⌘</span>
+          <span class="font-medium">K</span>
         </button>
         {
           actions?.length ? (
