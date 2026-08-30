@@ -2,6 +2,28 @@
 import { UI } from 'astrowind:config';
 ---
 
+<div
+  id="aw-command-palette"
+  class="hidden fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm p-3 md:p-6"
+  aria-hidden="true"
+>
+  <div class="mx-auto mt-[10vh] w-full max-w-2xl rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden">
+    <div class="border-b border-gray-100 dark:border-gray-800 px-4 py-3">
+      <input
+        id="aw-command-palette-input"
+        type="text"
+        class="w-full bg-transparent text-default dark:text-gray-100 placeholder:text-muted outline-none"
+        placeholder="Type a command (e.g. pricing, docs, signup)"
+        autocomplete="off"
+      />
+    </div>
+    <div id="aw-command-palette-list" class="max-h-[55vh] overflow-y-auto"></div>
+    <div class="px-4 py-2 text-xs text-muted border-t border-gray-100 dark:border-gray-800">
+      <span>↑↓ navigate • Enter run • Esc close • Ctrl/Cmd+K toggle • g then h/p/d/f quick-jump</span>
+    </div>
+  </div>
+</div>
+
 <script is:inline define:vars={{ defaultTheme: UI.theme }}>
   if (window.basic_script) {
     return;
@@ -38,6 +60,309 @@ import { UI } from 'astrowind:config';
         elem.addEventListener(event, (e) => fn(e, elem), false);
       });
     }
+  }
+
+  const commandPaletteState = {
+    isOpen: false,
+    activeIndex: 0,
+    query: '',
+    commands: [],
+    prefix: null,
+    prefixTimeoutId: null,
+  };
+
+  const commandPaletteShortcuts = {
+    h: '/',
+    p: '/pricing',
+    d: 'https://docs.mailpace.com',
+    f: '/#features',
+  };
+
+  function isTypingTarget(target) {
+    if (!target) return false;
+    return (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      target.isContentEditable
+    );
+  }
+
+  function getCommandPaletteElements() {
+    return {
+      root: document.getElementById('aw-command-palette'),
+      input: document.getElementById('aw-command-palette-input'),
+      list: document.getElementById('aw-command-palette-list'),
+    };
+  }
+
+  function getCommandPaletteCommands(query) {
+    const q = query.trim().toLowerCase();
+    const commands = [
+      {
+        label: 'Go to Home',
+        description: 'Open the MailPace homepage',
+        shortcut: 'g h',
+        href: '/',
+        keywords: 'home index landing',
+      },
+      {
+        label: 'Go to Pricing',
+        description: 'See plans and pricing',
+        shortcut: 'g p',
+        href: '/pricing',
+        keywords: 'pricing plans cost',
+      },
+      {
+        label: 'Go to Features',
+        description: 'Jump to key product features',
+        shortcut: 'g f',
+        href: '/#features',
+        keywords: 'features api smtp webhooks idempotency',
+      },
+      {
+        label: 'Open Documentation',
+        description: 'Open docs.mailpace.com in a new tab',
+        shortcut: 'g d',
+        href: 'https://docs.mailpace.com',
+        openInNewTab: true,
+        keywords: 'documentation docs api reference guides',
+      },
+      {
+        label: 'Open Dashboard Sign In',
+        description: 'Open app.mailpace.com',
+        shortcut: 'si',
+        href: 'https://app.mailpace.com/',
+        openInNewTab: true,
+        keywords: 'signin login dashboard app',
+      },
+      {
+        label: 'Start Sending',
+        description: 'Create an account and start sending',
+        shortcut: 'ss',
+        href: 'https://app.mailpace.com/users/sign_up',
+        openInNewTab: true,
+        keywords: 'signup register start sending',
+      },
+      {
+        label: 'Toggle Theme',
+        description: 'Switch between light and dark mode',
+        shortcut: 'tt',
+        action: 'toggle-theme',
+        keywords: 'theme dark light appearance',
+      },
+    ].filter((command) => !command.action || !defaultTheme.endsWith(':only'));
+
+    if (!q) return commands;
+
+    return commands.filter((command) =>
+      `${command.label} ${command.description} ${command.keywords} ${command.shortcut}`.toLowerCase().includes(q)
+    );
+  }
+
+  function renderCommandPalette() {
+    const { list } = getCommandPaletteElements();
+    if (!list) return;
+
+    commandPaletteState.commands = getCommandPaletteCommands(commandPaletteState.query);
+    commandPaletteState.activeIndex = Math.min(commandPaletteState.activeIndex, commandPaletteState.commands.length - 1);
+    if (commandPaletteState.activeIndex < 0) commandPaletteState.activeIndex = 0;
+
+    if (!commandPaletteState.commands.length) {
+      list.innerHTML = '<p class="px-4 py-6 text-sm text-muted">No commands found.</p>';
+      return;
+    }
+
+    list.innerHTML = commandPaletteState.commands
+      .map((command, index) => {
+        const isActive = index === commandPaletteState.activeIndex;
+        return `
+          <button
+            type="button"
+            data-aw-command-palette-item
+            data-aw-command-palette-index="${index}"
+            class="w-full text-left px-4 py-3 border-b border-gray-100 dark:border-gray-800 last:border-b-0 ${
+              isActive ? 'bg-gray-100 dark:bg-slate-800' : 'hover:bg-gray-50 dark:hover:bg-slate-800/70'
+            }"
+          >
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-sm font-medium text-default dark:text-gray-100">${command.label}</span>
+              <kbd class="rounded bg-gray-100 dark:bg-slate-700 px-2 py-0.5 text-[11px] text-muted">${command.shortcut}</kbd>
+            </div>
+            <p class="text-xs text-muted mt-1">${command.description}</p>
+          </button>
+        `;
+      })
+      .join('');
+  }
+
+  function closeCommandPalette() {
+    const { root, input } = getCommandPaletteElements();
+    if (!root) return;
+    commandPaletteState.isOpen = false;
+    root.classList.add('hidden');
+    root.setAttribute('aria-hidden', 'true');
+    commandPaletteState.query = '';
+    commandPaletteState.activeIndex = 0;
+    if (input) input.value = '';
+  }
+
+  function openCommandPalette() {
+    const { root, input } = getCommandPaletteElements();
+    if (!root || !input) return;
+    commandPaletteState.isOpen = true;
+    root.classList.remove('hidden');
+    root.setAttribute('aria-hidden', 'false');
+    commandPaletteState.query = '';
+    commandPaletteState.activeIndex = 0;
+    input.value = '';
+    renderCommandPalette();
+    input.focus();
+  }
+
+  function runCommandPaletteCommand(command) {
+    if (!command) return;
+    if (command.action === 'toggle-theme') {
+      if (defaultTheme.endsWith(':only')) return;
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      closeCommandPalette();
+      return;
+    }
+
+    closeCommandPalette();
+    if (command.openInNewTab) {
+      window.open(command.href, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    window.location.href = command.href;
+  }
+
+  function handleCommandPaletteSelection(nextIndex) {
+    if (!commandPaletteState.commands.length) return;
+    const total = commandPaletteState.commands.length;
+    commandPaletteState.activeIndex = (nextIndex + total) % total;
+    renderCommandPalette();
+
+    const { list } = getCommandPaletteElements();
+    const selected = list?.querySelector(`[data-aw-command-palette-index="${commandPaletteState.activeIndex}"]`);
+    selected?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function resetPrefixShortcut() {
+    commandPaletteState.prefix = null;
+    if (commandPaletteState.prefixTimeoutId) {
+      clearTimeout(commandPaletteState.prefixTimeoutId);
+      commandPaletteState.prefixTimeoutId = null;
+    }
+  }
+
+  function setupCommandPalette() {
+    const { root, input, list } = getCommandPaletteElements();
+    if (!root || !input || !list) return;
+
+    if (!window.commandPaletteHandlersRegistered) {
+      document.addEventListener('keydown', (event) => {
+        const key = event.key.toLowerCase();
+        const hasModifier = event.metaKey || event.ctrlKey || event.altKey;
+
+        if ((event.metaKey || event.ctrlKey) && key === 'k') {
+          event.preventDefault();
+          if (commandPaletteState.isOpen) {
+            closeCommandPalette();
+          } else {
+            openCommandPalette();
+          }
+          resetPrefixShortcut();
+          return;
+        }
+
+        if (commandPaletteState.isOpen) {
+          if (key === 'escape') {
+            event.preventDefault();
+            closeCommandPalette();
+            return;
+          }
+          if (key === 'arrowdown') {
+            event.preventDefault();
+            handleCommandPaletteSelection(commandPaletteState.activeIndex + 1);
+            return;
+          }
+          if (key === 'arrowup') {
+            event.preventDefault();
+            handleCommandPaletteSelection(commandPaletteState.activeIndex - 1);
+            return;
+          }
+          if (key === 'enter') {
+            event.preventDefault();
+            runCommandPaletteCommand(commandPaletteState.commands[commandPaletteState.activeIndex]);
+          }
+          return;
+        }
+
+        if (hasModifier || isTypingTarget(event.target)) {
+          return;
+        }
+
+        if (commandPaletteState.prefix === 'g' && commandPaletteShortcuts[key]) {
+          event.preventDefault();
+          const href = commandPaletteShortcuts[key];
+          if (href.startsWith('http')) {
+            window.open(href, '_blank', 'noopener,noreferrer');
+          } else {
+            window.location.href = href;
+          }
+          resetPrefixShortcut();
+          return;
+        }
+
+        if (key === 'g') {
+          commandPaletteState.prefix = 'g';
+          if (commandPaletteState.prefixTimeoutId) {
+            clearTimeout(commandPaletteState.prefixTimeoutId);
+          }
+          commandPaletteState.prefixTimeoutId = setTimeout(() => {
+            resetPrefixShortcut();
+          }, 900);
+          return;
+        }
+
+        resetPrefixShortcut();
+      });
+
+      window.commandPaletteHandlersRegistered = true;
+    }
+
+    if (!root.dataset.ready) {
+      root.addEventListener('click', (event) => {
+        if (event.target === root) {
+          closeCommandPalette();
+        }
+      });
+
+      list.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-aw-command-palette-item]');
+        if (!button) return;
+        const index = Number(button.getAttribute('data-aw-command-palette-index'));
+        runCommandPaletteCommand(commandPaletteState.commands[index]);
+      });
+
+      input.addEventListener('input', (event) => {
+        commandPaletteState.query = event.target.value || '';
+        commandPaletteState.activeIndex = 0;
+        renderCommandPalette();
+      });
+
+      root.dataset.ready = 'true';
+    }
+
+    document.querySelectorAll('[data-aw-command-palette-open]').forEach((elem) => {
+      if (elem.dataset.ready) return;
+      elem.addEventListener('click', () => {
+        openCommandPalette();
+      });
+      elem.dataset.ready = 'true';
+    });
   }
 
   const onLoad = function () {
@@ -138,6 +463,8 @@ import { UI } from 'astrowind:config';
         ticking = true;
       }
     });
+
+    setupCommandPalette();
   };
   const onPageShow = function () {
     document.documentElement.classList.add('motion-safe:scroll-smooth');
