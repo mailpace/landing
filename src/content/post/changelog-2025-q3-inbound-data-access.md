@@ -1,5 +1,5 @@
 ---
-title: MP Updates: Inbound Data Access
+title: MP Updates - Inbound Data Access
 publishDate: 2025-09-18T10:00:00.000Z
 excerpt: You can now download full inbound payloads and raw email content directly from the dashboard
 category: Changelog
