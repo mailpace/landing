@@ -3,10 +3,6 @@ title: Attachment Compatibility and Billing Flow Updates
 publishDate: 2026-03-20T13:44:21.030Z
 excerpt: We expanded supported attachment types and simplified plan management for a smoother self-serve experience.
 category: Changelog
-tags:
-  - changelog
-  - attachments
-  - billing
 ---
 
 The first set of 2026 updates focused on compatibility and account management.
