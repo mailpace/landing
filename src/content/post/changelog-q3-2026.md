@@ -16,4 +16,3 @@ This update improves compatibility and reliability in three places that matter d
 - Added a max total email size validation on create with a guardrail of 31,457,280 bytes for message bodies plus attachments.
 - Optimized size validation to short-circuit as soon as the total crosses the limit, reducing unnecessary processing on oversized payloads.
 - Added support for PKPASS attachments.
-
