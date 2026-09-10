@@ -1,5 +1,5 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import plugin from 'tailwindcss/plugin';
+import defaultTheme from 'tailwindcss/defaultTheme.js';
+import plugin from 'tailwindcss/plugin.js';
 import typographyPlugin from '@tailwindcss/typography';
 
 export default {
