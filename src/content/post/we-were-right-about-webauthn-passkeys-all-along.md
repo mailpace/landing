@@ -50,7 +50,7 @@ In other words, the world caught up.
 
 Not in a dramatic “we saw the future” kind of way.
 
-More that the industry eventually ended up in the same place: authentication is better when you stop relying on shared secrets and start using device bound credentials instead.
+More that the industry eventually ended up in the same place: authentication is better when you stop relying on shared secrets and start using device-bound credentials instead.
 
 Back then it was called WebAuthn and it sounded a bit nerdy.
 
