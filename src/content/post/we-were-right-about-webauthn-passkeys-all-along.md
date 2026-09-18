@@ -5,104 +5,53 @@ excerpt: Four years after we backed WebAuthn-only 2FA, passkeys have made the sa
 category: Musings
 ---
 
-Back in 2022 we wrote [WebAuthn, and only WebAuthn](/blog/why-we-use-webauthn-for-2fa/) to explain why we shipped 2FA in MailPace without adding TOTP as a fallback.
+Back in 2022 we wrote [WebAuthn, and only WebAuthn](/blog/why-we-use-webauthn-for-2fa/) to explain why we added 2FA to MailPace without also adding TOTP.
 
-At the time that felt a little contrarian.
+At the time that felt a bit unusual. TOTP was everywhere, SMS codes were still common, and WebAuthn sounded like one of those standards that developers talk about more than normal users.
 
-TOTP was everywhere, SMS was still common, and WebAuthn was mostly associated with security keys, weird browser prompts, and long explainers aimed at developers. Our argument was pretty simple though: if you want strong authentication with a good user experience, WebAuthn is where the world was heading.
+But the point we were making was simple: if you want the best mix of security and user experience, WebAuthn is a better direction than shared secret based login flows.
 
-Four years later, passkeys are basically the industry admitting that WebAuthn won.
+Now it’s 2026, passkeys are everywhere, and that view has aged pretty well.
 
-## The main thing we got right
+## Passkeys are just WebAuthn with better marketing
 
-The core point in that earlier post was not really about hardware keys, or standards bodies, or whether developers should feel clever for using modern auth. It was that authentication works better when:
+The big thing that changed is not really the underlying idea. It’s the presentation.
 
-- the secret never leaves the device
-- the login flow is bound to the real site or app
-- the user can authenticate with something they already have
-- recovery comes from registering multiple devices, not from copying shared secrets around
+Back then, “WebAuthn” sounded technical and slightly awkward. Now you can say “passkey” and most people understand it means “use Face ID, Touch ID, Windows Hello, or your phone to sign in”.
 
-That was true then, and it is still true now.
+That’s a much better story.
 
-Passkeys did not replace WebAuthn. Passkeys are the product packaging that finally made WebAuthn understandable to normal people. The same underlying approach that once sounded niche is now built into phones, laptops, browsers, and password managers.
+The underlying benefits are still the same ones we liked in 2022:
 
-That shift matters because most auth technology does not fail on pure cryptography, it fails on adoption. A perfect security system that users avoid is not actually a very good security system.
+- the credential stays on the device
+- the login is tied to the real site or app
+- users can sign in with devices they already have
+- phishing gets a lot harder
 
-## Passkeys fixed the naming problem
+That last point is still the most important one. Passwords, SMS codes and TOTP codes can all be tricked out of users and replayed somewhere else. WebAuthn/passkeys are much better at resisting that kind of attack.
 
-If you said “WebAuthn” in 2022, most people heard “security feature for experts”.
+## We still think the UX is better
 
-If you say “passkey” in 2026, most people hear “use Face ID to sign in”.
+This was one of our main arguments in the original post, and it still holds.
 
-That is a massive improvement.
+Good security features need people to actually use them. Passkeys work well because the experience is straightforward. Instead of copying a code out of an app, users can often just approve the login on the device already in front of them.
 
-One of the awkward things about WebAuthn in the early days was that it was clearly better, but annoyingly hard to explain. Users did not care about attestation formats, public key credentials, or origin binding. They cared that it should be easy, fast, and not break when they changed devices.
+It also makes recovery less awkward. Rather than relying on one shared secret, users can register more than one device and use whichever one they have nearby.
 
-Passkeys gave the ecosystem a better story:
+## What changed since 2022?
 
-- use the device you already trust
-- sync credentials where appropriate
-- confirm with biometrics or a device PIN
-- stop typing passwords into random login forms
+Mostly adoption.
 
-None of that changes the underlying security properties we liked before. It just makes the experience legible.
+Apple, Google and Microsoft all pushed passkeys hard. Browsers support them well. Password managers support them well. Users are much more used to biometric prompts in the browser than they were a few years ago.
 
-## The anti-phishing argument aged very well
-
-The strongest part of WebAuthn was always phishing resistance.
-
-Shared-secret systems like passwords, SMS codes, and TOTP codes all have the same broad failure mode: users can be tricked into handing them over. Once the secret can be replayed somewhere else, attackers have room to operate.
-
-WebAuthn is different because the credential is tied to the origin. The user can still be socially engineered of course, but the basic “please type your code into this convincing fake login page” attack gets much weaker.
-
-That has only become more relevant. Attack tooling is better, fake login pages are better, and AI has made low-effort impersonation cheaper. In that world, removing replayable secrets from the login flow looks even smarter than it did in 2022.
-
-## We still think optional weaker fallbacks are a trap
-
-This was the spiciest claim in the original post, and we still broadly believe it.
-
-When a product says it supports passkeys but nudges users toward a weaker fallback, the weaker fallback often becomes the de facto default. Product teams tell themselves they are increasing compatibility, but what they may actually be doing is slowing adoption of the better path and expanding the attack surface at the same time.
-
-Of course reality is messy. Account recovery exists. Legacy devices exist. Enterprise environments exist. There are cases where you need additional options.
-
-But the design principle still holds: if you want better authentication outcomes, make the strongest flow the easiest flow.
-
-That is what passkeys have done well. They turned “advanced security option” into “big friendly button”.
-
-## What changed between then and now?
-
-Mostly distribution.
-
-In 2022 the technology was ready before the ecosystem messaging was ready. Today:
-
-- Apple, Google, and Microsoft all support passkeys across their platforms
-- password managers have made cross-device use far less awkward
-- users increasingly expect biometric login prompts in the browser
-- developers no longer have to explain from first principles why this is not just a USB key thing
-
-The cryptography did not suddenly become correct in 2025 or 2026. The user experience, platform support, and terminology finally caught up.
-
-## What we think people should do
-
-If you are building authentication today, start from passkeys/WebAuthn as the desired end state, not as a novelty feature to add later.
-
-That does not mean pretending migration is free. It means:
-
-- make passkeys the primary happy path
-- encourage users to register more than one device
-- be thoughtful about recovery flows, because recovery is where many systems quietly become insecure
-- avoid training users to fall back to phishable shared secrets unless you absolutely must
-
-This was our view when we shipped WebAuthn-only 2FA, and passkeys have only strengthened it.
+In other words, the world caught up.
 
 ## So yes, we were right
 
-Not in the smug “we predicted the future” sense, although obviously we will still take the small victory.
+Not in a dramatic “we saw the future” kind of way.
 
-More in the sense that the industry eventually moved toward the same conclusion: authentication gets better when you stop centering shared secrets and start using device-bound public key credentials with a clean user experience.
+More that the industry eventually ended up in the same place: authentication is better when you stop relying on shared secrets and start using device bound credentials instead.
 
-Back then it was called WebAuthn and sounded a bit nerdy.
+Back then it was called WebAuthn and it sounded a bit nerdy.
 
-Now it is called passkeys and everyone loves it.
-
-Same idea though.
+Now it’s called passkeys and everyone is much happier with it.
