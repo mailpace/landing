@@ -1,7 +1,7 @@
 ---
 title: We were right (about passkeys) all along
 publishDate: 2026-09-18T18:20:00.000Z
-excerpt: Four years after we backed WebAuthn-only 2FA, passkeys have made the same idea mainstream.
+excerpt: We’re gloating :-)
 category: Musings
 ---
 
